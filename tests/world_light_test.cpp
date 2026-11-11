@@ -501,19 +501,6 @@ struct PayloadReader {
     return 0;
   }
 
-  // The bitsets and the arrays' lengths are all big-endian on the wire.
-  int64_t i64() {
-    if (pos + 8 > body.size()) {
-      ok = false;
-      return 0;
-    }
-    uint64_t value = 0;
-    for (int i = 0; i < 8; ++i)
-      value = (value << 8) | body[pos + static_cast<size_t>(i)];
-    pos += 8;
-    return static_cast<int64_t>(value);
-  }
-
   std::vector<uint8_t> bytes(int n) {
     if (n < 0 || pos + static_cast<size_t>(n) > body.size()) {
       ok = false;
@@ -525,11 +512,27 @@ struct PayloadReader {
     return out;
   }
 
+  // 26.3's `ByteBufCodecs.BIT_SET`: a varint byte length followed by
+  // `BitSet.toByteArray()` — little-endian bits, trailing zero bytes trimmed.
   int64_t bitset() {
+    const int count = varint();
+    const std::vector<uint8_t> data = bytes(count);
+    if (count < 0 || data.size() != static_cast<size_t>(count)) {
+      ok = false;
+      return 0;
+    }
     int64_t bits = 0;
-    const int64_t count = varint();
-    for (int i = 0; i < count; ++i)
-      bits |= static_cast<int64_t>(static_cast<uint64_t>(i64()) << (64 * i));
+    for (int i = 0; i < count; ++i) {
+      for (int bit = 0; bit < 8; ++bit) {
+        const int position = i * 8 + bit;
+        if (position >= 64) {
+          ok = false;
+          return 0;
+        }
+        if ((data[static_cast<size_t>(i)] >> bit) & 1)
+          bits |= static_cast<int64_t>(1) << position;
+      }
+    }
     return bits;
   }
 

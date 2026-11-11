@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 //
 // Milestone F: the drop path's entity packets, pinned byte-for-byte against the
-// vanilla 26.2 codecs (ClientboundAddEntityPacket / ClientboundSetEntityDataPacket
+// vanilla 26.3 codecs (ClientboundAddEntityPacket / ClientboundSetEntityDataPacket
 // / ItemStack.OPTIONAL_STREAM_CODEC). Pure logic, no sockets.
 //
 // The regression this guards: Set Entity Data's ItemStack is
@@ -138,6 +138,21 @@ void expect_u64(const char* what, const std::vector<uint8_t>& b, size_t off, uin
   }
 }
 
+void expect_u32(const char* what, const std::vector<uint8_t>& b, size_t off, uint32_t want) {
+  if (off + 4 > b.size()) {
+    ++g_failures;
+    std::printf("FAIL: %s out of range\n", what);
+    return;
+  }
+  uint32_t got = 0;
+  for (int i = 0; i < 4; ++i)
+    got = (got << 8) | b[off + static_cast<size_t>(i)];
+  if (got != want) {
+    ++g_failures;
+    std::printf("FAIL: %s got %08x want %08x\n", what, got, want);
+  }
+}
+
 } // namespace
 
 int main() {
@@ -259,19 +274,20 @@ int main() {
   };
   expect_bytes("orb set_entity_data bytes", orb_data, want_orb_data);
 
-  // sync_entity_position (0x23): the position and velocity as three f64 pairs,
-  // then two f32 rotations and the on-ground bool.
+  // sync_entity_position (0x23): 26.3's PositionPath form. Entity id, then
+  // LINEAR (type 0) and its end-position Vec3, then the two f32 rotations and
+  // the on-ground bool. The 26.2 PositionMoveRotation velocity is gone.
   const auto sync = mc::server::make_entity_position_sync(7, 0.5, 4.5, 1.5, -0.1, 0.2, 0.0, true);
-  if (sync.size() != 59 || sync[0] != 0x23 || sync[1] != 0x07 || sync[58] != 0x01) {
+  if (sync.size() != 36 || sync[0] != 0x23 || sync[1] != 0x07 || sync[2] != 0x00 ||
+      sync[35] != 0x01) {
     ++g_failures;
     std::printf("FAIL: sync_entity_position framing (len %zu)\n", sync.size());
   }
-  expect_u64("sync x", sync, 2, 0x3FE0000000000000ULL);
-  expect_u64("sync y", sync, 10, 0x4012000000000000ULL);
-  expect_u64("sync z", sync, 18, 0x3FF8000000000000ULL);
-  expect_u64("sync vx", sync, 26, 0xBFB999999999999AULL);
-  expect_u64("sync vy", sync, 34, 0x3FC999999999999AULL);
-  expect_u64("sync vz", sync, 42, 0x0000000000000000ULL);
+  expect_u64("sync x", sync, 3, 0x3FE0000000000000ULL);
+  expect_u64("sync y", sync, 11, 0x4012000000000000ULL);
+  expect_u64("sync z", sync, 19, 0x3FF8000000000000ULL);
+  expect_u32("sync yaw", sync, 27, 0);
+  expect_u32("sync pitch", sync, 31, 0);
 
   // take_item_entity (0x7c): three varints — the entity taken, the player that
   // took it, and the amount (always 1 for an orb).

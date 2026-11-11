@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:plusmc:metrics:v1",
+  "$comment": "Published schema for one line of the --metrics-file export (Phase 5, docs/PHASE5.md §6 item 8). Written and pinned by tests/metrics_file_test.py.",
+  "title": "+MC metrics JSON line (--metrics-file)",
+  "description": "One reported tick-accounting window, as one line of the file `plusmc --metrics-file <path>` appends to. Each line is a self-contained JSON object (JSON Lines: no array, no trailing comma, no nesting) and the file's records are ordered by wall clock. The numbers are the ones the server also writes to stderr as `metrics: key=value ...`, with the same field names and the same rounding, so a forwarder's numbers and a `bench/soak.py` run's numbers are comparable without a conversion table; `v` and `ts_unix` exist only in this form. Exactly one record is appended per reported window: one per `--metrics-interval` second (the default a `--metrics-file` run implies), plus the window in flight when the server shuts down, so a run shorter than one interval still exports. The file is opened in append mode, so one path spans restarts. Versioning: `v` is bumped when a field is renamed, removed or retyped; adding a field does not bump it, because a consumer that ignores keys it does not know keeps working (that is how `ts_unix` itself arrived). `additionalProperties: false` is therefore the schema of the version it names, and a consumer that wants to survive the next minor addition should ignore unknown keys rather than reject them.",
+  "type": "object",
+  "required": [
+    "v",
+    "ts_unix",
+    "tps",
+    "work_avg_ms",
+    "work_peak_ms",
+    "busy_pct",
+    "tick_pct",
+    "resync",
+    "players",
+    "rss_bytes",
+    "uptime_s",
+    "ticks",
+    "world_chunks",
+    "world_bytes",
+    "world_written_chunks",
+    "world_chunks_stored"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "v": {
+      "type": "integer",
+      "const": 1,
+      "description": "Format version of this record (mc::metrics::kJsonFormatVersion in src/core/metrics.h). 1 is the first published version."
+    },
+    "ts_unix": {
+      "type": "integer",
+      "minimum": 1600000000,
+      "description": "Wall-clock time this window was reported, in whole seconds since the Unix epoch (UTC). The only field that can move backwards if the system clock is adjusted; the tick loop itself never reads the wall clock."
+    },
+    "tps": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Ticks per second over this window: whole ticks executed divided by the wall time the window covered. The target is a steady 20.0 (PLAN §8)."
+    },
+    "work_avg_ms": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Average time inside the tick work per tick, in milliseconds (mspt): the sleep between ticks is excluded. PLAN §8 says this must never be sustained above ~45 ms."
+    },
+    "work_peak_ms": {
+      "type": "number",
+      "minimum": 0,
+      "description": "The worst single tick's work in this window, in milliseconds. What a player feels as a stutter."
+    },
+    "busy_pct": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Work as a percentage of one core across the window. The headroom number: how much of a single sim thread is left before region parallelism (PLAN §6.2) stops being optional."
+    },
+    "tick_pct": {
+      "type": "number",
+      "minimum": 0,
+      "description": "work_avg_ms as a percentage of one 50 ms tick: how full a tick is."
+    },
+    "resync": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Backlogs dropped in this window, i.e. how often the loop gave up its catch-up limit instead of stacking late ticks. Non-zero means the machine, not the code, is the limit."
+    },
+    "players": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Players connected at the moment the window closed."
+    },
+    "rss_bytes": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Resident set size of the server process in bytes at the moment the window closed. 0 when the platform has no answer (the reader is macOS mach / Linux /proc; see src/core/metrics.cpp)."
+    },
+    "uptime_s": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Monotonic seconds since the tick loop started: it never jumps when the wall clock does, which is what makes it the field to compute deltas from."
+    },
+    "ticks": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Whole ticks executed since the process started (not just this window). Monotonically increasing across a run's records."
+    },
+    "world_chunks": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Columns the in-memory world store is holding at the moment the window closed (WorldInterface::resident_columns), i.e. its occupancy against the multiplier's ceiling. A disk-backed world (--world) has no column cache and reports 0."
+    },
+    "world_bytes": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The resident columns' own estimated bytes, summed by the store (WorldInterface::resident_bytes; Chunk::estimated_bytes per column). 0 for a world with no column cache. This is the number a byte ceiling (PLUSMC_CHUNK_BUDGET_MB) bounds."
+    },
+    "world_written_chunks": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Of the resident columns, the ones carrying a block write the store cannot rebuild (WorldInterface::columns_with_writes). These are the columns a memory ceiling must not simply drop; a non-zero number that stops falling is world state, not a leak."
+    },
+    "world_chunks_stored": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Columns the store has stored since the process started (WorldInterface::columns_stored): a cumulative counter, not a gauge, and never decremented by eviction, the idle release or clear. It equals world_chunks on a run the budget never pressed, and exceeds it once the store has evicted — which is what makes it the field to compute generation throughput from. A world with no column cache reports 0."
+    }
+  }
+}

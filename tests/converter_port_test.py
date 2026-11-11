@@ -239,7 +239,7 @@ def main():
         assert "reference  org/bukkit/World#spawn" in text, text
         print("PASS port report")
 
-        manifest = (out / "+mc-plugin.toml").read_text()
+        manifest = (out / "+mc-plugin.toml").read_text(encoding="utf-8")
         assert 'name = "Example Port"' in manifest, manifest
         assert 'version = "1.2.3"' in manifest, manifest
         assert "api = 1" in manifest, manifest
@@ -247,7 +247,7 @@ def main():
         assert 'entry = "pmc_plugin_entry"' in manifest, manifest
         print("PASS native manifest")
 
-        source = (out / "example_port.cpp").read_text()
+        source = (out / "example_port.cpp").read_text(encoding="utf-8")
         assert '#include "pluginapi/plugin.h"' in source, source
         assert "PMC_EVENT_PLAYER_JOIN" in source, source
         assert "PMC_EVENT_PLAYER_CHAT" in source, source
@@ -275,18 +275,18 @@ def main():
         assert source.count(registration_marker) == 1, source
         print("PASS scaffold source and insertion markers")
 
-        cmake_text = (out / "CMakeLists.txt").read_text()
+        cmake_text = (out / "CMakeLists.txt").read_text(encoding="utf-8")
         assert "add_library(example_port MODULE example_port.cpp)" in cmake_text, cmake_text
         assert (
             "SUFFIX \".dylib\"" in cmake_text and "SUFFIX \".so\"" in cmake_text
         ), cmake_text
         assert "SUFFIX \".dll\"" in cmake_text, cmake_text
-        readme = (out / "README.md").read_text()
+        readme = (out / "README.md").read_text(encoding="utf-8")
         assert "# Example Port — +MC port scaffold" in readme, readme
         assert "port.json" in readme and "not a port" in readme, readme
         print("PASS build project and README")
 
-        report = json.loads((out / "port.json").read_text())
+        report = json.loads((out / "port.json").read_text(encoding="utf-8"))
         assert report["ok"] is True, report
         assert report["mode"] == "port", report
         assert report["plugin"] == {
@@ -337,13 +337,13 @@ def main():
         # source, CMake or README; handlers new since the scaffold become
         # manual work items instead of silently claiming a stub exists.
         source_path = out / "example_port.cpp"
-        original_source = source_path.read_text()
+        original_source = source_path.read_text(encoding="utf-8")
         edited = original_source.replace(
             "// The original manifest declared /greet.",
             "// The human wrote this handler.",
         )
         assert edited != original_source, "the fixture response text moved"
-        source_path.write_text(edited)
+        source_path.write_text(edited, encoding="utf-8")
         cmake_before = (out / "CMakeLists.txt").read_bytes()
         readme_before = (out / "README.md").read_bytes()
 
@@ -362,7 +362,7 @@ def main():
         assert "command  greet [preserved]" in text, text
         assert "command  wave [inserted]" in text, text
         assert "event  org/bukkit/event/player/PlayerQuitEvent [inserted]" in text, text
-        updated_source = source_path.read_text()
+        updated_source = source_path.read_text(encoding="utf-8")
         assert "// The human wrote this handler." in updated_source, updated_source
         assert "TODO" not in updated_source, updated_source
         assert "void command_wave(void* data, pmc_command* command)" in updated_source
@@ -382,14 +382,14 @@ def main():
             position += 1
         assert (out / "CMakeLists.txt").read_bytes() == cmake_before
         assert (out / "README.md").read_bytes() == readme_before
-        manifest = (out / "+mc-plugin.toml").read_text()
+        manifest = (out / "+mc-plugin.toml").read_text(encoding="utf-8")
         assert 'version = "2.0.0"' in manifest, manifest
         compile_scaffold(
             compiler, source_root, source_path, root / "example_port_updated_module"
         )
         print("PASS --from-port inserts new handlers and preserves every human line")
 
-        report = json.loads((out / "port.json").read_text())
+        report = json.loads((out / "port.json").read_text(encoding="utf-8"))
         assert report["from_port"] is True, report
         assert "example_port.cpp" in report["preserved"], report
         assert report["plugin"]["version"] == "2.0.0", report
@@ -433,11 +433,11 @@ def main():
         legacy = root / "legacy"
         run(cli, ["port", jar, "--out", legacy])
         legacy_source = legacy / "example_port.cpp"
-        legacy_text = legacy_source.read_text()
+        legacy_text = legacy_source.read_text(encoding="utf-8")
         assert handler_marker in legacy_text and registration_marker in legacy_text
         legacy_text = legacy_text.replace(handler_marker + "\n", "")
         legacy_text = legacy_text.replace(registration_marker + "\n", "")
-        legacy_source.write_text(legacy_text)
+        legacy_source.write_text(legacy_text, encoding="utf-8")
         legacy_before = legacy_source.read_bytes()
         text = run(cli, ["port", updated, "--out", legacy, "--from-port"]).stdout
         assert legacy_source.read_bytes() == legacy_before, "source changed without markers"
@@ -445,7 +445,7 @@ def main():
         assert "command  wave [manual]" in text, text
         assert "event  org/bukkit/event/player/PlayerQuitEvent [manual]" in text, text
         assert "marker" in text, text
-        legacy_report = json.loads((legacy / "port.json").read_text())
+        legacy_report = json.loads((legacy / "port.json").read_text(encoding="utf-8"))
         assert legacy_report["summary"]["inserted"] == 0, legacy_report
         assert any("marker" in note for note in legacy_report["notes"]), legacy_report
         print("PASS --from-port falls back when the marker is missing")
@@ -453,10 +453,11 @@ def main():
         duplicate = root / "duplicate"
         run(cli, ["port", jar, "--out", duplicate])
         duplicate_source = duplicate / "example_port.cpp"
-        duplicate_text = duplicate_source.read_text()
+        duplicate_text = duplicate_source.read_text(encoding="utf-8")
         assert duplicate_text.count(handler_marker) == 1
         duplicate_source.write_text(
-            duplicate_text.replace(handler_marker, handler_marker + "\n" + handler_marker)
+            duplicate_text.replace(handler_marker, handler_marker + "\n" + handler_marker),
+            encoding="utf-8",
         )
         duplicate_before = duplicate_source.read_bytes()
         text = run(cli, ["port", updated, "--out", duplicate, "--from-port"]).stdout
@@ -472,7 +473,7 @@ def main():
 
         not_a_port = root / "not-a-port"
         not_a_port.mkdir()
-        (not_a_port / "keep.txt").write_text("keep")
+        (not_a_port / "keep.txt").write_text("keep", encoding="utf-8")
         proc = run(cli, ["port", updated, "--out", not_a_port, "--from-port"], expect=1)
         assert "no +mc-plugin.toml" in proc.stderr, proc.stderr
 
@@ -488,7 +489,8 @@ def main():
         orphan = root / "orphan"
         orphan.mkdir()
         (orphan / "+mc-plugin.toml").write_text(
-            'name = "Orphan"\nversion = "1.0.0"\napi = 1\nlibrary = "orphan"\n'
+            'name = "Orphan"\nversion = "1.0.0"\napi = 1\nlibrary = "orphan"\n',
+            encoding="utf-8",
         )
         orphan_jar = fixture_jar(
             root / "orphan.jar", MANIFEST.replace("name: Example Port", "name: Orphan")
@@ -505,10 +507,10 @@ def main():
         occupied = root / "occupied"
         occupied.mkdir()
         keep = occupied / "keep.txt"
-        keep.write_text("do not replace me")
+        keep.write_text("do not replace me", encoding="utf-8")
         proc = run(cli, ["port", jar, "--out", occupied], expect=1)
         assert "not empty" in proc.stderr, proc.stderr
-        assert keep.read_text() == "do not replace me", keep
+        assert keep.read_text(encoding="utf-8") == "do not replace me", keep
         print("PASS refuses a non-empty output directory")
 
         plain = converter_test.make_jar(
@@ -522,7 +524,7 @@ def main():
         print("PASS refuses a jar without a manifest")
 
         blocker = root / "blocker"
-        blocker.write_text("a file, not a directory")
+        blocker.write_text("a file, not a directory", encoding="utf-8")
         proc = run(cli, ["port", jar, "--out", blocker], expect=1)
         assert "not a directory" in proc.stderr, proc.stderr
         print("PASS refuses a file in the output path")

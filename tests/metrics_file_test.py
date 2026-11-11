@@ -26,7 +26,7 @@ The contract the test pins, and why each half of it matters:
   E. **the refusals.** A path whose directory does not exist, and a path that is
      a directory, fail the start rather than silently exporting nothing.
   F. **the published schema.** The records carry a format version (`v`, the
-     first key) and `docs/metrics.schema.json` describes exactly the keys that
+     first key) and `tests/fixtures/metrics.schema.json` describes exactly the keys that
      are written, with all of them required — so a consumer that validates a
      line is validating the format this server actually emits. The check is a
      key-set comparison rather than a validator dependency: the schema's
@@ -71,7 +71,7 @@ KEYS = ["tps", "work_avg_ms", "work_peak_ms", "busy_pct", "tick_pct", "resync", 
 # change; the schema below has to move with it.
 FILE_KEYS = ["v", "ts_unix"]
 VERSION = 1
-SCHEMA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "docs",
+SCHEMA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures",
                            "metrics.schema.json")
 LINE_RE = re.compile(r"metrics: (\w+=[-\d.]+(?: \w+=[-\d.]+)*)")
 KV_RE = re.compile(r"(\w+)=([-\d.]+)")
@@ -269,7 +269,7 @@ def main():
             schema = json.load(fh)
         written = set(KEYS) | set(FILE_KEYS)
         assert set(schema["properties"]) == written, \
-            f"docs/metrics.schema.json must describe exactly the records: " \
+            f"tests/fixtures/metrics.schema.json must describe exactly the records: " \
             f"{sorted(set(schema['properties']) ^ written)}"
         assert set(schema["required"]) == written, \
             f"every published field is required: {sorted(set(schema['required']) ^ written)}"
