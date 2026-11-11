@@ -30,7 +30,7 @@ jobs:
       # The seam benchmark is pinned to one recorded measurement rather than to
       # whatever record is newest, so re-recording the baseline is an explicit
       # edit here as well as a new file under bench/baseline/.
-      SEAM_BASELINE: bench/baseline/2026-11-01-i5-4570-light-seam-3seeds-r2.json
+      SEAM_BASELINE: bench/baseline/2026-11-11-i5-4570-light-seam-3seeds-r2.json
     steps:
       - uses: actions/checkout@v4
 
@@ -176,7 +176,7 @@ jobs:
     name: build (windows-mingw)
     runs-on: windows-latest
     env:
-      SEAM_BASELINE: bench/baseline/2026-11-01-i5-4570-light-seam-3seeds-r2.json
+      SEAM_BASELINE: bench/baseline/2026-11-11-i5-4570-light-seam-3seeds-r2.json
     steps:
       - uses: actions/checkout@v4
 
@@ -282,7 +282,7 @@ jobs:
       # The decorated columns are pinned the same way the light seam is:
       # re-recording is a new file under bench/baseline/ and an edit here, so a
       # reviewer sees the values move rather than discovering they drifted.
-      COLUMN_BASELINE: bench/baseline/2026-11-01-i5-4570-column-digest-3seeds-r2.json
+      COLUMN_BASELINE: bench/baseline/2026-11-11-i5-4570-column-digest-3seeds-r2.json
     steps:
       - uses: actions/checkout@v4
 
