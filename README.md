@@ -1,5 +1,7 @@
 # +MC
 
+### Still not finished though
+
 +MC (PlusMC) is a Minecraft Java Edition server written in C++20. It is built
 around the vanilla game's own data and behavior, with a focus on performance
 and a small, understandable codebase.
