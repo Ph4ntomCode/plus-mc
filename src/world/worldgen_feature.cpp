@@ -3327,8 +3327,7 @@ uint32_t place_nether_forest_vegetation(Chunk& chunk, const WgExtraConfig& cfg, 
       continue;
     if (!would_survive(chunk, name, px, py, pz))
       continue;
-    placed += try_set(chunk, px, py, pz, name,
-                      name == cfg.a.name ? cfg.a.properties : "", false)
+    placed += try_set(chunk, px, py, pz, name, name == cfg.a.name ? cfg.a.properties : "", false)
                   ? 1u
                   : 0u;
   }

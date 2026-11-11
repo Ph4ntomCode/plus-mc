@@ -240,12 +240,12 @@ int main() {
     push_varint(&want, 1); // one requirement set
     push_varint(&want, 1); // of one criterion
     push_identifier(&want, "crafting_table");
-    want.push_back(0x01);  // sends_telemetry_event
-    push_f32(&want, 0.0f); // PositionedAdvancement.x
+    want.push_back(0x01);   // sends_telemetry_event
+    push_f32(&want, 0.0f);  // PositionedAdvancement.x
     push_f32(&want, 1.75f); // PositionedAdvancement.y
-    push_varint(&want, 0); // no removals
-    push_varint(&want, 0); // no progress
-    want.push_back(0x00);  // showAdvancements false
+    push_varint(&want, 0);  // no removals
+    push_varint(&want, 0);  // no progress
+    want.push_back(0x00);   // showAdvancements false
     expect_bytes("update_advancements positioned",
                  mc::server::make_update_advancements(true, {root}, {}, {}, false,
                                                       mc::server::AdvancementLayout::Positioned),

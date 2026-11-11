@@ -368,8 +368,7 @@ public:
     return true;
   }
 
-  bool player_uuid(std::string_view name, std::uint64_t* high,
-                   std::uint64_t* low) override {
+  bool player_uuid(std::string_view name, std::uint64_t* high, std::uint64_t* low) override {
     if (high == nullptr || low == nullptr)
       return false;
     PlayerSnapshot snapshot;

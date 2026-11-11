@@ -736,8 +736,8 @@ void invent_uuid(int32_t entity_id, uint8_t tail_base, uint8_t uuid[16]) {
 // 0x04 game mode; 0x08 listed; 0x10 latency; 0x20 display name absent;
 // 0x40 list priority; 0x80 hat visible).
 std::vector<uint8_t> make_player_info_add_fields(const uint8_t uuid[16], const std::string& name,
-                                                  const std::vector<ProfileProperty>& properties,
-                                                  uint8_t gamemode) {
+                                                 const std::vector<ProfileProperty>& properties,
+                                                 uint8_t gamemode) {
   mc::net::Writer w;
   w.varint(kPlayPlayerInfoUpdateId);
   w.u8(0xFF);  // actions
@@ -821,7 +821,7 @@ std::vector<uint8_t> make_entity_look(int32_t eid, uint8_t yaw, uint8_t pitch, b
 }
 
 std::vector<uint8_t> make_entity_teleport_fields(int32_t entity_id, double x, double y, double z,
-                                                  float yaw, float pitch, bool ground) {
+                                                 float yaw, float pitch, bool ground) {
   mc::net::Writer w;
   w.varint(kPlayEntityTeleportId);
   w.varint(static_cast<uint32_t>(entity_id));
@@ -3812,8 +3812,9 @@ int enchanting_bookshelf_power(const PlayState& st) {
         const int x = st.open.x + dx;
         const int y = st.open.y + dy;
         const int z = st.open.z + dz;
-        if (st.settings->world->get_block_state(tick_chunk_of(x), tick_chunk_of(z),
-                                                tick_local_of(x), y, tick_local_of(z))
+        if (st.settings->world
+                ->get_block_state(tick_chunk_of(x), tick_chunk_of(z), tick_local_of(x), y,
+                                  tick_local_of(z))
                 .name == "minecraft:bookshelf")
           ++shelves;
       }
@@ -3913,9 +3914,8 @@ void recompute_anvil_result(PlayState& st) {
       continue;
     const int existing = result.enchantment_level(entry.enchantment);
     if (existing > 0) {
-      const int merged = existing == entry.level
-                             ? std::min<int>(def->max_level, existing + 1)
-                             : std::max(existing, entry.level);
+      const int merged = existing == entry.level ? std::min<int>(def->max_level, existing + 1)
+                                                 : std::max(existing, entry.level);
       if (merged > existing) {
         result.set_enchantment(entry.enchantment, merged);
         changed = true;
@@ -4545,8 +4545,8 @@ void open_enchanting_window(PlayState& st, int x, int y, int z) {
 }
 
 void open_anvil_window(PlayState& st, int x, int y, int z) {
-  open_block_menu_window(st, PlayState::MenuKind::Anvil, x, y, z,
-                         mc::world::kMenuAnvilTypeId, "container.repair", true);
+  open_block_menu_window(st, PlayState::MenuKind::Anvil, x, y, z, mc::world::kMenuAnvilTypeId,
+                         "container.repair", true);
 }
 
 // ServerboundContainerClosePacket (0x13): [varint container id]. The player closed
@@ -4894,8 +4894,8 @@ std::shared_ptr<const std::vector<uint8_t>> chunk_body_for(int cx, int cz,
         biomes = fallback.get();
       }
       const auto& blocks = mc::world::full_block_states();
-      if (auto body = mc::world::encode_chunk_body(
-              *chunk, blocks, *biomes, mc::world::LightMaskEncoding::ByteArray)) {
+      if (auto body = mc::world::encode_chunk_body(*chunk, blocks, *biomes,
+                                                   mc::world::LightMaskEncoding::ByteArray)) {
         auto stored = std::make_shared<const std::vector<uint8_t>>(std::move(*body));
         remember_chunk_body(cx, cz, token, settings.world.get(), stored);
         return stored;
@@ -4919,8 +4919,8 @@ std::shared_ptr<const std::vector<uint8_t>> translated_chunk_body(
     ensure_chunk_light(cx, cz);
     const auto chunk = settings.world->load_chunk(cx, cz);
     if (chunk) {
-      if (auto body = mc::world::encode_chunk_body(
-              *chunk, blocks, biomes, mc::world::LightMaskEncoding::LongArray))
+      if (auto body = mc::world::encode_chunk_body(*chunk, blocks, biomes,
+                                                   mc::world::LightMaskEncoding::LongArray))
         return std::make_shared<const std::vector<uint8_t>>(std::move(*body));
       log::warn(who, ": translated chunk (", cx, ",", cz,
                 ") has a state outside the target block table; sending void fallback");
@@ -12413,8 +12413,7 @@ bool menu_slot_accepts(const PlayState& st, const SlotRef& ref, const mc::world:
   if (st.stonecutter() && ref.inv == &st.stonecutter_input)
     return mc::world::is_stonecutter_input(stack.item);
   if (st.enchanting_table() && ref.inv == &st.enchant_lapis)
-    return mc::world::ItemRegistry::instance().name_of(stack.item) ==
-           "minecraft:lapis_lazuli";
+    return mc::world::ItemRegistry::instance().name_of(stack.item) == "minecraft:lapis_lazuli";
   // The furnace family's two restricted slots (milestone E): the output takes
   // nothing (FurnaceResultSlot.mayPlace is false) and the fuel slot takes only
   // a fuel or a bucket (FurnaceFuelSlot + canPlaceItem(1) — a plain bucket is
@@ -12664,8 +12663,8 @@ void apply_window_click(PlayState& st, int slot, int button, int click_type, boo
       }
     } else if (st.enchanting_table()) {
       if (here.inv == &st.inventory) {
-        const bool lapis = mc::world::ItemRegistry::instance().name_of(stack.item) ==
-                           "minecraft:lapis_lazuli";
+        const bool lapis =
+            mc::world::ItemRegistry::instance().name_of(stack.item) == "minecraft:lapis_lazuli";
         remaining = lapis ? st.enchant_lapis.add_in_range(0, 1, stack)
                           : st.enchant_item.add_in_range(0, 1, stack);
       } else {
@@ -13931,8 +13930,8 @@ void do_teleport(PlayState& st, double x, double y, double z, float yaw, float p
         // the canonical player tracking set. This is the same absolute stance
         // packet the movement relay sends, and it also applies any range
         // transitions caused by the new position.
-        notify_legacy_canonical_position_locked(
-            pl, st.settings->player_tracking_range, st.settings->player_tracking_drop_range);
+        notify_legacy_canonical_position_locked(pl, st.settings->player_tracking_range,
+                                                st.settings->player_tracking_drop_range);
         break;
       }
     }
@@ -17967,8 +17966,7 @@ void drain_advancement_completions(PlayState& st) {
 // One player's dirty advancement rows as a packet, or empty when nothing moved.
 // Called under the registry lock: the progress pointers point into the model, so
 // the bytes are serialized before the lock drops.
-std::vector<uint8_t> advancement_update_packet(Player& p,
-                                               mc::server::AdvancementLayout layout) {
+std::vector<uint8_t> advancement_update_packet(Player& p, mc::server::AdvancementLayout layout) {
   mc::world::PlayerAdvancements::Update update = p.advancements.flush(true);
   if (update.empty())
     return {};
@@ -17981,9 +17979,9 @@ std::vector<uint8_t> advancement_update_packet(Player& p,
 void flush_advancements(PlayState& st) {
   // 26.3 carries the coordinates in a PositionedAdvancement wrapper; a
   // translated 26.1/26.2 connection still reads them inside DisplayInfo.
-  const mc::server::AdvancementLayout layout =
-      st.translated_protocol != 0 ? mc::server::AdvancementLayout::Legacy
-                                  : mc::server::AdvancementLayout::Positioned;
+  const mc::server::AdvancementLayout layout = st.translated_protocol != 0
+                                                   ? mc::server::AdvancementLayout::Legacy
+                                                   : mc::server::AdvancementLayout::Positioned;
   std::vector<uint8_t> packet;
   with_me(st, [&](Player& p) { packet = advancement_update_packet(p, layout); });
   if (!packet.empty())
@@ -20373,8 +20371,8 @@ void relay_stance(PlayState& st) {
   const uint8_t pitch_b = angle_to_byte(me->pitch);
   const bool rot_changed = yaw_b != me->relay_yaw || pitch_b != me->relay_pitch;
   if (pos_changed || rot_changed)
-    notify_legacy_canonical_position_locked(
-        *me, st.settings->player_tracking_range, st.settings->player_tracking_drop_range);
+    notify_legacy_canonical_position_locked(*me, st.settings->player_tracking_range,
+                                            st.settings->player_tracking_drop_range);
 
   std::vector<uint8_t> payload;
   if (me->relay_absolute_next) {
@@ -20717,8 +20715,8 @@ void capture_legacy_player_state(const PlayState& st, LegacyPeer& peer) {
   peer.health = st.survival.health;
   peer.absorption = st.survival.absorption;
   peer.effects = mc::world::effect_particles(st.survival.effects);
-  peer.effect_ambience = !st.survival.effects.empty() &&
-                         mc::world::effects_all_ambient(st.survival.effects);
+  peer.effect_ambience =
+      !st.survival.effects.empty() && mc::world::effects_all_ambient(st.survival.effects);
   peer.mainhand = st.inventory.get(st.held_slot);
   peer.offhand = st.inventory.get(mc::world::kOffhandSlot);
   for (int i = 0; i < mc::world::kArmorSlots; ++i)
@@ -20805,8 +20803,7 @@ std::vector<uint8_t> make_legacy_set_experience(int protocol, float progress, in
 }
 
 std::vector<uint8_t> make_legacy_open_screen(int protocol, int window_id, int menu_id,
-                                             const std::string& title,
-                                             bool translatable = false) {
+                                             const std::string& title, bool translatable = false) {
   const int id = static_cast<int>(
       translated_clientbound_id(protocol, mc::protocol::State::Play, "open_screen"));
   if (id < 0)
@@ -20878,9 +20875,10 @@ std::vector<uint8_t> make_legacy_container_data(int protocol, int window_id, int
 // A cost item absent from the target release is written as air rather than
 // dropping the offer, because dropping it would renumber every later offer and
 // desynchronise ServerboundSelectTradePacket's index.
-std::vector<uint8_t> make_legacy_merchant_offers(
-    int protocol, int window_id, const std::vector<mc::world::MerchantOffer>& offers,
-    int villager_level, int villager_xp, bool show_progress, bool can_restock) {
+std::vector<uint8_t>
+make_legacy_merchant_offers(int protocol, int window_id,
+                            const std::vector<mc::world::MerchantOffer>& offers, int villager_level,
+                            int villager_xp, bool show_progress, bool can_restock) {
   const int id = static_cast<int>(
       translated_clientbound_id(protocol, mc::protocol::State::Play, "merchant_offers"));
   if (id < 0)
@@ -21084,12 +21082,9 @@ std::vector<uint8_t> make_legacy_player_equipment(int protocol, const Player& p,
     const mc::world::ItemStack* stack;
   };
   const Slot slots[] = {
-      {kEquipmentMainHand, &p.mainhand},
-      {kEquipmentOffHand, &p.offhand},
-      {kEquipmentFeet, &p.armor[0]},
-      {kEquipmentLegs, &p.armor[1]},
-      {kEquipmentChest, &p.armor[2]},
-      {kEquipmentHead, &p.armor[3]},
+      {kEquipmentMainHand, &p.mainhand}, {kEquipmentOffHand, &p.offhand},
+      {kEquipmentFeet, &p.armor[0]},     {kEquipmentLegs, &p.armor[1]},
+      {kEquipmentChest, &p.armor[2]},    {kEquipmentHead, &p.armor[3]},
   };
   std::vector<const Slot*> entries;
   for (const Slot& slot : slots)
@@ -21223,8 +21218,8 @@ void send_legacy_canonical_info(LegacyPeer& peer, const Player& player) {
     return;
   if (!peer.canonical_info.insert(player.entity_id).second)
     return;
-  const std::vector<uint8_t> info = make_legacy_player_info_add(
-      peer.protocol, player.uuid, player.name, player.properties);
+  const std::vector<uint8_t> info =
+      make_legacy_player_info_add(peer.protocol, player.uuid, player.name, player.properties);
   if (!info.empty())
     write(*peer.io, peer.threshold, info);
 }
@@ -21237,13 +21232,13 @@ void send_legacy_canonical_proxy(LegacyPeer& peer, const Player& player) {
     return;
   if (!peer.canonical_players.insert(player.entity_id).second)
     return;
-  const int32_t type = mc::translation::t0::target_entity_type_id(
-      peer.protocol, mc::protocol::kPlayerEntityTypeId);
+  const int32_t type =
+      mc::translation::t0::target_entity_type_id(peer.protocol, mc::protocol::kPlayerEntityTypeId);
   if (type < 0)
     return;
-  const std::vector<uint8_t> spawn = make_legacy_entity_spawn(
-      peer.protocol, player.entity_id, player.uuid, type, player.x, player.y, player.z,
-      player.yaw, player.pitch);
+  const std::vector<uint8_t> spawn =
+      make_legacy_entity_spawn(peer.protocol, player.entity_id, player.uuid, type, player.x,
+                               player.y, player.z, player.yaw, player.pitch);
   if (!spawn.empty())
     write(*peer.io, peer.threshold, spawn);
   const std::vector<uint8_t> data = make_legacy_player_entity_data(peer.protocol, player);
@@ -21255,8 +21250,7 @@ void send_legacy_canonical_proxy(LegacyPeer& peer, const Player& player) {
     write(*peer.io, peer.threshold, equipment);
 }
 
-bool within_translated_tracking_range(const Player& viewer, const LegacyPeer& peer,
-                                      double range) {
+bool within_translated_tracking_range(const Player& viewer, const LegacyPeer& peer, double range) {
   const double dx = viewer.x - peer.x;
   const double dy = viewer.y - peer.y;
   const double dz = viewer.z - peer.z;
@@ -21297,12 +21291,9 @@ std::vector<uint8_t> make_canonical_translated_entity_data(const LegacyPeer& pee
 // empty ones, so a stack removed on the T0 side actually clears on the client.
 std::vector<uint8_t> make_canonical_translated_equipment(const LegacyPeer& peer) {
   std::vector<EquipmentEntry> entries = {
-      {kEquipmentMainHand, peer.mainhand},
-      {kEquipmentOffHand, peer.offhand},
-      {kEquipmentFeet, peer.armor[0]},
-      {kEquipmentLegs, peer.armor[1]},
-      {kEquipmentChest, peer.armor[2]},
-      {kEquipmentHead, peer.armor[3]},
+      {kEquipmentMainHand, peer.mainhand}, {kEquipmentOffHand, peer.offhand},
+      {kEquipmentFeet, peer.armor[0]},     {kEquipmentLegs, peer.armor[1]},
+      {kEquipmentChest, peer.armor[2]},    {kEquipmentHead, peer.armor[3]},
   };
   return make_set_equipment(peer.entity_id, std::move(entries));
 }
@@ -21315,8 +21306,8 @@ void send_translated_player_info_to_canonical(Player& viewer, const LegacyPeer& 
     return;
   if (!viewer.translated_info.insert(peer.entity_id).second)
     return;
-  const std::vector<uint8_t> info = make_player_info_add_fields(
-      peer.uuid, peer.name, peer.properties, peer.gamemode);
+  const std::vector<uint8_t> info =
+      make_player_info_add_fields(peer.uuid, peer.name, peer.properties, peer.gamemode);
   if (!info.empty())
     write(*viewer.io, viewer.threshold, info);
 }
@@ -21328,8 +21319,8 @@ void send_translated_player_proxy_to_canonical(Player& viewer, const LegacyPeer&
     return;
   if (!viewer.translated_peers.insert(peer.entity_id).second)
     return;
-  const std::vector<uint8_t> spawn = make_player_spawn_fields(
-      peer.uuid, peer.entity_id, peer.x, peer.y, peer.z, peer.yaw, peer.pitch);
+  const std::vector<uint8_t> spawn = make_player_spawn_fields(peer.uuid, peer.entity_id, peer.x,
+                                                              peer.y, peer.z, peer.yaw, peer.pitch);
   if (!spawn.empty())
     write(*viewer.io, viewer.threshold, spawn);
   const std::vector<uint8_t> data = make_canonical_translated_entity_data(peer);
@@ -21410,8 +21401,7 @@ void notify_legacy_canonical_leave_locked(const Player& p) {
         write(*peer.io, peer.threshold, despawn);
     }
     if (had_info) {
-      const std::vector<uint8_t> remove =
-          make_legacy_player_info_remove(peer.protocol, p.uuid);
+      const std::vector<uint8_t> remove = make_legacy_player_info_remove(peer.protocol, p.uuid);
       if (!remove.empty())
         write(*peer.io, peer.threshold, remove);
     }
@@ -21424,8 +21414,8 @@ void notify_legacy_canonical_leave_locked(const Player& p) {
 void sync_translated_player_ranges_locked(Player& viewer, LegacyPeer& peer, double range,
                                           double drop_range) {
   const bool reverse_paired = viewer.translated_peers.count(peer.entity_id) != 0;
-  const bool reverse_visible = within_translated_tracking_range(
-      viewer, peer, reverse_paired ? drop_range : range);
+  const bool reverse_visible =
+      within_translated_tracking_range(viewer, peer, reverse_paired ? drop_range : range);
   if (reverse_visible && !reverse_paired) {
     send_translated_player_proxy_to_canonical(viewer, peer);
   } else if (!reverse_visible && reverse_paired) {
@@ -21436,8 +21426,8 @@ void sync_translated_player_ranges_locked(Player& viewer, LegacyPeer& peer, doub
   }
 
   const bool forward_paired = peer.canonical_players.count(viewer.entity_id) != 0;
-  const bool forward_visible = within_translated_tracking_range(
-      viewer, peer, forward_paired ? drop_range : range);
+  const bool forward_visible =
+      within_translated_tracking_range(viewer, peer, forward_paired ? drop_range : range);
   if (forward_visible && !forward_paired) {
     send_legacy_canonical_proxy(peer, viewer);
   } else if (!forward_visible && forward_paired) {
@@ -21636,9 +21626,8 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
   const int center_id = play_id("set_chunk_cache_center");
   const int position_id = play_id("player_position");
   const int keepalive_id = play_id("keep_alive");
-  if (join_id < 0 || commands_id < 0 || game_event_id < 0 || chunk_id < 0 ||
-      batch_start_id < 0 || batch_finished_id < 0 || center_id < 0 || position_id < 0 ||
-      keepalive_id < 0)
+  if (join_id < 0 || commands_id < 0 || game_event_id < 0 || chunk_id < 0 || batch_start_id < 0 ||
+      batch_finished_id < 0 || center_id < 0 || position_id < 0 || keepalive_id < 0)
     return false;
 
   // A translated client starts at spawn, not at chunk (0, 0): the cache center and the
@@ -21785,8 +21774,7 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
       legacy_inventory.set(16, stack);
     if (auto stack = starter_stack("minecraft:stonecutter"); !stack.empty())
       legacy_inventory.set(17, stack);
-    if (auto stack = starter_stack("minecraft:netherite_upgrade_smithing_template");
-        !stack.empty())
+    if (auto stack = starter_stack("minecraft:netherite_upgrade_smithing_template"); !stack.empty())
       legacy_inventory.set(18, stack);
     if (auto stack = starter_stack("minecraft:netherite_ingot"); !stack.empty())
       legacy_inventory.set(19, stack);
@@ -22085,8 +22073,7 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
     double location_x = 0.0, location_y = 0.0, location_z = 0.0;
     uint8_t secondary = 0;
     if (!r.varint(&target) || !r.varint(&hand) ||
-        !mc::protocol::read_lp_vec3(r, &location_x, &location_y, &location_z) ||
-        !r.u8(&secondary))
+        !mc::protocol::read_lp_vec3(r, &location_x, &location_y, &location_z) || !r.u8(&secondary))
       return;
     legacy_state.sneaking = secondary != 0;
     if (hand != 0)
@@ -22232,9 +22219,9 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
     legacy_state.stonecutter_selected = index;
     recompute_stonecutter_result(legacy_state);
     ++inventory_state;
-    const std::vector<uint8_t> data = make_legacy_container_data(
-        client_protocol, current_window_id(legacy_state),
-        mc::world::kStonecutterSelectedRecipeDataSlot, index);
+    const std::vector<uint8_t> data =
+        make_legacy_container_data(client_protocol, current_window_id(legacy_state),
+                                   mc::world::kStonecutterSelectedRecipeDataSlot, index);
     if (!data.empty())
       write(io, threshold, data);
     send_slot_update(mc::world::kStonecutterResultSlot);
@@ -22436,9 +22423,9 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
         if (!spawn.empty())
           write(io, threshold, spawn);
         if (view.villager) {
-          const std::vector<uint8_t> data = make_legacy_villager_data(
-              client_protocol, view.entity_id, view.villager_type, view.villager_profession,
-              view.villager_level);
+          const std::vector<uint8_t> data =
+              make_legacy_villager_data(client_protocol, view.entity_id, view.villager_type,
+                                        view.villager_profession, view.villager_level);
           if (!data.empty())
             write(io, threshold, data);
         }
@@ -22770,8 +22757,7 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
   // about 30 s after joining, even though the client is healthy. Frames are
   // serialized by the stream, so this can write alongside the play loop and
   // the canonical broadcasts. The joiner below stops and joins on every return.
-  const int keepalive_interval_ms =
-      settings.keep_alive_ms > 0 ? settings.keep_alive_ms : 10000;
+  const int keepalive_interval_ms = settings.keep_alive_ms > 0 ? settings.keep_alive_ms : 10000;
   std::atomic<bool> keepalive_stop{false};
   std::thread keepalive_thread([&io, threshold, keepalive_id, keepalive_interval_ms,
                                 &keepalive_stop] {
@@ -22781,8 +22767,7 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
         if (keepalive_stop.load(std::memory_order_relaxed))
           return;
         const int remaining = keepalive_interval_ms - waited;
-        std::this_thread::sleep_for(
-            std::chrono::milliseconds(remaining < 100 ? remaining : 100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(remaining < 100 ? remaining : 100));
       }
       if (keepalive_stop.load(std::memory_order_relaxed))
         return;
@@ -22845,16 +22830,14 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
           continue;
         const int32_t peer_type = mc::translation::t0::target_entity_type_id(
             peer.protocol, mc::protocol::kPlayerEntityTypeId);
-        const std::vector<uint8_t> self_info =
-            make_legacy_player_info_add(peer.protocol, self);
-        const std::vector<uint8_t> self_spawn = make_legacy_entity_spawn(
-            peer.protocol, entity_id, self.uuid, peer_type, position_x, position_y, position_z,
-            position_yaw, position_pitch);
-        const std::vector<uint8_t> peer_info =
-            make_legacy_player_info_add(client_protocol, peer);
-        const std::vector<uint8_t> peer_spawn = make_legacy_entity_spawn(
-            client_protocol, peer.entity_id, peer.uuid, player_type, peer.x, peer.y, peer.z,
-            peer.yaw, peer.pitch);
+        const std::vector<uint8_t> self_info = make_legacy_player_info_add(peer.protocol, self);
+        const std::vector<uint8_t> self_spawn =
+            make_legacy_entity_spawn(peer.protocol, entity_id, self.uuid, peer_type, position_x,
+                                     position_y, position_z, position_yaw, position_pitch);
+        const std::vector<uint8_t> peer_info = make_legacy_player_info_add(client_protocol, peer);
+        const std::vector<uint8_t> peer_spawn =
+            make_legacy_entity_spawn(client_protocol, peer.entity_id, peer.uuid, player_type,
+                                     peer.x, peer.y, peer.z, peer.yaw, peer.pitch);
         if (!self_info.empty())
           write(*peer.io, peer.threshold, self_info);
         if (!self_spawn.empty())
@@ -22872,8 +22855,7 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
         if (within_translated_tracking_range(canonical, self, settings.player_tracking_range))
           send_legacy_canonical_proxy(self, canonical);
       }
-      const std::vector<uint8_t> self_info =
-          make_legacy_player_info_add(client_protocol, self);
+      const std::vector<uint8_t> self_info = make_legacy_player_info_add(client_protocol, self);
       if (!self_info.empty())
         write(io, threshold, self_info);
       // The other direction: canonical clients already in play get this T0
@@ -22905,9 +22887,8 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
         peer.pitch = position_pitch;
         peer.on_ground = position_ground;
         for (Player& viewer : g_players)
-          sync_translated_player_ranges_locked(
-              viewer, peer, settings.player_tracking_range,
-              settings.player_tracking_drop_range);
+          sync_translated_player_ranges_locked(viewer, peer, settings.player_tracking_range,
+                                               settings.player_tracking_drop_range);
         notify_canonical_translated_position_locked(peer);
         continue;
       }
@@ -22944,8 +22925,7 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
   double test_visibility_back_x = 0.0;
   double test_visibility_back_y = 0.0;
   double test_visibility_back_z = 0.0;
-  auto translated_visibility = [&](int* canonical, int* canonical_sees_t0,
-                                   int* t0_sees_canonical) {
+  auto translated_visibility = [&](int* canonical, int* canonical_sees_t0, int* t0_sees_canonical) {
     std::lock_guard<std::mutex> players_lock(g_players_mutex);
     std::lock_guard<std::mutex> lock(g_legacy_peers_mutex);
     *canonical = 0;
@@ -22967,8 +22947,7 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
     int canonical = 0, canonical_sees_t0 = 0, t0_sees_canonical = 0;
     translated_visibility(&canonical, &canonical_sees_t0, &t0_sees_canonical);
     log::info("t0 visibility: ", phase, " canonical=", canonical,
-              " canonical_sees_t0=", canonical_sees_t0,
-              " t0_sees_canonical=", t0_sees_canonical);
+              " canonical_sees_t0=", canonical_sees_t0, " t0_sees_canonical=", t0_sees_canonical);
   };
   auto send_translated_player_position = [&](double x, double y, double z) {
     mc::net::Writer p;
@@ -22994,8 +22973,7 @@ bool run_legacy_play(mc::net::Stream& io, int threshold, const SessionSettings& 
         if (test_visibility_stage == 1) {
           int canonical = 0, canonical_sees_t0 = 0, t0_sees_canonical = 0;
           translated_visibility(&canonical, &canonical_sees_t0, &t0_sees_canonical);
-          if (canonical == 0 || canonical_sees_t0 != canonical ||
-              t0_sees_canonical != canonical) {
+          if (canonical == 0 || canonical_sees_t0 != canonical || t0_sees_canonical != canonical) {
             // Wait until the canonical join has completed its pairing burst.
             test_visibility_at_ms = now + 500;
           } else {

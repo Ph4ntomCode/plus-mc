@@ -77,7 +77,7 @@ bool contains(const std::vector<int32_t>& ids, int32_t id) {
 
 struct SlotView {
   int kind = -1;
-  std::vector<int32_t> items; // Item / Composite members
+  std::vector<int32_t> items;    // Item / Composite members
   std::vector<SlotView> members; // Composite members, with their own payload
   int32_t stack_item = 0;
   int stack_count = 0;

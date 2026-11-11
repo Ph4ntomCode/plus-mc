@@ -1721,9 +1721,10 @@ std::vector<uint8_t> serialize_chunk_nbt_bytes(const Chunk& chunk, int32_t data_
   return std::move(w).take();
 }
 
-std::optional<std::vector<uint8_t>>
-encode_chunk_body(const Chunk& chunk, const BlockStateTable& blocks, const BiomeNameTable& biomes,
-                  LightMaskEncoding light_masks) {
+std::optional<std::vector<uint8_t>> encode_chunk_body(const Chunk& chunk,
+                                                      const BlockStateTable& blocks,
+                                                      const BiomeNameTable& biomes,
+                                                      LightMaskEncoding light_masks) {
   mc::net::Writer w;
   w.u32(static_cast<uint32_t>(chunk.x));
   w.u32(static_cast<uint32_t>(chunk.z));

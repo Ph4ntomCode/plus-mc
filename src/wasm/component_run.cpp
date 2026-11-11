@@ -585,19 +585,58 @@ bool read_variant_value(Cursor* cursor, const std::vector<CompType>& types, Comp
   // shapes; a differently shaped variant stays opaque and is refused when a
   // tracked member tries to flatten it.
   static constexpr const char* kArgumentCases[] = {
-      "bool",          "float",          "double",         "integer",
-      "long",          "string",         "entities",       "entity",
-      "players",       "game-profile",   "block-pos",      "column-pos",
-      "position3d",    "position2d",     "block-state",    "block-predicate",
-      "item",          "item-predicate", "color",          "component",
-      "style",         "message",        "nbt-compound-tag", "nbt-tag",
-      "nbt-path",      "objective",      "objective-criteria", "operation",
-      "particle",      "angle",          "rotation",       "scoreboard-slot",
-      "score-holder",  "swizzle",        "team",           "item-slot",
-      "resource-location", "mob-effect", "function",       "entity-anchor",
-      "int-range",     "float-range",    "dimension",      "gamemode",
-      "difficulty",    "time",           "resource",       "resource-or-tag",
-      "resource-or-tag-key", "resource-key", "template-mirror", "template-rotation",
+      "bool",
+      "float",
+      "double",
+      "integer",
+      "long",
+      "string",
+      "entities",
+      "entity",
+      "players",
+      "game-profile",
+      "block-pos",
+      "column-pos",
+      "position3d",
+      "position2d",
+      "block-state",
+      "block-predicate",
+      "item",
+      "item-predicate",
+      "color",
+      "component",
+      "style",
+      "message",
+      "nbt-compound-tag",
+      "nbt-tag",
+      "nbt-path",
+      "objective",
+      "objective-criteria",
+      "operation",
+      "particle",
+      "angle",
+      "rotation",
+      "scoreboard-slot",
+      "score-holder",
+      "swizzle",
+      "team",
+      "item-slot",
+      "resource-location",
+      "mob-effect",
+      "function",
+      "entity-anchor",
+      "int-range",
+      "float-range",
+      "dimension",
+      "gamemode",
+      "difficulty",
+      "time",
+      "resource",
+      "resource-or-tag",
+      "resource-or-tag-key",
+      "resource-key",
+      "template-mirror",
+      "template-rotation",
       "uuid",
   };
   if (labels.size() == std::size(kArgumentCases)) {
@@ -609,8 +648,7 @@ bool read_variant_value(Cursor* cursor, const std::vector<CompType>& types, Comp
         return payloads[index] && payload_types[index] == value;
       };
       matches = !payloads[0] && payload_is(1, CompValue::BoundsF32) &&
-                payload_is(2, CompValue::BoundsF64) &&
-                payload_is(3, CompValue::BoundsI32) &&
+                payload_is(2, CompValue::BoundsF64) && payload_is(3, CompValue::BoundsI32) &&
                 payload_is(4, CompValue::BoundsI64) && payload_is(5, CompValue::I32);
       for (std::size_t i = 6; matches && i < 32; ++i)
         matches = !payloads[i];
@@ -2432,8 +2470,7 @@ std::string compiled_core_host(const CoreImportInfo& import) {
     if (import.name == "[method]server.get-player-count-in-world" &&
         signature == "(i32,i32)->(i32)")
       return "server_player_count_in_world";
-    if (import.name == "[method]server.get-players-in-world" &&
-        signature == "(i32,i32,i32)->()")
+    if (import.name == "[method]server.get-players-in-world" && signature == "(i32,i32,i32)->()")
       return "server_players_in_world";
     if (import.name == "[method]server.has-world" && signature == "(i32,i32,i32)->(i32)")
       return "pumpkin_server_has_world";
@@ -3083,8 +3120,7 @@ bool pumpkin_binding(const std::string& interface_name, const std::string& membe
     expected = "(i32)->(i32)";
   } else if (adapter == "player_get_health" || adapter == "player_get_max_health" ||
              adapter == "player_get_saturation" || adapter == "player_get_exhaustion" ||
-             adapter == "player_get_absorption" ||
-             adapter == "player_get_experience_progress") {
+             adapter == "player_get_absorption" || adapter == "player_get_experience_progress") {
     // Self handle in, f32 health, vitals or experience progress out.
     expected = "(i32)->(f32)";
   } else if (adapter == "player_get_food_level") {

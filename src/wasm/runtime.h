@@ -308,8 +308,7 @@ public:
   // Pumpkin's `server.get-players-in-world`: the host fills the connected
   // players for a world it knows; a host without that world returns an empty
   // list rather than fabricating handles.
-  virtual void players_in_world(std::string_view /*world*/,
-                                std::vector<std::string>* /*out*/) {}
+  virtual void players_in_world(std::string_view /*world*/, std::vector<std::string>* /*out*/) {}
   // Pumpkin's `context.register-permission`. The default accepts a namespaced
   // node and refuses anything else with the error string the plugin sees; a
   // host that tracks permissions overrides this to store the grant.

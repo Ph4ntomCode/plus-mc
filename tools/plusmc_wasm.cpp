@@ -122,8 +122,7 @@ public:
     return true;
   }
 
-  bool player_uuid(std::string_view player, std::uint64_t* high,
-                   std::uint64_t* low) override {
+  bool player_uuid(std::string_view player, std::uint64_t* high, std::uint64_t* low) override {
     if (host_player_.empty() || player != host_player_ || high == nullptr || low == nullptr)
       return false;
     // Deterministic host-player UUID for the adapter's UUID record path.

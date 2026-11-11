@@ -3890,12 +3890,10 @@ private:
     }
     case HostId::PumpkinPlayerGetAbsorption: {
       if (!valid_resource(arguments[0], ResourceKind::Player))
-        trap("player.get-absorption used an invalid player handle " +
-             std::to_string(arguments[0]));
+        trap("player.get-absorption used an invalid player handle " + std::to_string(arguments[0]));
       const auto player = player_names_.find(arguments[0]);
       if (player == player_names_.end())
-        trap("player.get-absorption used a stale player handle " +
-             std::to_string(arguments[0]));
+        trap("player.get-absorption used a stale player handle " + std::to_string(arguments[0]));
       float absorption = 0.0f;
       if (!host_.player_absorption(player->second, &absorption))
         trap("player.get-absorption has no live absorption for " + player->second);
@@ -4343,19 +4341,58 @@ private:
       if (name.size() > 1024)
         trap("command-node.argument received an overlong name");
       static constexpr const char* kArgumentTypes[] = {
-          "bool",          "float",          "double",         "integer",
-          "long",          "string",         "entities",       "entity",
-          "players",       "game-profile",   "block-pos",      "column-pos",
-          "position3d",    "position2d",     "block-state",    "block-predicate",
-          "item",          "item-predicate", "color",          "component",
-          "style",         "message",        "nbt-compound-tag", "nbt-tag",
-          "nbt-path",      "objective",      "objective-criteria", "operation",
-          "particle",      "angle",          "rotation",       "scoreboard-slot",
-          "score-holder",  "swizzle",        "team",           "item-slot",
-          "resource-location", "mob-effect", "function",       "entity-anchor",
-          "int-range",     "float-range",    "dimension",      "gamemode",
-          "difficulty",    "time",           "resource",       "resource-or-tag",
-          "resource-or-tag-key", "resource-key", "template-mirror", "template-rotation",
+          "bool",
+          "float",
+          "double",
+          "integer",
+          "long",
+          "string",
+          "entities",
+          "entity",
+          "players",
+          "game-profile",
+          "block-pos",
+          "column-pos",
+          "position3d",
+          "position2d",
+          "block-state",
+          "block-predicate",
+          "item",
+          "item-predicate",
+          "color",
+          "component",
+          "style",
+          "message",
+          "nbt-compound-tag",
+          "nbt-tag",
+          "nbt-path",
+          "objective",
+          "objective-criteria",
+          "operation",
+          "particle",
+          "angle",
+          "rotation",
+          "scoreboard-slot",
+          "score-holder",
+          "swizzle",
+          "team",
+          "item-slot",
+          "resource-location",
+          "mob-effect",
+          "function",
+          "entity-anchor",
+          "int-range",
+          "float-range",
+          "dimension",
+          "gamemode",
+          "difficulty",
+          "time",
+          "resource",
+          "resource-or-tag",
+          "resource-or-tag-key",
+          "resource-key",
+          "template-mirror",
+          "template-rotation",
           "uuid",
       };
       const std::uint32_t argument_case = arguments[2];
@@ -4536,8 +4573,7 @@ private:
       std::uint32_t node_count = 0;
       registration.nodes.reserve(command.nodes.size());
       for (const std::uint32_t handle : command.nodes)
-        registration.nodes.push_back(
-            command_node_registration(handle, &ancestry, &node_count, 0));
+        registration.nodes.push_back(command_node_registration(handle, &ancestry, &node_count, 0));
       host_.register_command(registration);
       record_host_call("register_command", static_cast<std::int64_t>(registration.name.size()));
       return;
