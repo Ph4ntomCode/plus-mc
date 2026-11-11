@@ -1,0 +1,119 @@
+{
+  "argv": [
+    "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/Users/zaid/other projects/plus-mc/data/vanilla",
+    "--motd",
+    "soak",
+    "--max-players",
+    "120",
+    "--view-distance",
+    "8",
+    "--metrics-interval",
+    "1"
+  ],
+  "binary": "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+  "bot_failures": [],
+  "bots": 60,
+  "generated_seed": null,
+  "idle": {
+    "busy_pct": {
+      "avg": 0.2,
+      "max": 0.2,
+      "min": 0.2,
+      "n": 1
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 1
+    },
+    "tick_pct": {
+      "avg": 0.2,
+      "max": 0.2,
+      "min": 0.2,
+      "n": 1
+    },
+    "tps": {
+      "avg": 19.93,
+      "max": 19.93,
+      "min": 19.93,
+      "n": 1
+    },
+    "work_avg_ms": {
+      "avg": 0.078,
+      "max": 0.078,
+      "min": 0.078,
+      "n": 1
+    },
+    "work_peak_ms": {
+      "avg": 1.294,
+      "max": 1.294,
+      "min": 1.294,
+      "n": 1
+    }
+  },
+  "idle_windows": 1,
+  "join_s": 0.84,
+  "joined": 60,
+  "loaded": {
+    "busy_pct": {
+      "avg": 26.029,
+      "max": 72.9,
+      "min": 4.4,
+      "n": 7
+    },
+    "players": {
+      "avg": 59.286,
+      "max": 60.0,
+      "min": 55.0,
+      "n": 7
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 7
+    },
+    "tick_pct": {
+      "avg": 25.757,
+      "max": 70.6,
+      "min": 4.3,
+      "n": 7
+    },
+    "tps": {
+      "avg": 19.964,
+      "max": 20.66,
+      "min": 19.11,
+      "n": 7
+    },
+    "work_avg_ms": {
+      "avg": 12.872,
+      "max": 35.279,
+      "min": 2.154,
+      "n": 7
+    },
+    "work_peak_ms": {
+      "avg": 96.228,
+      "max": 222.618,
+      "min": 17.899,
+      "n": 7
+    }
+  },
+  "loaded_windows": 7,
+  "mobs": false,
+  "rss_bytes": {
+    "first": 5083136.0,
+    "last": 177881088.0
+  },
+  "seconds": 6.0,
+  "server_rc": 0,
+  "startup_s": 0.02,
+  "view_distance": 8
+}

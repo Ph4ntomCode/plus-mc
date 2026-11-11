@@ -1,0 +1,40 @@
+{
+ "argv": [
+  "/Users/zaid/other projects/plus-mc/build-a14/src/plusmc",
+  "--host",
+  "127.0.0.1",
+  "--port",
+  "0",
+  "--motd",
+  "perf gate",
+  "--offline-mode",
+  "--data",
+  "<run-tmp>/vanilla-absent",
+  "--metrics-file",
+  "<run-tmp>/metrics.jsonl"
+ ],
+ "binary_sha256": "704c535b34bd5ff02bfab810f0dc9aea24ef5af3edfb0e02d2e44e0e300dfc14",
+ "floors": {
+  "rss_bytes_max": 268435456,
+  "startup_s_max": 5.0,
+  "tps_min": 15.0,
+  "tps_ok_fraction": 0.8,
+  "work_avg_ms_max": 10.0
+ },
+ "kind": "perf-gate-baseline",
+ "load_avg_1m": 9.59,
+ "machine": "i5-4570 (4 cores, 3.2 GHz), 24 GB RAM, macOS 11.7.11",
+ "name": "perf-gate-idle",
+ "note": "the Phase-5 item 5 CI gate's own baseline: one idle server, no vanilla data, no bots, void world, one-second metrics windows. The floors are the gate's thresholds (read from this record on every run); the reference is what this run measured.",
+ "reference": {
+  "resync_total": 0,
+  "rss_bytes_max": 4976640,
+  "startup_s": 0.044236486006411724,
+  "tps_mean": 19.934285714285714,
+  "tps_min": 19.67,
+  "tps_windows_ok": 7,
+  "windows": 7,
+  "work_avg_ms_max": 0.045,
+  "work_peak_ms_max": 0.645
+ }
+}

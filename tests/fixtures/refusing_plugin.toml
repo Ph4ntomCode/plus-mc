@@ -1,0 +1,8 @@
+# The refuse-after-registering fixture for tests/plugin_loader_test.py.
+name = "refusing"
+version = "1.0.0"
+api = 1
+library = "refusing"
+entry = "pmc_plugin_entry"
+author = "+MC"
+description = "Test fixture: registers a listener and a command, then refuses on_load."

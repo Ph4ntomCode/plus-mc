@@ -1,0 +1,10 @@
+# Python tooling dependencies (tools/*.py, tests/*.py). The engine itself is C++
+# and needs nothing from here; the packet tests are stdlib-only. The image
+# checks and the preview renderer need Pillow.
+#
+#   python3 -m pip install -r requirements.txt
+#
+# The Archil disk SDK needs Python 3.10+ (exec/put_object/get_object).
+# See `tools/archil_storage.py` and `.env.example` for the ARCHIL_* variables.
+archil==0.17.0
+Pillow>=10

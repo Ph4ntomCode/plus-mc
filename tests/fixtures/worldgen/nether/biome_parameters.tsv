@@ -1,0 +1,6 @@
+# index	temperature_min	temperature_max	humidity_min	humidity_max	continentalness_min	continentalness_max	erosion_min	erosion_max	depth_min	depth_max	weirdness_min	weirdness_max	offset	biome
+0	0	0	0	0	0	0	0	0	0	0	0	0	0	minecraft:nether_wastes
+1	0	0	-5000	-5000	0	0	0	0	0	0	0	0	0	minecraft:soul_sand_valley
+2	4000	4000	0	0	0	0	0	0	0	0	0	0	0	minecraft:crimson_forest
+3	0	0	5000	5000	0	0	0	0	0	0	0	0	3750	minecraft:warped_forest
+4	-5000	-5000	0	0	0	0	0	0	0	0	0	0	1750	minecraft:basalt_deltas

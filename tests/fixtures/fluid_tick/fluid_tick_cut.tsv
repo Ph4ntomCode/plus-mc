@@ -1,0 +1,619 @@
+# Phase 4 milestone D follow-up: the scheduled fluid-tick loop's interaction trace
+# for run 'cut' (scene 'canal').
+#
+# NOT a vanilla dump (see fluid_tick_meta.tsv): every row is one thing the loop,
+# the rule or the caller did, in order, with the tick it happened in. `action` is
+# the caller's scripted work (see fluid_tick_actions.tsv); `due` is the drain —
+# one row per entry, in the canonical order the region path dispatches them, with
+# the fluid kind the queue stored (the queue's own order is its chunk map's and is
+# deliberately not pinned; see the tool's header); `state` closes each tick with
+# the queue's own clock and pending count; `schedule` is `Level.scheduleTick` with
+# the kind, the delay the rule or the caller asked for and the due tick that
+# follows from it; `read` is a world read the rule makes — the tick asks about
+# its own cell, what is below, what is above and its four sides, and asks each
+# of them once per dispatch, because every later question about that cell is
+# answered from the same read; two `read` rows for one cell in a tick are two
+# entries from the drain asking, not one tick asking twice, and these rows are
+# most of what the trace holds — and `write` a block write (the session's adapter
+# writes nothing when the state is already there, so a settled cell produces no
+# write row);
+# `stale` is an entry that came due and found neither that fluid nor any fluid in
+# the cell.
+#
+# kind	tick	...
+action	0	place	0	-60	0	minecraft:water
+write	0	0	-60	0	minecraft:water
+schedule	0	0	-60	0	water	5	5
+state	1	1	1
+state	2	2	1
+state	3	3	1
+state	4	4	1
+due	5	water	0	-60	0
+read	5	0	-60	0	minecraft:water
+read	5	0	-61	0	minecraft:stone
+read	5	0	-59	0	minecraft:air
+read	5	1	-60	0	minecraft:stone
+read	5	-1	-60	0	minecraft:stone
+read	5	0	-60	1	minecraft:air
+read	5	0	-60	-1	minecraft:stone
+write	5	0	-60	1	minecraft:water[level=1]
+schedule	5	0	-60	1	water	5	10
+schedule	5	0	-60	0	water	5	10
+state	5	5	2
+state	6	6	2
+state	7	7	2
+state	8	8	2
+state	9	9	2
+due	10	water	0	-60	0
+due	10	water	0	-60	1
+read	10	0	-60	0	minecraft:water
+read	10	0	-61	0	minecraft:stone
+read	10	0	-59	0	minecraft:air
+read	10	1	-60	0	minecraft:stone
+read	10	-1	-60	0	minecraft:stone
+read	10	0	-60	1	minecraft:water[level=1]
+read	10	0	-60	-1	minecraft:stone
+read	10	0	-60	1	minecraft:water[level=1]
+read	10	0	-61	1	minecraft:stone
+read	10	0	-59	1	minecraft:air
+read	10	1	-60	1	minecraft:stone
+read	10	-1	-60	1	minecraft:stone
+read	10	0	-60	2	minecraft:air
+read	10	0	-60	0	minecraft:water
+write	10	0	-60	2	minecraft:water[level=2]
+schedule	10	0	-60	2	water	5	15
+schedule	10	0	-60	1	water	5	15
+state	10	10	2
+state	11	11	2
+state	12	12	2
+state	13	13	2
+state	14	14	2
+due	15	water	0	-60	1
+due	15	water	0	-60	2
+read	15	0	-60	1	minecraft:water[level=1]
+read	15	0	-61	1	minecraft:stone
+read	15	0	-59	1	minecraft:air
+read	15	1	-60	1	minecraft:stone
+read	15	-1	-60	1	minecraft:stone
+read	15	0	-60	2	minecraft:water[level=2]
+read	15	0	-60	0	minecraft:water
+read	15	0	-60	2	minecraft:water[level=2]
+read	15	0	-61	2	minecraft:stone
+read	15	0	-59	2	minecraft:air
+read	15	1	-60	2	minecraft:stone
+read	15	-1	-60	2	minecraft:stone
+read	15	0	-60	3	minecraft:air
+read	15	0	-60	1	minecraft:water[level=1]
+write	15	0	-60	3	minecraft:water[level=3]
+schedule	15	0	-60	3	water	5	20
+schedule	15	0	-60	2	water	5	20
+state	15	15	2
+state	16	16	2
+state	17	17	2
+state	18	18	2
+state	19	19	2
+due	20	water	0	-60	2
+due	20	water	0	-60	3
+read	20	0	-60	2	minecraft:water[level=2]
+read	20	0	-61	2	minecraft:stone
+read	20	0	-59	2	minecraft:air
+read	20	1	-60	2	minecraft:stone
+read	20	-1	-60	2	minecraft:stone
+read	20	0	-60	3	minecraft:water[level=3]
+read	20	0	-60	1	minecraft:water[level=1]
+read	20	0	-60	3	minecraft:water[level=3]
+read	20	0	-61	3	minecraft:stone
+read	20	0	-59	3	minecraft:air
+read	20	1	-60	3	minecraft:stone
+read	20	-1	-60	3	minecraft:stone
+read	20	0	-60	4	minecraft:air
+read	20	0	-60	2	minecraft:water[level=2]
+write	20	0	-60	4	minecraft:water[level=4]
+schedule	20	0	-60	4	water	5	25
+schedule	20	0	-60	3	water	5	25
+state	20	20	2
+state	21	21	2
+state	22	22	2
+state	23	23	2
+state	24	24	2
+due	25	water	0	-60	3
+due	25	water	0	-60	4
+read	25	0	-60	3	minecraft:water[level=3]
+read	25	0	-61	3	minecraft:stone
+read	25	0	-59	3	minecraft:air
+read	25	1	-60	3	minecraft:stone
+read	25	-1	-60	3	minecraft:stone
+read	25	0	-60	4	minecraft:water[level=4]
+read	25	0	-60	2	minecraft:water[level=2]
+read	25	0	-60	4	minecraft:water[level=4]
+read	25	0	-61	4	minecraft:stone
+read	25	0	-59	4	minecraft:air
+read	25	1	-60	4	minecraft:stone
+read	25	-1	-60	4	minecraft:stone
+read	25	0	-60	5	minecraft:air
+read	25	0	-60	3	minecraft:water[level=3]
+write	25	0	-60	5	minecraft:water[level=5]
+schedule	25	0	-60	5	water	5	30
+schedule	25	0	-60	4	water	5	30
+state	25	25	2
+state	26	26	2
+state	27	27	2
+state	28	28	2
+state	29	29	2
+due	30	water	0	-60	4
+due	30	water	0	-60	5
+read	30	0	-60	4	minecraft:water[level=4]
+read	30	0	-61	4	minecraft:stone
+read	30	0	-59	4	minecraft:air
+read	30	1	-60	4	minecraft:stone
+read	30	-1	-60	4	minecraft:stone
+read	30	0	-60	5	minecraft:water[level=5]
+read	30	0	-60	3	minecraft:water[level=3]
+read	30	0	-60	5	minecraft:water[level=5]
+read	30	0	-61	5	minecraft:stone
+read	30	0	-59	5	minecraft:air
+read	30	1	-60	5	minecraft:stone
+read	30	-1	-60	5	minecraft:stone
+read	30	0	-60	6	minecraft:air
+read	30	0	-60	4	minecraft:water[level=4]
+write	30	0	-60	6	minecraft:water[level=6]
+schedule	30	0	-60	6	water	5	35
+schedule	30	0	-60	5	water	5	35
+state	30	30	2
+state	31	31	2
+state	32	32	2
+state	33	33	2
+state	34	34	2
+due	35	water	0	-60	5
+due	35	water	0	-60	6
+read	35	0	-60	5	minecraft:water[level=5]
+read	35	0	-61	5	minecraft:stone
+read	35	0	-59	5	minecraft:air
+read	35	1	-60	5	minecraft:stone
+read	35	-1	-60	5	minecraft:stone
+read	35	0	-60	6	minecraft:water[level=6]
+read	35	0	-60	4	minecraft:water[level=4]
+read	35	0	-60	6	minecraft:water[level=6]
+read	35	0	-61	6	minecraft:stone
+read	35	0	-59	6	minecraft:air
+read	35	1	-60	6	minecraft:stone
+read	35	-1	-60	6	minecraft:stone
+read	35	0	-60	7	minecraft:air
+read	35	0	-60	5	minecraft:water[level=5]
+write	35	0	-60	7	minecraft:water[level=7]
+schedule	35	0	-60	7	water	5	40
+schedule	35	0	-60	6	water	5	40
+state	35	35	2
+state	36	36	2
+state	37	37	2
+state	38	38	2
+state	39	39	2
+due	40	water	0	-60	6
+due	40	water	0	-60	7
+read	40	0	-60	6	minecraft:water[level=6]
+read	40	0	-61	6	minecraft:stone
+read	40	0	-59	6	minecraft:air
+read	40	1	-60	6	minecraft:stone
+read	40	-1	-60	6	minecraft:stone
+read	40	0	-60	7	minecraft:water[level=7]
+read	40	0	-60	5	minecraft:water[level=5]
+read	40	0	-60	7	minecraft:water[level=7]
+read	40	0	-61	7	minecraft:stone
+read	40	0	-59	7	minecraft:air
+read	40	1	-60	7	minecraft:stone
+read	40	-1	-60	7	minecraft:stone
+read	40	0	-60	8	minecraft:air
+read	40	0	-60	6	minecraft:water[level=6]
+state	40	40	0
+state	41	41	0
+state	42	42	0
+state	43	43	0
+state	44	44	0
+state	45	45	0
+state	46	46	0
+state	47	47	0
+state	48	48	0
+state	49	49	0
+state	50	50	0
+state	51	51	0
+state	52	52	0
+state	53	53	0
+state	54	54	0
+state	55	55	0
+state	56	56	0
+state	57	57	0
+state	58	58	0
+state	59	59	0
+state	60	60	0
+state	61	61	0
+state	62	62	0
+state	63	63	0
+state	64	64	0
+state	65	65	0
+state	66	66	0
+state	67	67	0
+state	68	68	0
+state	69	69	0
+state	70	70	0
+state	71	71	0
+state	72	72	0
+state	73	73	0
+state	74	74	0
+state	75	75	0
+state	76	76	0
+state	77	77	0
+state	78	78	0
+state	79	79	0
+state	80	80	0
+state	81	81	0
+state	82	82	0
+state	83	83	0
+state	84	84	0
+state	85	85	0
+state	86	86	0
+state	87	87	0
+state	88	88	0
+state	89	89	0
+state	90	90	0
+state	91	91	0
+state	92	92	0
+state	93	93	0
+state	94	94	0
+state	95	95	0
+state	96	96	0
+state	97	97	0
+state	98	98	0
+state	99	99	0
+state	100	100	0
+state	101	101	0
+state	102	102	0
+state	103	103	0
+state	104	104	0
+state	105	105	0
+state	106	106	0
+state	107	107	0
+state	108	108	0
+state	109	109	0
+state	110	110	0
+state	111	111	0
+state	112	112	0
+state	113	113	0
+state	114	114	0
+state	115	115	0
+state	116	116	0
+state	117	117	0
+state	118	118	0
+state	119	119	0
+state	120	120	0
+action	120	break	0	-60	0	minecraft:air
+read	120	0	-60	0	minecraft:water
+write	120	0	-60	0	minecraft:air
+schedule	120	0	-60	1	water	5	125
+state	121	121	1
+state	122	122	1
+state	123	123	1
+state	124	124	1
+due	125	water	0	-60	1
+read	125	0	-60	1	minecraft:water[level=1]
+read	125	0	-61	1	minecraft:stone
+read	125	0	-59	1	minecraft:air
+read	125	1	-60	1	minecraft:stone
+read	125	-1	-60	1	minecraft:stone
+read	125	0	-60	2	minecraft:water[level=2]
+read	125	0	-60	0	minecraft:air
+write	125	0	-60	1	minecraft:water[level=3]
+schedule	125	0	-60	1	water	5	130
+schedule	125	0	-60	2	water	5	130
+state	125	125	2
+state	126	126	2
+state	127	127	2
+state	128	128	2
+state	129	129	2
+due	130	water	0	-60	1
+due	130	water	0	-60	2
+read	130	0	-60	1	minecraft:water[level=3]
+read	130	0	-61	1	minecraft:stone
+read	130	0	-59	1	minecraft:air
+read	130	1	-60	1	minecraft:stone
+read	130	-1	-60	1	minecraft:stone
+read	130	0	-60	2	minecraft:water[level=2]
+read	130	0	-60	0	minecraft:air
+write	130	0	-60	0	minecraft:water[level=4]
+schedule	130	0	-60	0	water	5	135
+schedule	130	0	-60	1	water	5	135
+read	130	0	-60	2	minecraft:water[level=2]
+read	130	0	-61	2	minecraft:stone
+read	130	0	-59	2	minecraft:air
+read	130	1	-60	2	minecraft:stone
+read	130	-1	-60	2	minecraft:stone
+read	130	0	-60	3	minecraft:water[level=3]
+read	130	0	-60	1	minecraft:water[level=3]
+write	130	0	-60	2	minecraft:water[level=4]
+schedule	130	0	-60	2	water	5	135
+schedule	130	0	-60	3	water	5	135
+schedule	130	0	-60	1	water	5	135
+state	130	130	4
+state	131	131	4
+state	132	132	4
+state	133	133	4
+state	134	134	4
+due	135	water	0	-60	0
+due	135	water	0	-60	1
+due	135	water	0	-60	2
+due	135	water	0	-60	3
+read	135	0	-60	0	minecraft:water[level=4]
+read	135	0	-61	0	minecraft:stone
+read	135	0	-59	0	minecraft:air
+read	135	1	-60	0	minecraft:stone
+read	135	-1	-60	0	minecraft:stone
+read	135	0	-60	1	minecraft:water[level=3]
+read	135	0	-60	-1	minecraft:stone
+read	135	0	-60	1	minecraft:water[level=3]
+read	135	0	-61	1	minecraft:stone
+read	135	0	-59	1	minecraft:air
+read	135	1	-60	1	minecraft:stone
+read	135	-1	-60	1	minecraft:stone
+read	135	0	-60	2	minecraft:water[level=4]
+read	135	0	-60	0	minecraft:water[level=4]
+write	135	0	-60	1	minecraft:water[level=5]
+schedule	135	0	-60	1	water	5	140
+schedule	135	0	-60	2	water	5	140
+schedule	135	0	-60	0	water	5	140
+read	135	0	-60	2	minecraft:water[level=4]
+read	135	0	-61	2	minecraft:stone
+read	135	0	-59	2	minecraft:air
+read	135	1	-60	2	minecraft:stone
+read	135	-1	-60	2	minecraft:stone
+read	135	0	-60	3	minecraft:water[level=3]
+read	135	0	-60	1	minecraft:water[level=5]
+read	135	0	-60	3	minecraft:water[level=3]
+read	135	0	-61	3	minecraft:stone
+read	135	0	-59	3	minecraft:air
+read	135	1	-60	3	minecraft:stone
+read	135	-1	-60	3	minecraft:stone
+read	135	0	-60	4	minecraft:water[level=4]
+read	135	0	-60	2	minecraft:water[level=4]
+write	135	0	-60	3	minecraft:water[level=5]
+schedule	135	0	-60	3	water	5	140
+schedule	135	0	-60	4	water	5	140
+schedule	135	0	-60	2	water	5	140
+state	135	135	5
+state	136	136	5
+state	137	137	5
+state	138	138	5
+state	139	139	5
+due	140	water	0	-60	0
+due	140	water	0	-60	1
+due	140	water	0	-60	2
+due	140	water	0	-60	3
+due	140	water	0	-60	4
+read	140	0	-60	0	minecraft:water[level=4]
+read	140	0	-61	0	minecraft:stone
+read	140	0	-59	0	minecraft:air
+read	140	1	-60	0	minecraft:stone
+read	140	-1	-60	0	minecraft:stone
+read	140	0	-60	1	minecraft:water[level=5]
+read	140	0	-60	-1	minecraft:stone
+write	140	0	-60	0	minecraft:water[level=6]
+schedule	140	0	-60	0	water	5	145
+schedule	140	0	-60	1	water	5	145
+read	140	0	-60	1	minecraft:water[level=5]
+read	140	0	-61	1	minecraft:stone
+read	140	0	-59	1	minecraft:air
+read	140	1	-60	1	minecraft:stone
+read	140	-1	-60	1	minecraft:stone
+read	140	0	-60	2	minecraft:water[level=4]
+read	140	0	-60	0	minecraft:water[level=6]
+read	140	0	-60	2	minecraft:water[level=4]
+read	140	0	-61	2	minecraft:stone
+read	140	0	-59	2	minecraft:air
+read	140	1	-60	2	minecraft:stone
+read	140	-1	-60	2	minecraft:stone
+read	140	0	-60	3	minecraft:water[level=5]
+read	140	0	-60	1	minecraft:water[level=5]
+write	140	0	-60	2	minecraft:water[level=6]
+schedule	140	0	-60	2	water	5	145
+schedule	140	0	-60	3	water	5	145
+schedule	140	0	-60	1	water	5	145
+read	140	0	-60	3	minecraft:water[level=5]
+read	140	0	-61	3	minecraft:stone
+read	140	0	-59	3	minecraft:air
+read	140	1	-60	3	minecraft:stone
+read	140	-1	-60	3	minecraft:stone
+read	140	0	-60	4	minecraft:water[level=4]
+read	140	0	-60	2	minecraft:water[level=6]
+read	140	0	-60	4	minecraft:water[level=4]
+read	140	0	-61	4	minecraft:stone
+read	140	0	-59	4	minecraft:air
+read	140	1	-60	4	minecraft:stone
+read	140	-1	-60	4	minecraft:stone
+read	140	0	-60	5	minecraft:water[level=5]
+read	140	0	-60	3	minecraft:water[level=5]
+write	140	0	-60	4	minecraft:water[level=6]
+schedule	140	0	-60	4	water	5	145
+schedule	140	0	-60	5	water	5	145
+schedule	140	0	-60	3	water	5	145
+state	140	140	6
+state	141	141	6
+state	142	142	6
+state	143	143	6
+state	144	144	6
+due	145	water	0	-60	0
+due	145	water	0	-60	1
+due	145	water	0	-60	2
+due	145	water	0	-60	3
+due	145	water	0	-60	4
+due	145	water	0	-60	5
+read	145	0	-60	0	minecraft:water[level=6]
+read	145	0	-61	0	minecraft:stone
+read	145	0	-59	0	minecraft:air
+read	145	1	-60	0	minecraft:stone
+read	145	-1	-60	0	minecraft:stone
+read	145	0	-60	1	minecraft:water[level=5]
+read	145	0	-60	-1	minecraft:stone
+read	145	0	-60	1	minecraft:water[level=5]
+read	145	0	-61	1	minecraft:stone
+read	145	0	-59	1	minecraft:air
+read	145	1	-60	1	minecraft:stone
+read	145	-1	-60	1	minecraft:stone
+read	145	0	-60	2	minecraft:water[level=6]
+read	145	0	-60	0	minecraft:water[level=6]
+write	145	0	-60	1	minecraft:water[level=7]
+schedule	145	0	-60	1	water	5	150
+schedule	145	0	-60	2	water	5	150
+schedule	145	0	-60	0	water	5	150
+read	145	0	-60	2	minecraft:water[level=6]
+read	145	0	-61	2	minecraft:stone
+read	145	0	-59	2	minecraft:air
+read	145	1	-60	2	minecraft:stone
+read	145	-1	-60	2	minecraft:stone
+read	145	0	-60	3	minecraft:water[level=5]
+read	145	0	-60	1	minecraft:water[level=7]
+read	145	0	-60	3	minecraft:water[level=5]
+read	145	0	-61	3	minecraft:stone
+read	145	0	-59	3	minecraft:air
+read	145	1	-60	3	minecraft:stone
+read	145	-1	-60	3	minecraft:stone
+read	145	0	-60	4	minecraft:water[level=6]
+read	145	0	-60	2	minecraft:water[level=6]
+write	145	0	-60	3	minecraft:water[level=7]
+schedule	145	0	-60	3	water	5	150
+schedule	145	0	-60	4	water	5	150
+schedule	145	0	-60	2	water	5	150
+read	145	0	-60	4	minecraft:water[level=6]
+read	145	0	-61	4	minecraft:stone
+read	145	0	-59	4	minecraft:air
+read	145	1	-60	4	minecraft:stone
+read	145	-1	-60	4	minecraft:stone
+read	145	0	-60	5	minecraft:water[level=5]
+read	145	0	-60	3	minecraft:water[level=7]
+read	145	0	-60	5	minecraft:water[level=5]
+read	145	0	-61	5	minecraft:stone
+read	145	0	-59	5	minecraft:air
+read	145	1	-60	5	minecraft:stone
+read	145	-1	-60	5	minecraft:stone
+read	145	0	-60	6	minecraft:water[level=6]
+read	145	0	-60	4	minecraft:water[level=6]
+write	145	0	-60	5	minecraft:water[level=7]
+schedule	145	0	-60	5	water	5	150
+schedule	145	0	-60	6	water	5	150
+schedule	145	0	-60	4	water	5	150
+state	145	145	7
+state	146	146	7
+state	147	147	7
+state	148	148	7
+state	149	149	7
+due	150	water	0	-60	0
+due	150	water	0	-60	1
+due	150	water	0	-60	2
+due	150	water	0	-60	3
+due	150	water	0	-60	4
+due	150	water	0	-60	5
+due	150	water	0	-60	6
+read	150	0	-60	0	minecraft:water[level=6]
+read	150	0	-61	0	minecraft:stone
+read	150	0	-59	0	minecraft:air
+read	150	1	-60	0	minecraft:stone
+read	150	-1	-60	0	minecraft:stone
+read	150	0	-60	1	minecraft:water[level=7]
+read	150	0	-60	-1	minecraft:stone
+write	150	0	-60	0	minecraft:air
+schedule	150	0	-60	1	water	5	155
+read	150	0	-60	1	minecraft:water[level=7]
+read	150	0	-61	1	minecraft:stone
+read	150	0	-59	1	minecraft:air
+read	150	1	-60	1	minecraft:stone
+read	150	-1	-60	1	minecraft:stone
+read	150	0	-60	2	minecraft:water[level=6]
+read	150	0	-60	0	minecraft:air
+read	150	0	-60	2	minecraft:water[level=6]
+read	150	0	-61	2	minecraft:stone
+read	150	0	-59	2	minecraft:air
+read	150	1	-60	2	minecraft:stone
+read	150	-1	-60	2	minecraft:stone
+read	150	0	-60	3	minecraft:water[level=7]
+read	150	0	-60	1	minecraft:water[level=7]
+write	150	0	-60	2	minecraft:air
+schedule	150	0	-60	3	water	5	155
+schedule	150	0	-60	1	water	5	155
+read	150	0	-60	3	minecraft:water[level=7]
+read	150	0	-61	3	minecraft:stone
+read	150	0	-59	3	minecraft:air
+read	150	1	-60	3	minecraft:stone
+read	150	-1	-60	3	minecraft:stone
+read	150	0	-60	4	minecraft:water[level=6]
+read	150	0	-60	2	minecraft:air
+read	150	0	-60	4	minecraft:water[level=6]
+read	150	0	-61	4	minecraft:stone
+read	150	0	-59	4	minecraft:air
+read	150	1	-60	4	minecraft:stone
+read	150	-1	-60	4	minecraft:stone
+read	150	0	-60	5	minecraft:water[level=7]
+read	150	0	-60	3	minecraft:water[level=7]
+write	150	0	-60	4	minecraft:air
+schedule	150	0	-60	5	water	5	155
+schedule	150	0	-60	3	water	5	155
+read	150	0	-60	5	minecraft:water[level=7]
+read	150	0	-61	5	minecraft:stone
+read	150	0	-59	5	minecraft:air
+read	150	1	-60	5	minecraft:stone
+read	150	-1	-60	5	minecraft:stone
+read	150	0	-60	6	minecraft:water[level=6]
+read	150	0	-60	4	minecraft:air
+read	150	0	-60	6	minecraft:water[level=6]
+read	150	0	-61	6	minecraft:stone
+read	150	0	-59	6	minecraft:air
+read	150	1	-60	6	minecraft:stone
+read	150	-1	-60	6	minecraft:stone
+read	150	0	-60	7	minecraft:water[level=7]
+read	150	0	-60	5	minecraft:water[level=7]
+write	150	0	-60	6	minecraft:air
+schedule	150	0	-60	7	water	5	155
+schedule	150	0	-60	5	water	5	155
+state	150	150	4
+state	151	151	4
+state	152	152	4
+state	153	153	4
+state	154	154	4
+due	155	water	0	-60	1
+due	155	water	0	-60	3
+due	155	water	0	-60	5
+due	155	water	0	-60	7
+read	155	0	-60	1	minecraft:water[level=7]
+read	155	0	-61	1	minecraft:stone
+read	155	0	-59	1	minecraft:air
+read	155	1	-60	1	minecraft:stone
+read	155	-1	-60	1	minecraft:stone
+read	155	0	-60	2	minecraft:air
+read	155	0	-60	0	minecraft:air
+write	155	0	-60	1	minecraft:air
+read	155	0	-60	3	minecraft:water[level=7]
+read	155	0	-61	3	minecraft:stone
+read	155	0	-59	3	minecraft:air
+read	155	1	-60	3	minecraft:stone
+read	155	-1	-60	3	minecraft:stone
+read	155	0	-60	4	minecraft:air
+read	155	0	-60	2	minecraft:air
+write	155	0	-60	3	minecraft:air
+read	155	0	-60	5	minecraft:water[level=7]
+read	155	0	-61	5	minecraft:stone
+read	155	0	-59	5	minecraft:air
+read	155	1	-60	5	minecraft:stone
+read	155	-1	-60	5	minecraft:stone
+read	155	0	-60	6	minecraft:air
+read	155	0	-60	4	minecraft:air
+write	155	0	-60	5	minecraft:air
+read	155	0	-60	7	minecraft:water[level=7]
+read	155	0	-61	7	minecraft:stone
+read	155	0	-59	7	minecraft:air
+read	155	1	-60	7	minecraft:stone
+read	155	-1	-60	7	minecraft:stone
+read	155	0	-60	8	minecraft:air
+read	155	0	-60	6	minecraft:air
+write	155	0	-60	7	minecraft:air
+state	155	155	0
+state	156	156	0
+state	157	157	0
+state	158	158	0
+state	159	159	0
+state	160	160	0

@@ -1,0 +1,36 @@
+# Phase 5 ordered item 3 follow-up: the region-parallel scheduled-tick loop's
+# golden run parameters.
+#
+# NOT a vanilla dump: what a fire schedules is `30 + nextInt(10)` from a
+# `RandomSource` whose state belongs to the server, and the partition is this
+# engine's. `ctest -R region_tick` replays every row below through the real
+# `BlockTickQueue`, the real canonical sort and the real `RegionScheduler`,
+# dispatching each region's range through `run_block_tick_position`'s shape,
+# and compares the whole trace line for line — so an entry sorted into the
+# wrong region, a range that swallowed a neighbour's work or a dispatch in the
+# queue's raw order cannot land. `tests/fixtures/block_tick` owns the same
+# queue on the serial arm and the rules' own streams; this pin owns the
+# partition.
+#
+# `ticks` is how many world ticks the run advanced the queue through (one
+# `advance()` each), `lanes` the lane count the checked-in trace came from
+# (the parallel arm for every `laneStable yes` run, one lane for the run that
+# crosses a region boundary) and `laneStable` whether the trace at one lane
+# and at four lanes must be identical — it is required of every run whose work
+# cannot cross a boundary inside one tick, and the `edge` run is the one that
+# can, where the difference is the residue docs/PHASE5.md §5 documents and the
+# tool prints rather than pins.
+#
+# `schedules`/`due`/`plans`/`regionRows`/`dispatches`/`drops`/`writes`/`reads`/
+# `draws`/`units`/`states` are the counts of those trace rows, `maxRegions` the
+# largest region set one tick planned, `endNow`/`endPending`/`endChunks` the
+# queue's own state after the last tick and `worldHash` the whole world's FNV-1a
+# over the box the run touched (the A/B's correctness half: the two lane counts
+# leave the same world). `rows` is the trace's length.
+#
+# seed	run	scene	ticks	lanes	laneStable	schedules	due	plans	regionRows	dispatches	drops	writes	reads	draws	units	states	maxRegions	endNow	endPending	endChunks	worldHash	rows
+42	one_fire	platform	128	4	yes	5	4	4	4	4	0	3	48	9	0	128	1	128	1	1	7782650321286316651	220
+42	four_regions	regions	64	4	yes	9	5	3	5	5	0	5	82	14	0	64	3	64	4	4	15228197896149572463	211
+42	chop	canopy	12	4	yes	4	4	1	3	4	0	5	59	0	0	12	3	12	0	0	4510537725372118722	94
+42	stale	platform	48	4	yes	1	1	1	1	1	1	2	16	1	0	48	1	48	0	0	3020819757511907358	76
+42	edge	edge	120	1	no	10	7	6	7	7	0	5	2013	111	0	120	2	120	3	2	18137915224135582512	2298

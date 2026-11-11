@@ -1,0 +1,6 @@
+interface permission {
+    enum permission-level { zero, one, two, three, four }
+    variant permission-default { deny, allow, op(permission-level) }
+    record permission-child { node: string, value: bool }
+    record permission { node: string, description: string, default: permission-default, children: list<permission-child> }
+}

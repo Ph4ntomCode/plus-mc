@@ -1,0 +1,9 @@
+# The original-host-table fixture for tests/plugin_test.py. The host resolves
+# `library` in this directory and adds the platform suffix.
+name = "oldhost"
+version = "1.0.0"
+api = 1
+library = "oldhost"
+entry = "pmc_plugin_entry"
+author = "+MC"
+description = "Test fixture: reads only the original pmc_host_api prefix."

@@ -1,0 +1,116 @@
+# Phase 5 ordered item 3 follow-up: the region-parallel scheduled-tick loop's
+# interaction trace for run 'chop' (scene 'canopy'), seed 42, 4 lane(s).
+#
+# NOT a vanilla dump (see region_tick_meta.tsv): every row is one thing the
+# partition, the rule or the caller did, in order, with the tick it happened in.
+# `action` is the caller's own scripted work (see region_tick_actions.tsv). A
+# tick's rows are: the `due` rows — every entry that tick drained, in the
+# canonical order the region arm sorts them into (owning region, then x, y, z),
+# each row naming its region; the `plan` row, the number of regions and entries
+# one `RegionScheduler::run` was handed; then one block per region, in canonical
+# region order: a `region` row naming the region and the slice of this tick's
+# `due` list it owned, followed by that region's own rows in the order its lane
+# did them (`dispatch` — which arm the entry took, fire, leaves or drop — and
+# everything the rule then logged: `schedule`, `read`, `sturdy`, `light`,
+# `write`, `item`, `prime`, `draw i`, `draw u`); and finally the `state` row, the
+# queue's own clock, pending count, chunk count and this tick's region count. The
+# lanes themselves are not in the trace: the recorded order is the canonical one,
+# assembled after the barrier, because the lane assignment is the scheduler's own
+# contract and not the loop's. The `world` row closes the trace with the whole
+# world's hash.
+#
+# kind	tick	...
+action	0	break	31	-60	0
+read	0	31	-60	0	minecraft:oak_log
+write	0	31	-60	0	minecraft:air	true
+read	0	31	-61	0	minecraft:stone
+read	0	31	-59	0	minecraft:air
+read	0	31	-60	-1	minecraft:oak_leaves[distance=1,persistent=false,waterlogged=false]
+schedule	0	31	-60	-1	1	1
+read	0	31	-60	1	minecraft:oak_leaves[distance=1,persistent=false,waterlogged=false]
+schedule	0	31	-60	1	1	1
+read	0	30	-60	0	minecraft:oak_leaves[distance=1,persistent=false,waterlogged=false]
+schedule	0	30	-60	0	1	1
+read	0	32	-60	0	minecraft:oak_leaves[distance=1,persistent=false,waterlogged=false]
+schedule	0	32	-60	0	1	1
+due	1	0	-1	31	-60	-1
+due	1	0	0	30	-60	0
+due	1	0	0	31	-60	1
+due	1	1	0	32	-60	0
+plan	1	3	4
+region	1	0	-1	0	1
+read	1	31	-60	-1	minecraft:oak_leaves[distance=1,persistent=false,waterlogged=false]
+dispatch	1	leaves	31	-60	-1
+read	1	31	-61	-1	minecraft:stone
+read	1	31	-59	-1	minecraft:air
+read	1	31	-60	-2	minecraft:air
+read	1	31	-60	0	minecraft:air
+read	1	30	-60	-1	minecraft:air
+read	1	32	-60	-1	minecraft:air
+write	1	31	-60	-1	minecraft:oak_leaves[distance=7,persistent=false,waterlogged=false]	true
+read	1	31	-61	-1	minecraft:stone
+read	1	31	-59	-1	minecraft:air
+read	1	31	-60	-2	minecraft:air
+read	1	31	-60	0	minecraft:air
+read	1	30	-60	-1	minecraft:air
+read	1	32	-60	-1	minecraft:air
+region	1	0	0	1	3
+read	1	30	-60	0	minecraft:oak_leaves[distance=1,persistent=false,waterlogged=false]
+dispatch	1	leaves	30	-60	0
+read	1	30	-61	0	minecraft:stone
+read	1	30	-59	0	minecraft:air
+read	1	30	-60	-1	minecraft:air
+read	1	30	-60	1	minecraft:air
+read	1	29	-60	0	minecraft:air
+read	1	31	-60	0	minecraft:air
+write	1	30	-60	0	minecraft:oak_leaves[distance=7,persistent=false,waterlogged=false]	true
+read	1	30	-61	0	minecraft:stone
+read	1	30	-59	0	minecraft:air
+read	1	30	-60	-1	minecraft:air
+read	1	30	-60	1	minecraft:air
+read	1	29	-60	0	minecraft:air
+read	1	31	-60	0	minecraft:air
+read	1	31	-60	1	minecraft:oak_leaves[distance=1,persistent=false,waterlogged=false]
+dispatch	1	leaves	31	-60	1
+read	1	31	-61	1	minecraft:stone
+read	1	31	-59	1	minecraft:air
+read	1	31	-60	0	minecraft:air
+read	1	31	-60	2	minecraft:air
+read	1	30	-60	1	minecraft:air
+read	1	32	-60	1	minecraft:air
+write	1	31	-60	1	minecraft:oak_leaves[distance=7,persistent=false,waterlogged=false]	true
+read	1	31	-61	1	minecraft:stone
+read	1	31	-59	1	minecraft:air
+read	1	31	-60	0	minecraft:air
+read	1	31	-60	2	minecraft:air
+read	1	30	-60	1	minecraft:air
+read	1	32	-60	1	minecraft:air
+region	1	1	0	3	4
+read	1	32	-60	0	minecraft:oak_leaves[distance=1,persistent=false,waterlogged=false]
+dispatch	1	leaves	32	-60	0
+read	1	32	-61	0	minecraft:stone
+read	1	32	-59	0	minecraft:air
+read	1	32	-60	-1	minecraft:air
+read	1	32	-60	1	minecraft:air
+read	1	31	-60	0	minecraft:air
+read	1	33	-60	0	minecraft:air
+write	1	32	-60	0	minecraft:oak_leaves[distance=7,persistent=false,waterlogged=false]	true
+read	1	32	-61	0	minecraft:stone
+read	1	32	-59	0	minecraft:air
+read	1	32	-60	-1	minecraft:air
+read	1	32	-60	1	minecraft:air
+read	1	31	-60	0	minecraft:air
+read	1	33	-60	0	minecraft:air
+state	1	1	0	0	3
+state	2	2	0	0	0
+state	3	3	0	0	0
+state	4	4	0	0	0
+state	5	5	0	0	0
+state	6	6	0	0	0
+state	7	7	0	0	0
+state	8	8	0	0	0
+state	9	9	0	0	0
+state	10	10	0	0	0
+state	11	11	0	0	0
+state	12	12	0	0	0
+world	13	4510537725372118722

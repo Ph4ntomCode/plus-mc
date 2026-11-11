@@ -1,0 +1,83 @@
+package pumpkin:plugin@0.2.0;
+
+interface item-stack {
+    use attributes.{attribute, attribute-modifier};
+    use data-components.{data-component};
+    use enchantments.{attribute-modifier-slot, enchantment};
+    use text.{text-component};
+    use common.{nbt-entry, nbt-tree, nbt-tag};
+
+    /// Represents an enchantment and its level.
+    record enchantment-value {
+        enchantment: enchantment,
+        level: u32,
+    }
+
+    /// Represents a custom enchantment and its level on an item stack.
+    record custom-enchantment-value {
+        enchantment-id: string,
+        level: u32,
+    }
+
+    /// Represents an attribute modifier applied to an item stack for a specific slot.
+    record item-attribute-modifier {
+        attribute: attribute,
+        modifier: attribute-modifier,
+        slot: attribute-modifier-slot,
+    }
+
+    /// Represents a data component and its serialized value.
+    record data-component-value {
+        component: data-component,
+        /// The serialized value of the component.
+        value: list<u8>,
+    }
+
+    /// An item stack resource with its registry identity, count and data.
+    resource item-stack {
+        constructor(registry-key: string, count: u8);
+        get-registry-key: async func() -> string;
+        get-count: async func() -> u8;
+        set-count: async func(count: u8);
+        get-max-count: async func() -> u8;
+        clone: async func() -> item-stack;
+        with-count: async func(count: u8) -> item-stack;
+        is-similar: async func(other: item-stack) -> bool;
+        get-damage: async func() -> s32;
+        set-damage: async func(damage: s32);
+        get-max-damage: async func() -> s32;
+        is-damageable: async func() -> bool;
+        is-unbreakable: async func() -> bool;
+        set-unbreakable: async func(unbreakable: bool);
+        get-repair-cost: async func() -> s32;
+        set-repair-cost: async func(cost: s32);
+        get-item-model: async func() -> option<string>;
+        set-item-model: async func(model: option<string>);
+        get-enchantment-glint-override: async func() -> option<bool>;
+        set-enchantment-glint-override: async func(glint: option<bool>);
+        get-enchantments: async func() -> list<enchantment-value>;
+        add-enchantment: async func(enchantment: enchantment, level: u32);
+        remove-enchantment: async func(enchantment: enchantment);
+        get-custom-enchantments: async func() -> list<custom-enchantment-value>;
+        add-custom-enchantment: async func(enchantment-id: string, level: u32);
+        remove-custom-enchantment: async func(enchantment-id: string);
+        get-custom-enchantment-level: async func(enchantment-id: string) -> option<u32>;
+        has-custom-enchantment: async func(enchantment-id: string) -> bool;
+        get-attribute-modifiers: async func() -> list<item-attribute-modifier>;
+        add-attribute-modifier: async func(modifier: item-attribute-modifier);
+        remove-attribute-modifiers: async func(attribute: attribute);
+        clear-attribute-modifiers: async func();
+        get-lore: async func() -> list<text-component>;
+        set-lore: async func(lore: list<text-component>);
+        add-lore: async func(line: text-component);
+        get-custom-name: async func() -> option<text-component>;
+        set-custom-name: async func(name: option<text-component>);
+        set-custom-data: async func(namespace: string, key: string, value: nbt-tree);
+        get-custom-data: async func(namespace: string, key: string) -> option<nbt-tree>;
+        remove-custom-data: async func(namespace: string, key: string);
+        has-custom-data: async func(namespace: string, key: string) -> bool;
+        get-components: async func() -> list<data-component-value>;
+        set-component: async func(component: data-component, value: list<u8>);
+        remove-component: async func(component: data-component);
+    }
+}

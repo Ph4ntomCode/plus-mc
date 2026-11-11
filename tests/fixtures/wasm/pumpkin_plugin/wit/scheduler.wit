@@ -1,0 +1,11 @@
+/// Provides functionality to schedule tasks to be executed later on the server.
+interface scheduler {
+    /// Schedules a task to be executed once after the specified number of ticks.
+    schedule-delayed-task: func(handler-id: u32, delay-ticks: u64) -> u32;
+
+    /// Schedules a task to be executed repeatedly.
+    schedule-repeating-task: func(handler-id: u32, delay-ticks: u64, period-ticks: u64) -> u32;
+
+    /// Cancels a scheduled task if it hasn't finished yet.
+    cancel-task: func(task-id: u32);
+}

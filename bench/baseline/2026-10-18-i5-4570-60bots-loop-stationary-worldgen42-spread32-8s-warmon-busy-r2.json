@@ -1,0 +1,210 @@
+{
+  "argv": [
+    "/Users/zaid/other projects/plus-mc/build-relight/src/plusmc",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/Users/zaid/other projects/plus-mc/data/vanilla",
+    "--motd",
+    "soak",
+    "--max-players",
+    "120",
+    "--view-distance",
+    "8",
+    "--metrics-interval",
+    "1",
+    "--worldgen",
+    "42",
+    "--no-flat-world"
+  ],
+  "binary": "/Users/zaid/other projects/plus-mc/build-relight/src/plusmc",
+  "binary_sha256": "6f37447c2b151b46f4a8afb793aeb38f4fc91c0ff3e048afd34a72f53b0618c2",
+  "bot_failures": [],
+  "bot_stats": {
+    "bots": 60,
+    "chunk_body_bytes": 0,
+    "chunk_keys_max": 0,
+    "chunks_distinct": 0,
+    "chunks_received": 0,
+    "connected": 60,
+    "failures": [],
+    "joined": 60,
+    "keepalives": 0,
+    "packets_received": 14399,
+    "packets_sent": 33987,
+    "probes_answered": 0,
+    "probes_orphan": 0,
+    "probes_pending": 0,
+    "probes_sent": 0,
+    "received_bytes": 3102508,
+    "spread": 32.0,
+    "stationary": false
+  },
+  "bots": 60,
+  "busy": true,
+  "chunk_sharing": {
+    "bodies_reused": 0,
+    "body_pct": 0.0,
+    "frame_pct": 0.0,
+    "frames_reused": 0,
+    "sends": 60
+  },
+  "chunks": {
+    "body_bytes": 0,
+    "distinct": 0,
+    "distinct_rule": null,
+    "distinct_sum_bound": null,
+    "per_bot_max": 0,
+    "received": 0
+  },
+  "engine": "loop",
+  "generated_seed": 42,
+  "idle": {
+    "busy_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 1
+    },
+    "tick_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "tps": {
+      "avg": 19.99,
+      "max": 19.99,
+      "min": 19.99,
+      "n": 1
+    },
+    "work_avg_ms": {
+      "avg": 0.041,
+      "max": 0.041,
+      "min": 0.041,
+      "n": 1
+    },
+    "work_peak_ms": {
+      "avg": 0.516,
+      "max": 0.516,
+      "min": 0.516,
+      "n": 1
+    }
+  },
+  "idle_windows": 1,
+  "join_s": 2.32,
+  "joined": 60,
+  "latency": null,
+  "load_avg_1m": {
+    "after": 73.96,
+    "before": 50.53
+  },
+  "loaded": {
+    "busy_pct": {
+      "avg": 1.363,
+      "max": 1.5,
+      "min": 1.2,
+      "n": 8
+    },
+    "players": {
+      "avg": 60.0,
+      "max": 60.0,
+      "min": 60.0,
+      "n": 8
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 8
+    },
+    "tick_pct": {
+      "avg": 1.363,
+      "max": 1.5,
+      "min": 1.2,
+      "n": 8
+    },
+    "tps": {
+      "avg": 20.008,
+      "max": 20.08,
+      "min": 19.95,
+      "n": 8
+    },
+    "work_avg_ms": {
+      "avg": 0.683,
+      "max": 0.735,
+      "min": 0.606,
+      "n": 8
+    },
+    "work_peak_ms": {
+      "avg": 1.135,
+      "max": 1.574,
+      "min": 0.938,
+      "n": 8
+    }
+  },
+  "loaded_windows": 8,
+  "mob_tracking": null,
+  "mobs": false,
+  "phases": [],
+  "prewarm": false,
+  "probe_period": 0.0,
+  "quiet_load": 1.0,
+  "relayout_blocks": null,
+  "rss_after_leave": null,
+  "rss_bytes": {
+    "first": 8577024.0,
+    "last": 29962240.0,
+    "peak": 29962240.0
+  },
+  "rss_guard": null,
+  "seconds": 8.0,
+  "server_env": {
+    "PLUSMC_MOB_SPAWNING": "0"
+  },
+  "server_rc": 0,
+  "spread": 32.0,
+  "startup_s": 0.32,
+  "stationary": false,
+  "traffic": {
+    "bytes_in": 11040,
+    "kib_per_bot_s": 0.0,
+    "packets_in": 480,
+    "packets_per_bot_s": 1.0,
+    "seconds": 8.0
+  },
+  "traffic_phases": [],
+  "view_distance": 8,
+  "world": {
+    "world_bytes": {
+      "first": 45884,
+      "last": 170640,
+      "max": 170640,
+      "n": 16,
+      "windows_at_max": 3
+    },
+    "world_chunks": {
+      "first": 2,
+      "last": 7,
+      "max": 7,
+      "n": 16,
+      "windows_at_max": 3
+    },
+    "world_written_chunks": {
+      "first": 0,
+      "last": 0,
+      "max": 0,
+      "n": 16,
+      "windows_at_max": 16
+    }
+  }
+}

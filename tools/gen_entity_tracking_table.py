@@ -1,0 +1,166 @@
+#!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-3.0-or-later
+"""Generate src/world/entity_tracking_table.h: `EntityType.clientTrackingRange()`.
+
+Vanilla tracks an entity for a player out to
+
+    min(clientTrackingRange * 16, playerViewDistance * 16)
+
+blocks horizontally (`ChunkMap.addEntity` line 1063 builds the range,
+`TrackedEntity.updatePlayer` applies it). `clientTrackingRange` is a per-type
+number set on `EntityType.Builder` (default 5, `EntityType.Builder`'s field
+initializer) in `net/minecraft/world/entity/EntityTypes.java`; it is not in the
+data pack, so it is read from the decompiled server jar.
+
+The network registry id of a type is its position in that same file: the
+registrations are alphabetical and `BuiltInRegistries.ENTITY_TYPE` hands out ids
+in load order. That is checked here against the chosen-mob table
+(`data/vanilla/26.2/entity_types.tsv`, which carries the ids the server already
+uses for mobs) rather than trusted: a mismatch fails the run.
+
+Usage:
+    tools/gen_entity_tracking_table.py [--decomp DIR] [--tsv PATH] [--out PATH]
+
+The decompile is the one `docs/PHASE1.md` describes
+(`build/_decomp`, produced from the server jar); the checked-in header means the
+build needs neither it nor Java.
+"""
+
+import argparse
+import re
+import sys
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+
+# `public static final EntityType<Pig> PIG = EntityTypes.register(EntityTypeIds.PIG,
+#      EntityType.Builder.of(Pig::new, MobCategory.CREATURE)....clientTrackingRange(10));`
+REGISTRATION = re.compile(
+    r"public static final EntityType<[^>]+>\s+\w+\s*=\s*EntityTypes\.register\(\s*"
+    r"EntityTypeIds\.(\w+),\s*(.*)\);\s*$")
+TRACKING = re.compile(r"\.clientTrackingRange\((\d+)\)")
+# `private int clientTrackingRange = 5;` in EntityType.Builder.
+BUILDER_DEFAULT = re.compile(r"private int clientTrackingRange = (\d+);")
+
+
+def read_entity_types(path: Path) -> list[tuple[str, int | None]]:
+    """Every registered type in registry-id order: [(constant, chunks or None)]."""
+    text = path.read_text()
+    types: list[tuple[str, int | None]] = []
+    for line in text.splitlines():
+        match = REGISTRATION.search(line)
+        if not match:
+            continue
+        name, builder = match.group(1), match.group(2)
+        tracking = TRACKING.search(builder)
+        types.append((name, int(tracking.group(1)) if tracking else None))
+    if not types:
+        raise SystemExit(f"{path}: no EntityTypes.register(...) lines found")
+    return types
+
+
+def builder_default(entity_type_java: Path) -> int:
+    match = BUILDER_DEFAULT.search(entity_type_java.read_text())
+    if not match:
+        raise SystemExit(f"{entity_type_java}: no Builder clientTrackingRange default found")
+    return int(match.group(1))
+
+
+def read_mob_ids(tsv: Path) -> dict[str, int]:
+    """The chosen-mob table's name -> network id, used as the alignment check."""
+    ids: dict[str, int] = {}
+    lines = tsv.read_text().splitlines()
+    header = lines[0].split("\t")
+    name_col, id_col = header.index("name"), header.index("id")
+    for line in lines[1:]:
+        if not line.strip():
+            continue
+        fields = line.split("\t")
+        ids[fields[name_col].split(":", 1)[1]] = int(fields[id_col])
+    return ids
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--decomp", default=str(REPO / "build" / "_decomp"))
+    parser.add_argument("--tsv", default=str(REPO / "data" / "vanilla" / "26.2" / "entity_types.tsv"))
+    parser.add_argument("--out", default=str(REPO / "src" / "world" / "entity_tracking_table.h"))
+    args = parser.parse_args()
+
+    decomp = Path(args.decomp)
+    entity_types = decomp / "net" / "minecraft" / "world" / "entity" / "EntityTypes.java"
+    entity_type = decomp / "net" / "minecraft" / "world" / "entity" / "EntityType.java"
+    default_chunks = builder_default(entity_type)
+    registered = read_entity_types(entity_types)
+
+    # The file's order is the registry order (`BuiltInRegistries.ENTITY_TYPE`
+    # assigns ids as the classes load), which is what makes the index the id.
+    mob_ids = read_mob_ids(Path(args.tsv))
+    by_constant = {name: index for index, (name, _) in enumerate(registered)}
+    mismatches = []
+    for name, network_id in sorted(mob_ids.items()):
+        constant = name.upper()
+        if by_constant.get(constant) != network_id:
+            mismatches.append(f"{name}: table says {by_constant.get(constant)}, "
+                              f"entity_types.tsv says {network_id}")
+    if mismatches:
+        raise SystemExit("registry order does not match entity_types.tsv:\n  "
+                         + "\n  ".join(mismatches))
+
+    chunks = [default_chunks] * len(registered)
+    overridden = 0
+    for index, (_, value) in enumerate(registered):
+        if value is not None:
+            chunks[index] = value
+            overridden += 1
+
+    lines = [
+        "// SPDX-License-Identifier: GPL-3.0-or-later",
+        "// Generated by tools/gen_entity_tracking_table.py -- do not edit by hand.",
+        "//",
+        "// `EntityType.clientTrackingRange()`, from the 26.2 server's own EntityTypes",
+        f"// table: {len(registered)} types, {overridden} of them overriding the builder's",
+        f"// default of {default_chunks} chunks. Vanilla's tracking radius is this many chunks",
+        "// times 16 blocks, clamped to the viewer's view distance",
+        "// (ChunkMap.TrackedEntity.updatePlayer); the relay reads it through",
+        "// entity_tracking_range_blocks(). The index is the network registry id, which is",
+        "// the type id the entity relays carry, and the data/vanilla/26.2/entity_types.tsv",
+        "// alignment is checked by the generator.",
+        "// clang-format off",
+        "#pragma once",
+        "",
+        "#include <cstdint>",
+        "",
+        "namespace mc::world {",
+        "",
+        "inline constexpr uint8_t kDefaultEntityTrackingChunks = "
+        f"{default_chunks}; // EntityType.Builder",
+        f"inline constexpr uint8_t kEntityTrackingChunks[{len(registered)}] = {{",
+    ]
+    for start in range(0, len(chunks), 16):
+        row = ", ".join(str(value) for value in chunks[start:start + 16])
+        lines.append(f"    {row}, // {start}-{start + 15}")
+    lines += [
+        "};",
+        "",
+        "// The block radius vanilla tracks this type at: clientTrackingRange * 16. A type",
+        "// with no row (an id this table predates) keeps the builder's default.",
+        "constexpr double entity_tracking_range_blocks(uint32_t type_id) {",
+        "  const uint8_t chunks = type_id < sizeof(kEntityTrackingChunks)",
+        "                             ? kEntityTrackingChunks[type_id]",
+        "                             : kDefaultEntityTrackingChunks;",
+        "  return 16.0 * static_cast<double>(chunks);",
+        "}",
+        "",
+        "} // namespace mc::world",
+        "",
+    ]
+    out = Path(args.out)
+    out.write_text("\n".join(lines))
+    print(f"{out}: {len(registered)} types, {overridden} explicit ranges, "
+          f"default {default_chunks}, registry ids aligned with {Path(args.tsv).name}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

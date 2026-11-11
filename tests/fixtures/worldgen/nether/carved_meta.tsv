@@ -1,0 +1,3 @@
+# seed	chunkX	chunkZ	minY	height	cells	defaultBlock	seaLevel	stateCodes
+42	0	0	0	128	32768	minecraft:netherrack	32	0=minecraft:bedrock,1=minecraft:netherrack,2=minecraft:lava[level=0],3=minecraft:air,4=minecraft:crimson_nylium,5=minecraft:cave_air
+42	1	0	0	128	32768	minecraft:netherrack	32	0=minecraft:bedrock,1=minecraft:netherrack,2=minecraft:lava[level=0],3=minecraft:air,4=minecraft:cave_air,5=minecraft:crimson_nylium

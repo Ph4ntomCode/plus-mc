@@ -1,0 +1,9 @@
+# The pre-velocity ABI fixture for tests/plugin_test.py. The host resolves
+# `library` in this directory and adds the platform suffix.
+name = "oldabi"
+version = "1.7.0"
+api = 1
+library = "oldabi"
+entry = "pmc_plugin_entry"
+author = "+MC"
+description = "Test fixture: size rules on the player, entity, visitor and item paths."

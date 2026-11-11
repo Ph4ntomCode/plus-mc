@@ -1,0 +1,128 @@
+{
+  "argv": [
+    "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/Users/zaid/other projects/plus-mc/data/vanilla",
+    "--motd",
+    "soak",
+    "--max-players",
+    "100",
+    "--view-distance",
+    "8",
+    "--metrics-interval",
+    "1"
+  ],
+  "binary": "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+  "bot_failures": [],
+  "bot_stats": {
+    "bots": 20,
+    "connected": 20,
+    "failures": [],
+    "joined": 20,
+    "keepalives": 0,
+    "packets_sent": 12781
+  },
+  "bots": 20,
+  "engine": "loop",
+  "generated_seed": null,
+  "idle": {
+    "busy_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 1
+    },
+    "tick_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "tps": {
+      "avg": 19.96,
+      "max": 19.96,
+      "min": 19.96,
+      "n": 1
+    },
+    "work_avg_ms": {
+      "avg": 0.031,
+      "max": 0.031,
+      "min": 0.031,
+      "n": 1
+    },
+    "work_peak_ms": {
+      "avg": 0.365,
+      "max": 0.365,
+      "min": 0.365,
+      "n": 1
+    }
+  },
+  "idle_windows": 1,
+  "join_s": 0.21,
+  "joined": 20,
+  "loaded": {
+    "busy_pct": {
+      "avg": 1.325,
+      "max": 1.5,
+      "min": 1.2,
+      "n": 8
+    },
+    "players": {
+      "avg": 20.0,
+      "max": 20.0,
+      "min": 20.0,
+      "n": 8
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 8
+    },
+    "tick_pct": {
+      "avg": 1.325,
+      "max": 1.5,
+      "min": 1.2,
+      "n": 8
+    },
+    "tps": {
+      "avg": 20.029,
+      "max": 20.26,
+      "min": 19.95,
+      "n": 8
+    },
+    "work_avg_ms": {
+      "avg": 0.659,
+      "max": 0.746,
+      "min": 0.587,
+      "n": 8
+    },
+    "work_peak_ms": {
+      "avg": 1.376,
+      "max": 2.098,
+      "min": 0.757,
+      "n": 8
+    }
+  },
+  "loaded_windows": 8,
+  "mobs": false,
+  "rss_bytes": {
+    "first": 5066752.0,
+    "last": 160378880.0
+  },
+  "seconds": 8.0,
+  "server_rc": 0,
+  "startup_s": 0.02,
+  "view_distance": 8
+}

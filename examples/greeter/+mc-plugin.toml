@@ -1,0 +1,11 @@
+# The plugin host reads `key = value` lines and ignores unknown keys.
+# `library` is resolved inside this directory, with the platform suffix added
+# when the bare name is not a file (.dylib on macOS, .so on Linux, .dll on
+# Windows).
+name = "greeter"
+version = "1.13.0"
+api = 1
+library = "greeter"
+entry = "pmc_plugin_entry"
+author = "+MC"
+description = "Example plugin: chat, lifecycle/block/item-use events, accessor/write commands, heartbeat."

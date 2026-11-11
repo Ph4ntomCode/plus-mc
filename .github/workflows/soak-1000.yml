@@ -1,0 +1,131 @@
+name: soak-1000
+
+# The 1000-client population on a hosted runner. Manual rather than per-push:
+# it is a ten-minute job whose point is a record, not a regression gate — ci.yml
+# already runs every ctest except the soak label, and its soak job covers the
+# fixed-duration leave/breeding scenes.
+#
+# What it measures: 1000 real protocol clients (`bench/soak.py`, ten
+# `bench/botnet.py` workers), stationary on a 32x32 grid 16 blocks apart, view
+# distance 2, void world, a 20 s window. That is the same scene as
+# bench/baseline/2026-11-02-i5-4570-1000bots-loop-void-spread16-vd2-20s.json,
+# so a hosted-runner record is directly comparable with the 4-core i5 one.
+#
+# What it cannot measure: vanilla-client compatibility.
+# `data/vanilla/<version>/clientconfig` is captured Mojang data and is not
+# committed, so this job synthesises the registry listings from the extracted
+# datapack (and an empty tags payload) — enough for the synthetic clients to
+# join, not enough for a real client. The record is a workload measurement
+# (tick, RSS, chunk sends), not a client test.
+on:
+  workflow_dispatch:
+    inputs:
+      bots:
+        description: "Client population"
+        required: true
+        default: "1000"
+      seconds:
+        description: "Measured window, seconds"
+        required: true
+        default: "20"
+      spread:
+        description: "Blocks between bots on the grid"
+        required: true
+        default: "16"
+      view_distance:
+        description: "View distance, chunks"
+        required: true
+        default: "2"
+
+jobs:
+  soak-1000:
+    name: 1000-client population (void, vd2)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CC: clang
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build cmake zlib1g-dev libssl-dev libcurl4-openssl-dev
+
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+
+      - name: Build the server and the data tool
+        run: cmake --build build -j 4 --target plusmc plusmc-vanilla-data
+
+      - name: Provision vanilla data
+        run: ./build/plusmc-vanilla-data --version 26.2 --out data/vanilla
+
+      - name: Synthesise client config (see the header comment)
+        run: |
+          python3 - <<'PY'
+          import pathlib
+          root = max((p for p in pathlib.Path("data/vanilla").iterdir()
+                      if (p / "version.json").exists()), key=lambda p: p.name)
+          cc = root / "clientconfig"
+          (cc / "registries").mkdir(parents=True, exist_ok=True)
+          for stem, sub in [("worldgen_biome", "worldgen/biome"),
+                            ("dimension_type", "dimension_type"),
+                            ("damage_type", "damage_type"),
+                            ("enchantment", "enchantment"),
+                            ("trim_material", "trim_material")]:
+              src = root / "data" / "minecraft" / sub
+              names = sorted(p.stem for p in src.glob("*.json")) if src.is_dir() else []
+              (cc / "registries" / f"{stem}.txt").write_text(
+                  "".join(f"minecraft:{n}\n" for n in names))
+              print(f"{stem}: {len(names)} entries")
+          (cc / "tags.bin").write_bytes(b"")
+          PY
+
+      - name: Run the 1000-client soak
+        run: |
+          BOTS=${{ inputs.bots }}
+          PROCS=$(( BOTS < 10 ? BOTS : 10 ))
+          python3 bench/soak.py --bots "$BOTS" --stationary \
+            --spread "${{ inputs.spread }}" --view-distance "${{ inputs.view_distance }}" \
+            --seconds "${{ inputs.seconds }}" --settle-after-join 8 \
+            --bot-processes "$PROCS" \
+            --json soak-1000.json --log soak-1000-server.log | tee soak-1000.txt
+
+      - name: Gate the record
+        run: |
+          python3 - <<'PY'
+          import json, sys
+          d = json.load(open("soak-1000.json"))
+          loaded = d.get("loaded") or {}
+          bots = d.get("bots")
+          checks = [
+              ("all clients joined", d.get("joined") == bots),
+              ("no bot failures", d.get("bot_failures") == []),
+              ("server exited 0", d.get("server_rc") == 0),
+              ("every window held the population",
+               (loaded.get("players") or {}).get("min") == bots),
+              ("TPS floor", ((loaded.get("tps") or {}).get("avg") or 0) >= 18.5),
+              ("work ceiling", ((loaded.get("work_avg_ms") or {}).get("avg") or 0) <= 20.0),
+              ("no sustained resync",
+               ((loaded.get("resync") or {}).get("avg") or 0) <= 0.5),
+          ]
+          for name, ok in checks:
+              print(("PASS " if ok else "FAIL ") + name)
+          print(f"joined {d.get('joined')}/{bots}, tps {loaded.get('tps', {}).get('avg')}, "
+                f"work {loaded.get('work_avg_ms', {}).get('avg')} ms, "
+                f"rss peak {(d.get('rss_bytes') or {}).get('peak', 0) / 1e6:.1f} MB")
+          sys.exit(0 if all(ok for _, ok in checks) else 1)
+          PY
+
+      - name: Upload the record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: soak-1000-record
+          path: |
+            soak-1000.json
+            soak-1000-server.log
+            soak-1000.txt
+          if-no-files-found: warn

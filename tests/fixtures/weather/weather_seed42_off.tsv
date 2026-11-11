@@ -1,0 +1,14 @@
+# Phase 3 milestone H: the precipitation pass's interaction trace for run 'off' (scene 'rain'), seed 42.
+#
+# NOT a vanilla dump (see weather_meta.tsv): every row is one interaction the pass had
+# with the level or one draw it took, in order. `gate` is the pass's own 1-in-48 draw
+# (drawn whatever the weather is, and written only by the runs whose meta row says
+# `logGates`); `lcg` is the column draw's own step — `BlockRandomPos.value` right after
+# it, once per draw that passed the gate; `column` is the sampled column (x, z and the
+# same LCG value) and the height the pass read there, which it only asks when it is
+# raining; `biome` is the query at the column's first free cell, with the precipitation
+# it answers; `read` is the block the rain lands on, one cell below that; `roll` is a
+# cauldron's chance draw and `fill` the write. The precipitation label on a `biome`
+# row is `biome_precipitation_at`'s own answer, the same call the pass makes.
+#
+# kind	tick	...

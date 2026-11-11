@@ -1,0 +1,12 @@
+interface logging {
+    enum level {
+        trace,
+        debug,
+        info,
+        warn,
+        error,
+    }
+
+    log: func(level: level, message: string);
+    log-tracing: func(event: list<u8>);
+}

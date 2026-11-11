@@ -1,0 +1,7 @@
+name = "homes"
+version = "1.0.0"
+api = 1
+library = "homes"
+entry = "pmc_plugin_entry"
+author = "+MC"
+description = "Seed plugin: /sethome, /home, /delhome and /homes with a file under the data dir."

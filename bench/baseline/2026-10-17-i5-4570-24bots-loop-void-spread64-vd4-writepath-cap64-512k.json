@@ -1,0 +1,208 @@
+{
+  "argv": [
+    "/Users/zaid/other projects/plus-mc/build-buffy/src/plusmc",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/Users/zaid/other projects/plus-mc/data/vanilla",
+    "--motd",
+    "soak",
+    "--max-players",
+    "100",
+    "--view-distance",
+    "4",
+    "--metrics-interval",
+    "1"
+  ],
+  "binary": "/Users/zaid/other projects/plus-mc/build-buffy/src/plusmc",
+  "binary_sha256": "e3e8b312141a4dc6ba2c3f9eb1e54eb540b66e3e06d3d04bce9e170b248852f5",
+  "bot_failures": [],
+  "bot_stats": {
+    "bots": 24,
+    "chunk_body_bytes": 184351464,
+    "chunk_keys_max": 162,
+    "chunks_distinct": 609,
+    "chunks_received": 3663,
+    "connected": 24,
+    "failures": [],
+    "joined": 24,
+    "keepalives": 24,
+    "packets_received": 8361,
+    "packets_sent": 17136,
+    "probes_answered": 0,
+    "probes_orphan": 0,
+    "probes_pending": 0,
+    "probes_sent": 0,
+    "received_bytes": 1846344,
+    "spread": 64.0,
+    "stationary": false
+  },
+  "bots": 24,
+  "busy": true,
+  "chunk_sharing": {
+    "bodies_reused": 120,
+    "body_pct": 3.3,
+    "frame_pct": 45.3,
+    "frames_reused": 1659,
+    "sends": 3663
+  },
+  "chunks": {
+    "body_bytes": 184351464,
+    "distinct": 609,
+    "distinct_rule": null,
+    "distinct_sum_bound": null,
+    "per_bot_max": 162,
+    "received": 3663
+  },
+  "engine": "loop",
+  "generated_seed": null,
+  "idle": {
+    "busy_pct": {
+      "avg": 0.05,
+      "max": 0.1,
+      "min": 0.0,
+      "n": 2
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 2
+    },
+    "tick_pct": {
+      "avg": 0.05,
+      "max": 0.1,
+      "min": 0.0,
+      "n": 2
+    },
+    "tps": {
+      "avg": 19.96,
+      "max": 19.97,
+      "min": 19.95,
+      "n": 2
+    },
+    "work_avg_ms": {
+      "avg": 0.043,
+      "max": 0.073,
+      "min": 0.013,
+      "n": 2
+    },
+    "work_peak_ms": {
+      "avg": 0.444,
+      "max": 0.87,
+      "min": 0.018,
+      "n": 2
+    }
+  },
+  "idle_windows": 2,
+  "join_s": 0.13,
+  "joined": 24,
+  "latency": null,
+  "load_avg_1m": {
+    "after": 69.55,
+    "before": 80.74
+  },
+  "loaded": {
+    "busy_pct": {
+      "avg": 2.067,
+      "max": 2.5,
+      "min": 1.9,
+      "n": 9
+    },
+    "players": {
+      "avg": 24.0,
+      "max": 24.0,
+      "min": 24.0,
+      "n": 9
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 9
+    },
+    "tick_pct": {
+      "avg": 2.067,
+      "max": 2.5,
+      "min": 1.9,
+      "n": 9
+    },
+    "tps": {
+      "avg": 19.999,
+      "max": 20.06,
+      "min": 19.94,
+      "n": 9
+    },
+    "work_avg_ms": {
+      "avg": 1.037,
+      "max": 1.24,
+      "min": 0.955,
+      "n": 9
+    },
+    "work_peak_ms": {
+      "avg": 1.576,
+      "max": 3.172,
+      "min": 1.236,
+      "n": 9
+    }
+  },
+  "loaded_windows": 9,
+  "mobs": false,
+  "phases": [],
+  "prewarm": false,
+  "probe_period": 0.0,
+  "quiet_load": 2.0,
+  "relayout_blocks": null,
+  "rss_after_leave": null,
+  "rss_bytes": {
+    "first": 5259264.0,
+    "last": 35192832.0,
+    "peak": 86368256.0
+  },
+  "rss_guard": null,
+  "seconds": 10.0,
+  "server_env": {
+    "PLUSMC_CHUNK_CACHE_ENTRIES": "64",
+    "PLUSMC_CHUNK_CACHE_MB": "0",
+    "PLUSMC_MOB_SPAWNING": "0"
+  },
+  "server_rc": 0,
+  "spread": 64.0,
+  "startup_s": 0.02,
+  "stationary": false,
+  "traffic": {
+    "bytes_in": 5760,
+    "kib_per_bot_s": 0.0,
+    "packets_in": 264,
+    "packets_per_bot_s": 1.1,
+    "seconds": 10.01
+  },
+  "traffic_phases": [],
+  "view_distance": 4,
+  "world": {
+    "world_bytes": {
+      "first": 0,
+      "last": 3798720,
+      "max": 35852283,
+      "n": 16,
+      "windows_at_max": 10
+    },
+    "world_chunks": {
+      "first": 0,
+      "last": 64,
+      "max": 609,
+      "n": 16,
+      "windows_at_max": 10
+    },
+    "world_written_chunks": {
+      "first": 0,
+      "last": 0,
+      "max": 0,
+      "n": 16,
+      "windows_at_max": 16
+    }
+  }
+}

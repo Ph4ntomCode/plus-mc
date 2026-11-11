@@ -1,0 +1,209 @@
+{
+  "argv": [
+    "/Users/zaid/other projects/plus-mc/build-buffy/src/plusmc",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/Users/zaid/other projects/plus-mc/data/vanilla",
+    "--motd",
+    "soak",
+    "--max-players",
+    "100",
+    "--view-distance",
+    "8",
+    "--metrics-interval",
+    "1",
+    "--worldgen",
+    "42",
+    "--no-flat-world"
+  ],
+  "binary": "/Users/zaid/other projects/plus-mc/build-buffy/src/plusmc",
+  "binary_sha256": "fe739dda8013f0acd1deb1b557822a63c74cf4c8095404051c322329c3aa7452",
+  "bot_failures": [],
+  "bot_stats": {
+    "bots": 40,
+    "chunk_body_bytes": 552674155,
+    "chunk_keys_max": 305,
+    "chunks_distinct": 607,
+    "chunks_received": 11879,
+    "connected": 40,
+    "failures": [],
+    "joined": 40,
+    "keepalives": 40,
+    "packets_received": 21106,
+    "packets_sent": 440,
+    "probes_answered": 0,
+    "probes_orphan": 0,
+    "probes_pending": 0,
+    "probes_sent": 0,
+    "received_bytes": 14207947,
+    "spread": 256.0,
+    "stationary": true
+  },
+  "bots": 40,
+  "busy": true,
+  "chunks": {
+    "body_bytes": 552674155,
+    "distinct": 607,
+    "distinct_rule": null,
+    "distinct_sum_bound": null,
+    "per_bot_max": 305,
+    "received": 11879
+  },
+  "engine": "loop",
+  "generated_seed": 42,
+  "idle": {
+    "busy_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 1
+    },
+    "tick_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "tps": {
+      "avg": 19.94,
+      "max": 19.94,
+      "min": 19.94,
+      "n": 1
+    },
+    "work_avg_ms": {
+      "avg": 0.045,
+      "max": 0.045,
+      "min": 0.045,
+      "n": 1
+    },
+    "work_peak_ms": {
+      "avg": 0.622,
+      "max": 0.622,
+      "min": 0.622,
+      "n": 1
+    }
+  },
+  "idle_windows": 1,
+  "join_s": 0.32,
+  "joined": 40,
+  "latency": null,
+  "load_avg_1m": {
+    "after": 5.84,
+    "before": 10.21
+  },
+  "loaded": {
+    "busy_pct": {
+      "avg": 67.427,
+      "max": 79.8,
+      "min": 54.8,
+      "n": 11
+    },
+    "players": {
+      "avg": 40.0,
+      "max": 40.0,
+      "min": 40.0,
+      "n": 11
+    },
+    "resync": {
+      "avg": 0.182,
+      "max": 1.0,
+      "min": 0.0,
+      "n": 11
+    },
+    "tick_pct": {
+      "avg": 73.409,
+      "max": 106.0,
+      "min": 50.6,
+      "n": 11
+    },
+    "tps": {
+      "avg": 18.802,
+      "max": 21.87,
+      "min": 13.32,
+      "n": 11
+    },
+    "work_avg_ms": {
+      "avg": 36.71,
+      "max": 53.024,
+      "min": 25.313,
+      "n": 11
+    },
+    "work_peak_ms": {
+      "avg": 144.288,
+      "max": 240.493,
+      "min": 80.111,
+      "n": 11
+    }
+  },
+  "loaded_windows": 11,
+  "mobs": false,
+  "phases": [],
+  "prewarm": false,
+  "probe_period": 0.0,
+  "quiet_load": 2.0,
+  "relayout_blocks": null,
+  "rss_after_leave": {
+    "after": 100982784.0,
+    "at_close": 77451264.0,
+    "samples": 37,
+    "seconds": 45.0
+  },
+  "rss_bytes": {
+    "first": 8327168.0,
+    "last": 100982784.0,
+    "peak": 138883072.0
+  },
+  "rss_guard": {
+    "max_mb": 6500.0
+  },
+  "seconds": 45.0,
+  "server_env": {
+    "PLUSMC_MOB_SPAWNING": "0"
+  },
+  "server_rc": 0,
+  "spread": 256.0,
+  "startup_s": 0.11,
+  "stationary": true,
+  "traffic": {
+    "bytes_in": 10493019,
+    "kib_per_bot_s": 5.7,
+    "packets_in": 12627,
+    "packets_per_bot_s": 7.0,
+    "seconds": 45.0
+  },
+  "traffic_phases": [],
+  "view_distance": 8,
+  "world": {
+    "world_bytes": {
+      "first": 40768,
+      "last": 2031013,
+      "max": 58411539,
+      "n": 53,
+      "windows_at_max": 1
+    },
+    "world_chunks": {
+      "first": 2,
+      "last": 64,
+      "max": 1721,
+      "n": 53,
+      "windows_at_max": 1
+    },
+    "world_written_chunks": {
+      "first": 0,
+      "last": 0,
+      "max": 0,
+      "n": 53,
+      "windows_at_max": 53
+    }
+  }
+}

@@ -1,0 +1,32 @@
+# Phase 3 milestone H: the precipitation pass's golden run parameters and stream ends.
+#
+# NOT a vanilla dump: the 1-in-48 gate is drawn from `Level.random` and the sampled
+# column from `Level.randValue` (`BlockRandomPos`), two streams the level seeds itself,
+# so this is a regression pin of this runtime's own output rather than a comparison
+# against the game jar. `ctest -R weather` replays every row below through the real
+# `tick_chunk_precipitation` and compares the run's trace line for line, so a reordered
+# query or a gate consumed one step early cannot land silently. Regenerate deliberately
+# with `plusmc-weather-dump <fixtures_dir>`, reviewing the change first with its `--diff`
+# mode.
+#
+# `rainLevel`/`thunderLevel` are the ramped levels `isRaining` reads. They are set
+# directly rather than ramped: the cycle is pinned by the weather test's own assertions,
+# and this fixture is about the precipitation pass. `randStart`/`randEnd` are `BlockRandomPos.value`
+# before and after the run — a pass that sampled one column too many or too few ends
+# somewhere else even when it filled the same cells, and `randomTickSpeed` 0 must end
+# exactly where it started. `gates` is the number of `nextInt(48)` draws (always
+# `tickSpeed * ticks`), `sampledGates` the number of those that answered 0, and `lcgSteps`
+# how often `BlockRandomPos` moved: the column is drawn before the weather check
+# (`rand.next` is the argument to `tick_precipitation`), so a clear-sky run still steps
+# it there — `sampledGates == lcgSteps` in every run, and `lcgSteps` is `samples` only
+# when it was actually raining. `samples` is the number of height queries, `rolls` the
+# cauldron chance draws and `fills` the writes; `rows` is the trace's length. `logGates`
+# says whether every gate draw is in the trace or only the samples it let through
+# (see the run's own header in tools/gen_weather_dump.cpp).
+#
+# seed	run	scene	tickSpeed	ticks	seaLevel	rainLevel	thunderLevel	randStart	randEnd	gates	sampledGates	lcgSteps	samples	rolls	fills	rows	logGates
+42	stream	rain	3	40	63	1.00	0.00	-1170105035	2114606169	120	2	2	2	2	0	130	true
+42	rain	rain	3	10000	63	1.00	0.00	-1170105035	578936334	30000	633	633	633	472	12	3016	false
+42	snow	snow	3	10000	63	1.00	0.00	-1170105035	578936334	30000	633	633	633	481	19	3032	false
+42	clear	clear	3	10000	63	0.00	0.00	-1170105035	-113638659	30000	628	628	0	0	0	628	false
+42	off	rain	0	600	63	1.00	0.00	-1170105035	-1170105035	0	0	0	0	0	0	0	false

@@ -1,0 +1,117 @@
+{
+  "argv": [
+    "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/Users/zaid/other projects/plus-mc/data/vanilla",
+    "--motd",
+    "soak",
+    "--view-distance",
+    "8",
+    "--metrics-interval",
+    "1"
+  ],
+  "binary": "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+  "bot_failures": [],
+  "bots": 20,
+  "generated_seed": null,
+  "idle": {
+    "busy_pct": {
+      "avg": 0.2,
+      "max": 0.2,
+      "min": 0.2,
+      "n": 1
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 1
+    },
+    "tick_pct": {
+      "avg": 0.2,
+      "max": 0.2,
+      "min": 0.2,
+      "n": 1
+    },
+    "tps": {
+      "avg": 19.7,
+      "max": 19.7,
+      "min": 19.7,
+      "n": 1
+    },
+    "work_avg_ms": {
+      "avg": 0.084,
+      "max": 0.084,
+      "min": 0.084,
+      "n": 1
+    },
+    "work_peak_ms": {
+      "avg": 1.353,
+      "max": 1.353,
+      "min": 1.353,
+      "n": 1
+    }
+  },
+  "idle_windows": 1,
+  "join_s": 0.24,
+  "joined": 20,
+  "loaded": {
+    "busy_pct": {
+      "avg": 3.15,
+      "max": 9.5,
+      "min": 1.2,
+      "n": 6
+    },
+    "players": {
+      "avg": 20.0,
+      "max": 20.0,
+      "min": 20.0,
+      "n": 6
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 6
+    },
+    "tick_pct": {
+      "avg": 3.15,
+      "max": 9.5,
+      "min": 1.3,
+      "n": 6
+    },
+    "tps": {
+      "avg": 19.965,
+      "max": 20.51,
+      "min": 19.68,
+      "n": 6
+    },
+    "work_avg_ms": {
+      "avg": 1.572,
+      "max": 4.731,
+      "min": 0.63,
+      "n": 6
+    },
+    "work_peak_ms": {
+      "avg": 19.91,
+      "max": 87.547,
+      "min": 1.265,
+      "n": 6
+    }
+  },
+  "loaded_windows": 6,
+  "mobs": false,
+  "rss_bytes": {
+    "first": 5087232.0,
+    "last": 162287616.0
+  },
+  "seconds": 6.0,
+  "server_rc": 0,
+  "startup_s": 0.1,
+  "view_distance": 8
+}

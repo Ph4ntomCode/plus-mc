@@ -1,0 +1,975 @@
+{
+ "format": 1,
+ "generated": "2026-10-20",
+ "kind": "light-seam-baseline",
+ "machine": "i5-4570",
+ "measurement": {
+  "block": {
+   "above_surface": 0,
+   "agree": 2653198,
+   "border": 235,
+   "brighter": 0,
+   "brighter_border": 0,
+   "cells": 2654208,
+   "dimmer": 1010,
+   "in_opaque": 0,
+   "max_brighter": 0,
+   "max_dimmer": 15
+  },
+  "cells_per_layer": 98304,
+  "columns": 27,
+  "format": 1,
+  "grid_radius": 1,
+  "kind": "light-seam",
+  "per_seed": [
+   {
+    "block": {
+     "above_surface": 0,
+     "agree": 884736,
+     "border": 0,
+     "brighter": 0,
+     "brighter_border": 0,
+     "cells": 884736,
+     "dimmer": 0,
+     "in_opaque": 0,
+     "max_brighter": 0,
+     "max_dimmer": 0
+    },
+    "per_column": [
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": -1,
+      "cz": -1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 90224,
+       "border": 7836,
+       "brighter": 7835,
+       "brighter_border": 7835,
+       "cells": 98304,
+       "dimmer": 245,
+       "in_opaque": 6965,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 0,
+      "cz": -1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 90273,
+       "border": 7651,
+       "brighter": 7651,
+       "brighter_border": 7651,
+       "cells": 98304,
+       "dimmer": 380,
+       "in_opaque": 7064,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 1,
+      "cz": -1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 90346,
+       "border": 7652,
+       "brighter": 7652,
+       "brighter_border": 7652,
+       "cells": 98304,
+       "dimmer": 306,
+       "in_opaque": 7314,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": -1,
+      "cz": 0,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 90327,
+       "border": 7803,
+       "brighter": 7798,
+       "brighter_border": 7798,
+       "cells": 98304,
+       "dimmer": 179,
+       "in_opaque": 6709,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 0,
+      "cz": 0,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 88443,
+       "border": 7560,
+       "brighter": 7560,
+       "brighter_border": 7560,
+       "cells": 98304,
+       "dimmer": 2301,
+       "in_opaque": 5991,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 1,
+      "cz": 0,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 90026,
+       "border": 7560,
+       "brighter": 7560,
+       "brighter_border": 7560,
+       "cells": 98304,
+       "dimmer": 718,
+       "in_opaque": 6691,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": -1,
+      "cz": 1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 90169,
+       "border": 7922,
+       "brighter": 7922,
+       "brighter_border": 7922,
+       "cells": 98304,
+       "dimmer": 213,
+       "in_opaque": 7388,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 0,
+      "cz": 1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 89685,
+       "border": 7726,
+       "brighter": 7726,
+       "brighter_border": 7726,
+       "cells": 98304,
+       "dimmer": 893,
+       "in_opaque": 6097,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 1,
+      "cz": 1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 89177,
+       "border": 7603,
+       "brighter": 7603,
+       "brighter_border": 7603,
+       "cells": 98304,
+       "dimmer": 1524,
+       "in_opaque": 5844,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     }
+    ],
+    "seed": 42,
+    "sky": {
+     "above_surface": 0,
+     "agree": 808670,
+     "border": 69313,
+     "brighter": 69307,
+     "brighter_border": 69307,
+     "cells": 884736,
+     "dimmer": 6759,
+     "in_opaque": 60063,
+     "max_brighter": 14,
+     "max_dimmer": 14
+    }
+   },
+   {
+    "block": {
+     "above_surface": 0,
+     "agree": 884534,
+     "border": 57,
+     "brighter": 0,
+     "brighter_border": 0,
+     "cells": 884736,
+     "dimmer": 202,
+     "in_opaque": 0,
+     "max_brighter": 0,
+     "max_dimmer": 15
+    },
+    "per_column": [
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": -1,
+      "cz": -1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 88333,
+       "border": 7560,
+       "brighter": 7560,
+       "brighter_border": 7560,
+       "cells": 98304,
+       "dimmer": 2411,
+       "in_opaque": 5067,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98106,
+       "border": 53,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 198,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 15
+      },
+      "cx": 0,
+      "cz": -1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 88642,
+       "border": 7560,
+       "brighter": 7560,
+       "brighter_border": 7560,
+       "cells": 98304,
+       "dimmer": 2102,
+       "in_opaque": 6045,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98300,
+       "border": 4,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 4,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 3
+      },
+      "cx": 1,
+      "cz": -1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 88477,
+       "border": 7560,
+       "brighter": 7560,
+       "brighter_border": 7560,
+       "cells": 98304,
+       "dimmer": 2267,
+       "in_opaque": 6740,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": -1,
+      "cz": 0,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 88098,
+       "border": 7560,
+       "brighter": 7560,
+       "brighter_border": 7560,
+       "cells": 98304,
+       "dimmer": 2646,
+       "in_opaque": 5966,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 0,
+      "cz": 0,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 88694,
+       "border": 7560,
+       "brighter": 7560,
+       "brighter_border": 7560,
+       "cells": 98304,
+       "dimmer": 2050,
+       "in_opaque": 6521,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 1,
+      "cz": 0,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 88589,
+       "border": 7560,
+       "brighter": 7560,
+       "brighter_border": 7560,
+       "cells": 98304,
+       "dimmer": 2155,
+       "in_opaque": 6701,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": -1,
+      "cz": 1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 88363,
+       "border": 7560,
+       "brighter": 7560,
+       "brighter_border": 7560,
+       "cells": 98304,
+       "dimmer": 2381,
+       "in_opaque": 6513,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 0,
+      "cz": 1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 89237,
+       "border": 7560,
+       "brighter": 7560,
+       "brighter_border": 7560,
+       "cells": 98304,
+       "dimmer": 1507,
+       "in_opaque": 6464,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 1,
+      "cz": 1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 88632,
+       "border": 7560,
+       "brighter": 7560,
+       "brighter_border": 7560,
+       "cells": 98304,
+       "dimmer": 2112,
+       "in_opaque": 6584,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     }
+    ],
+    "seed": 7,
+    "sky": {
+     "above_surface": 0,
+     "agree": 797065,
+     "border": 68040,
+     "brighter": 68040,
+     "brighter_border": 68040,
+     "cells": 884736,
+     "dimmer": 19631,
+     "in_opaque": 56601,
+     "max_brighter": 14,
+     "max_dimmer": 14
+    }
+   },
+   {
+    "block": {
+     "above_surface": 0,
+     "agree": 883928,
+     "border": 178,
+     "brighter": 0,
+     "brighter_border": 0,
+     "cells": 884736,
+     "dimmer": 808,
+     "in_opaque": 0,
+     "max_brighter": 0,
+     "max_dimmer": 15
+    },
+    "per_column": [
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98227,
+       "border": 29,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 77,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 13
+      },
+      "cx": -1,
+      "cz": -1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 87365,
+       "border": 10939,
+       "brighter": 10939,
+       "brighter_border": 10939,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 10310,
+       "max_brighter": 14,
+       "max_dimmer": 0
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 0,
+      "cz": -1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 87465,
+       "border": 10839,
+       "brighter": 10839,
+       "brighter_border": 10839,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 10010,
+       "max_brighter": 14,
+       "max_dimmer": 0
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 97693,
+       "border": 140,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 611,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 15
+      },
+      "cx": 1,
+      "cz": -1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 87482,
+       "border": 10817,
+       "brighter": 10817,
+       "brighter_border": 10817,
+       "cells": 98304,
+       "dimmer": 5,
+       "in_opaque": 9691,
+       "max_brighter": 14,
+       "max_dimmer": 3
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": -1,
+      "cz": 0,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 87380,
+       "border": 10924,
+       "brighter": 10924,
+       "brighter_border": 10924,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 10189,
+       "max_brighter": 14,
+       "max_dimmer": 0
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 0,
+      "cz": 0,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 87579,
+       "border": 10725,
+       "brighter": 10725,
+       "brighter_border": 10725,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 9924,
+       "max_brighter": 14,
+       "max_dimmer": 0
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98193,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 111,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 15
+      },
+      "cx": 1,
+      "cz": 0,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 87183,
+       "border": 10429,
+       "brighter": 10429,
+       "brighter_border": 10429,
+       "cells": 98304,
+       "dimmer": 692,
+       "in_opaque": 9741,
+       "max_brighter": 14,
+       "max_dimmer": 14
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": -1,
+      "cz": 1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 87382,
+       "border": 10922,
+       "brighter": 10922,
+       "brighter_border": 10922,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 9876,
+       "max_brighter": 14,
+       "max_dimmer": 0
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98295,
+       "border": 9,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 9,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 15
+      },
+      "cx": 0,
+      "cz": 1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 87451,
+       "border": 10853,
+       "brighter": 10853,
+       "brighter_border": 10853,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 9619,
+       "max_brighter": 14,
+       "max_dimmer": 0
+      }
+     },
+     {
+      "block": {
+       "above_surface": 0,
+       "agree": 98304,
+       "border": 0,
+       "brighter": 0,
+       "brighter_border": 0,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 0,
+       "max_brighter": 0,
+       "max_dimmer": 0
+      },
+      "cx": 1,
+      "cz": 1,
+      "generated_light": true,
+      "measured": true,
+      "relit_sky": true,
+      "sky": {
+       "above_surface": 0,
+       "agree": 87878,
+       "border": 10426,
+       "brighter": 10426,
+       "brighter_border": 10426,
+       "cells": 98304,
+       "dimmer": 0,
+       "in_opaque": 9495,
+       "max_brighter": 14,
+       "max_dimmer": 0
+      }
+     }
+    ],
+    "seed": 2026,
+    "sky": {
+     "above_surface": 0,
+     "agree": 787165,
+     "border": 96874,
+     "brighter": 96874,
+     "brighter_border": 96874,
+     "cells": 884736,
+     "dimmer": 697,
+     "in_opaque": 88855,
+     "max_brighter": 14,
+     "max_dimmer": 14
+    }
+   }
+  ],
+  "pinned": {
+   "checked": 2,
+   "mismatches": 0,
+   "seed": 42
+  },
+  "seeds": [
+   42,
+   7,
+   2026
+  ],
+  "sky": {
+   "above_surface": 0,
+   "agree": 2392900,
+   "border": 234227,
+   "brighter": 234221,
+   "brighter_border": 234221,
+   "cells": 2654208,
+   "dimmer": 27087,
+   "in_opaque": 205519,
+   "max_brighter": 14,
+   "max_dimmer": 14
+  }
+ },
+ "name": "light-seam",
+ "note": "seam_track.py --seeds 42,7,2026 --radius 1"
+}

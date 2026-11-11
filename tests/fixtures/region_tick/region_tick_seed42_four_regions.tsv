@@ -1,0 +1,233 @@
+# Phase 5 ordered item 3 follow-up: the region-parallel scheduled-tick loop's
+# interaction trace for run 'four_regions' (scene 'regions'), seed 42, 4 lane(s).
+#
+# NOT a vanilla dump (see region_tick_meta.tsv): every row is one thing the
+# partition, the rule or the caller did, in order, with the tick it happened in.
+# `action` is the caller's own scripted work (see region_tick_actions.tsv). A
+# tick's rows are: the `due` rows — every entry that tick drained, in the
+# canonical order the region arm sorts them into (owning region, then x, y, z),
+# each row naming its region; the `plan` row, the number of regions and entries
+# one `RegionScheduler::run` was handed; then one block per region, in canonical
+# region order: a `region` row naming the region and the slice of this tick's
+# `due` list it owned, followed by that region's own rows in the order its lane
+# did them (`dispatch` — which arm the entry took, fire, leaves or drop — and
+# everything the rule then logged: `schedule`, `read`, `sturdy`, `light`,
+# `write`, `item`, `prime`, `draw i`, `draw u`); and finally the `state` row, the
+# queue's own clock, pending count, chunk count and this tick's region count. The
+# lanes themselves are not in the trace: the recorded order is the canonical one,
+# assembled after the barrier, because the lane assignment is the scheduler's own
+# contract and not the loop's. The `world` row closes the trace with the whole
+# world's hash.
+#
+# kind	tick	...
+action	0	ignite	8	-60	8
+read	0	8	-61	8	minecraft:stone
+read	0	8	-61	8	minecraft:stone
+sturdy	0	8	-61	8	true
+write	0	8	-60	8	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]	true
+read	0	8	-61	8	minecraft:stone
+read	0	8	-59	8	minecraft:air
+read	0	8	-60	7	minecraft:air
+read	0	8	-60	9	minecraft:air
+read	0	7	-60	8	minecraft:air
+read	0	9	-60	8	minecraft:air
+draw i	0	10	4
+schedule	0	8	-60	8	34	34
+action	0	ignite	40	-60	8
+read	0	40	-61	8	minecraft:stone
+read	0	40	-61	8	minecraft:stone
+sturdy	0	40	-61	8	true
+write	0	40	-60	8	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]	true
+read	0	40	-61	8	minecraft:stone
+read	0	40	-59	8	minecraft:air
+read	0	40	-60	7	minecraft:air
+read	0	40	-60	9	minecraft:air
+read	0	39	-60	8	minecraft:air
+read	0	41	-60	8	minecraft:air
+draw i	0	10	4
+schedule	0	40	-60	8	34	34
+action	0	ignite	8	-60	40
+read	0	8	-61	40	minecraft:stone
+read	0	8	-61	40	minecraft:stone
+sturdy	0	8	-61	40	true
+write	0	8	-60	40	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]	true
+read	0	8	-61	40	minecraft:stone
+read	0	8	-59	40	minecraft:air
+read	0	8	-60	39	minecraft:air
+read	0	8	-60	41	minecraft:air
+read	0	7	-60	40	minecraft:air
+read	0	9	-60	40	minecraft:air
+draw i	0	10	4
+schedule	0	8	-60	40	34	34
+action	0	ignite	40	-60	40
+read	0	40	-61	40	minecraft:stone
+read	0	40	-61	40	minecraft:stone
+sturdy	0	40	-61	40	true
+write	0	40	-60	40	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]	true
+read	0	40	-61	40	minecraft:stone
+read	0	40	-59	40	minecraft:air
+read	0	40	-60	39	minecraft:air
+read	0	40	-60	41	minecraft:air
+read	0	39	-60	40	minecraft:air
+read	0	41	-60	40	minecraft:air
+draw i	0	10	9
+schedule	0	40	-60	40	39	39
+state	1	1	4	4	0
+state	2	2	4	4	0
+state	3	3	4	4	0
+state	4	4	4	4	0
+state	5	5	4	4	0
+state	6	6	4	4	0
+state	7	7	4	4	0
+state	8	8	4	4	0
+state	9	9	4	4	0
+state	10	10	4	4	0
+state	11	11	4	4	0
+state	12	12	4	4	0
+state	13	13	4	4	0
+state	14	14	4	4	0
+state	15	15	4	4	0
+state	16	16	4	4	0
+state	17	17	4	4	0
+state	18	18	4	4	0
+state	19	19	4	4	0
+state	20	20	4	4	0
+state	21	21	4	4	0
+state	22	22	4	4	0
+state	23	23	4	4	0
+state	24	24	4	4	0
+state	25	25	4	4	0
+state	26	26	4	4	0
+state	27	27	4	4	0
+state	28	28	4	4	0
+state	29	29	4	4	0
+state	30	30	4	4	0
+state	31	31	4	4	0
+state	32	32	4	4	0
+state	33	33	4	4	0
+due	34	0	0	8	-60	8
+due	34	0	1	8	-60	40
+due	34	1	0	40	-60	8
+plan	34	3	3
+region	34	0	0	0	1
+read	34	8	-60	8	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]
+dispatch	34	fire	8	-60	8
+read	34	8	-60	8	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]
+draw i	34	10	0
+schedule	34	8	-60	8	30	64
+read	34	8	-61	8	minecraft:stone
+sturdy	34	8	-61	8	true
+read	34	8	-61	8	minecraft:stone
+draw i	34	3	1
+read	34	8	-61	8	minecraft:stone
+read	34	8	-59	8	minecraft:air
+read	34	8	-60	7	minecraft:air
+read	34	8	-60	9	minecraft:air
+read	34	7	-60	8	minecraft:air
+read	34	9	-60	8	minecraft:air
+sturdy	34	8	-61	8	true
+region	34	0	1	1	2
+read	34	8	-60	40	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]
+dispatch	34	fire	8	-60	40
+read	34	8	-60	40	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]
+draw i	34	10	1
+schedule	34	8	-60	40	31	65
+read	34	8	-61	40	minecraft:stone
+sturdy	34	8	-61	40	true
+read	34	8	-61	40	minecraft:stone
+draw i	34	3	1
+read	34	8	-61	40	minecraft:stone
+read	34	8	-59	40	minecraft:air
+read	34	8	-60	39	minecraft:air
+read	34	8	-60	41	minecraft:air
+read	34	7	-60	40	minecraft:air
+read	34	9	-60	40	minecraft:air
+sturdy	34	8	-61	40	true
+region	34	1	0	2	3
+read	34	40	-60	8	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]
+dispatch	34	fire	40	-60	8
+read	34	40	-60	8	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]
+draw i	34	10	9
+schedule	34	40	-60	8	39	73
+read	34	40	-61	8	minecraft:stone
+sturdy	34	40	-61	8	true
+read	34	40	-61	8	minecraft:stone
+draw i	34	3	0
+read	34	40	-61	8	minecraft:stone
+read	34	40	-59	8	minecraft:air
+read	34	40	-60	7	minecraft:air
+read	34	40	-60	9	minecraft:air
+read	34	39	-60	8	minecraft:air
+read	34	41	-60	8	minecraft:air
+sturdy	34	40	-61	8	true
+state	34	34	4	4	3
+state	35	35	4	4	0
+state	36	36	4	4	0
+state	37	37	4	4	0
+state	38	38	4	4	0
+due	39	1	1	40	-60	40
+plan	39	1	1
+region	39	1	1	0	1
+read	39	40	-60	40	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]
+dispatch	39	fire	40	-60	40
+read	39	40	-60	40	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]
+draw i	39	10	5
+schedule	39	40	-60	40	35	74
+read	39	40	-61	40	minecraft:stone
+sturdy	39	40	-61	40	true
+read	39	40	-61	40	minecraft:stone
+draw i	39	3	1
+read	39	40	-61	40	minecraft:stone
+read	39	40	-59	40	minecraft:air
+read	39	40	-60	39	minecraft:air
+read	39	40	-60	41	minecraft:air
+read	39	39	-60	40	minecraft:air
+read	39	41	-60	40	minecraft:air
+sturdy	39	40	-61	40	true
+state	39	39	4	4	1
+state	40	40	4	4	0
+state	41	41	4	4	0
+state	42	42	4	4	0
+state	43	43	4	4	0
+state	44	44	4	4	0
+state	45	45	4	4	0
+state	46	46	4	4	0
+state	47	47	4	4	0
+state	48	48	4	4	0
+state	49	49	4	4	0
+state	50	50	4	4	0
+state	51	51	4	4	0
+state	52	52	4	4	0
+state	53	53	4	4	0
+state	54	54	4	4	0
+state	55	55	4	4	0
+state	56	56	4	4	0
+state	57	57	4	4	0
+state	58	58	4	4	0
+state	59	59	4	4	0
+state	60	60	4	4	0
+state	61	61	4	4	0
+state	62	62	4	4	0
+state	63	63	4	4	0
+due	64	0	0	8	-60	8
+plan	64	1	1
+region	64	0	0	0	1
+read	64	8	-60	8	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]
+dispatch	64	fire	8	-60	8
+read	64	8	-60	8	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]
+draw i	64	10	2
+schedule	64	8	-60	8	32	96
+read	64	8	-61	8	minecraft:stone
+sturdy	64	8	-61	8	true
+read	64	8	-61	8	minecraft:stone
+draw i	64	3	2
+write	64	8	-60	8	minecraft:fire[age=1,east=false,north=false,south=false,up=false,west=false]	false
+read	64	8	-61	8	minecraft:stone
+read	64	8	-59	8	minecraft:air
+read	64	8	-60	7	minecraft:air
+read	64	8	-60	9	minecraft:air
+read	64	7	-60	8	minecraft:air
+read	64	9	-60	8	minecraft:air
+sturdy	64	8	-61	8	true
+state	64	64	4	4	1
+world	65	15228197896149572463

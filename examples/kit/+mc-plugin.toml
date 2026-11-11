@@ -1,0 +1,7 @@
+name = "kit"
+version = "1.0.0"
+api = 1
+library = "kit"
+entry = "pmc_plugin_entry"
+author = "+MC"
+description = "Seed plugin: /kit and /kits through the inventory writers."

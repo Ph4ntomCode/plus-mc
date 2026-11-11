@@ -1,0 +1,190 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// clang-format off
+//
+// The blocks whose `BlockState.blocksMotion()` is FALSE (151 blocks, generated —
+// do not hand-edit): the vanilla predicate `Heightmap.Types.MOTION_BLOCKING` is
+// built from, and therefore the one that decides where a column's rain reaches.
+//
+// `BlockBehaviour.BlockStateBase.blocksMotion()` is
+//
+//     block != cobweb && block != bamboo_sapling
+//       && (forceSolidOn ? true
+//           : forceSolidOff ? false
+//           : <the collision shape covers 0.729 of the block's bounds>)
+//
+// The two flags are properties, so they are what this table carries — through
+// the copy chains of `ofLegacyCopy`/`ofFullCopy`, the colored and weathering
+// collections, and the property factories in `Blocks`. The shape term is code,
+// not data, so a block that sets neither flag is assumed to collide fully. The
+// blocks that assumption can get wrong are the ones with a small collision
+// shape and no `forceSolidOff` — a carpet, a candle, a pressure plate, a lily
+// pad — where vanilla would let rain through and this table does not.
+//
+// Everything the weather needs is exact: fire, souls fire, torches, flowers,
+// grass and the rest of the no-collision shapes are listed here, and they are
+// what a rained-out fire or a filling cauldron stands on.
+//
+// Regenerate with tools/gen_collision_table.py.
+#pragma once
+
+#include <cstdint>
+
+namespace mc::world {
+
+// Sorted by name, so block_blocks_motion (world/chunk.h) can binary-search it.
+inline constexpr const char* kNonMotionBlocking[] = {
+    "minecraft:acacia_button",
+    "minecraft:acacia_sapling",
+    "minecraft:activator_rail",
+    "minecraft:air",
+    "minecraft:allium",
+    "minecraft:attached_melon_stem",
+    "minecraft:attached_pumpkin_stem",
+    "minecraft:azalea",
+    "minecraft:azure_bluet",
+    "minecraft:bamboo_button",
+    "minecraft:bamboo_sapling",
+    "minecraft:beetroots",
+    "minecraft:big_dripleaf",
+    "minecraft:big_dripleaf_stem",
+    "minecraft:birch_button",
+    "minecraft:birch_sapling",
+    "minecraft:blue_orchid",
+    "minecraft:brain_coral",
+    "minecraft:brain_coral_fan",
+    "minecraft:brain_coral_wall_fan",
+    "minecraft:brown_mushroom",
+    "minecraft:bubble_column",
+    "minecraft:bubble_coral",
+    "minecraft:bubble_coral_fan",
+    "minecraft:bubble_coral_wall_fan",
+    "minecraft:bush",
+    "minecraft:cactus_flower",
+    "minecraft:carrots",
+    "minecraft:cave_air",
+    "minecraft:cave_vines",
+    "minecraft:cave_vines_plant",
+    "minecraft:cherry_button",
+    "minecraft:cherry_sapling",
+    "minecraft:chorus_flower",
+    "minecraft:chorus_plant",
+    "minecraft:closed_eyeblossom",
+    "minecraft:cobweb",
+    "minecraft:copper_torch",
+    "minecraft:copper_wall_torch",
+    "minecraft:cornflower",
+    "minecraft:crimson_button",
+    "minecraft:crimson_fungus",
+    "minecraft:crimson_roots",
+    "minecraft:dandelion",
+    "minecraft:dark_oak_button",
+    "minecraft:dark_oak_sapling",
+    "minecraft:dead_bush",
+    "minecraft:detector_rail",
+    "minecraft:end_gateway",
+    "minecraft:end_portal",
+    "minecraft:end_rod",
+    "minecraft:fern",
+    "minecraft:fire",
+    "minecraft:fire_coral",
+    "minecraft:fire_coral_fan",
+    "minecraft:fire_coral_wall_fan",
+    "minecraft:firefly_bush",
+    "minecraft:flowering_azalea",
+    "minecraft:frogspawn",
+    "minecraft:glow_lichen",
+    "minecraft:golden_dandelion",
+    "minecraft:hanging_roots",
+    "minecraft:horn_coral",
+    "minecraft:horn_coral_fan",
+    "minecraft:horn_coral_wall_fan",
+    "minecraft:jungle_button",
+    "minecraft:jungle_sapling",
+    "minecraft:kelp",
+    "minecraft:kelp_plant",
+    "minecraft:ladder",
+    "minecraft:large_fern",
+    "minecraft:lava",
+    "minecraft:leaf_litter",
+    "minecraft:lever",
+    "minecraft:lilac",
+    "minecraft:lily_of_the_valley",
+    "minecraft:mangrove_button",
+    "minecraft:mangrove_propagule",
+    "minecraft:melon_stem",
+    "minecraft:nether_portal",
+    "minecraft:nether_sprouts",
+    "minecraft:nether_wart",
+    "minecraft:oak_button",
+    "minecraft:oak_sapling",
+    "minecraft:open_eyeblossom",
+    "minecraft:orange_tulip",
+    "minecraft:oxeye_daisy",
+    "minecraft:pale_hanging_moss",
+    "minecraft:pale_oak_button",
+    "minecraft:pale_oak_sapling",
+    "minecraft:peony",
+    "minecraft:pink_petals",
+    "minecraft:pink_tulip",
+    "minecraft:pitcher_crop",
+    "minecraft:pitcher_plant",
+    "minecraft:polished_blackstone_button",
+    "minecraft:poppy",
+    "minecraft:potatoes",
+    "minecraft:powered_rail",
+    "minecraft:pumpkin_stem",
+    "minecraft:rail",
+    "minecraft:red_mushroom",
+    "minecraft:red_tulip",
+    "minecraft:redstone_torch",
+    "minecraft:redstone_wall_torch",
+    "minecraft:redstone_wire",
+    "minecraft:resin_clump",
+    "minecraft:rose_bush",
+    "minecraft:scaffolding",
+    "minecraft:seagrass",
+    "minecraft:short_dry_grass",
+    "minecraft:short_grass",
+    "minecraft:small_dripleaf",
+    "minecraft:snow",
+    "minecraft:soul_fire",
+    "minecraft:soul_torch",
+    "minecraft:soul_wall_torch",
+    "minecraft:spore_blossom",
+    "minecraft:spruce_button",
+    "minecraft:spruce_sapling",
+    "minecraft:stone_button",
+    "minecraft:structure_void",
+    "minecraft:sugar_cane",
+    "minecraft:sunflower",
+    "minecraft:sweet_berry_bush",
+    "minecraft:tall_dry_grass",
+    "minecraft:tall_grass",
+    "minecraft:tall_seagrass",
+    "minecraft:torch",
+    "minecraft:torchflower",
+    "minecraft:torchflower_crop",
+    "minecraft:tripwire",
+    "minecraft:tripwire_hook",
+    "minecraft:tube_coral",
+    "minecraft:tube_coral_fan",
+    "minecraft:tube_coral_wall_fan",
+    "minecraft:twisting_vines",
+    "minecraft:twisting_vines_plant",
+    "minecraft:vine",
+    "minecraft:void_air",
+    "minecraft:wall_torch",
+    "minecraft:warped_button",
+    "minecraft:warped_fungus",
+    "minecraft:warped_roots",
+    "minecraft:water",
+    "minecraft:weeping_vines",
+    "minecraft:weeping_vines_plant",
+    "minecraft:wheat",
+    "minecraft:white_tulip",
+    "minecraft:wildflowers",
+    "minecraft:wither_rose",
+};
+inline constexpr int kNonMotionBlockingCount = 151;
+
+} // namespace mc::world

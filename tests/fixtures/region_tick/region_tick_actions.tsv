@@ -1,0 +1,20 @@
+# The caller's own work: what a session does between ticks, and the only other
+# thing that touches this queue. `ignite` is the placement path
+# (`flint_and_steel` / `/setblock`): the state `BaseFireBlock.getState` gives, the
+# write with its neighbour notify, then `FireBlock.onPlace`'s own clock. `break`
+# is a removal: the write to air, whose notify is what schedules a chopped
+# canopy's leaves. A tick of 0 is the window before the first tick. These run
+# outside any region (a session thread, in a live server), which is why their
+# rows sit in the trace's own block and not inside a region's.
+#
+# seed	run	tick	kind	x	y	z
+42	one_fire	0	ignite	2	-60	2
+42	four_regions	0	ignite	8	-60	8
+42	four_regions	0	ignite	40	-60	8
+42	four_regions	0	ignite	8	-60	40
+42	four_regions	0	ignite	40	-60	40
+42	chop	0	break	31	-60	0
+42	stale	0	ignite	2	-60	2
+42	stale	4	break	2	-60	2
+42	edge	0	ignite	30	-60	0
+42	edge	0	ignite	34	-60	0

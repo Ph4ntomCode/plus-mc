@@ -1,0 +1,7 @@
+name = "announcer"
+version = "1.0.0"
+api = 1
+library = "announcer"
+entry = "pmc_plugin_entry"
+author = "+MC"
+description = "Seed plugin: a config-driven repeating broadcast with /announce and /announcer."

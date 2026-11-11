@@ -1,0 +1,18 @@
+# The caller's own work: what a session does between ticks, and the only other
+# thing that touches this queue. `ignite` is the placement path
+# (`flint_and_steel` / `/setblock`): the state `BaseFireBlock.getState` gives, the
+# write with its neighbour notify, then `FireBlock.onPlace`'s own clock. `break`
+# is a removal: the write to air, whose notify is what schedules a chopped
+# canopy's leaves. A tick of 0 is the window before the first tick.
+#
+# seed	run	tick	kind	x	y	z
+42	one_fire	0	ignite	2	-60	2
+42	two_chunks	0	ignite	1	-60	2
+42	two_chunks	0	ignite	21	-60	2
+42	wood	0	ignite	2	-60	2
+42	trunk	0	break	0	-60	0
+42	blob	0	break	0	-60	0
+42	stale	0	ignite	2	-60	2
+42	stale	4	break	2	-60	2
+42	relight	0	ignite	2	-60	2
+42	relight	4	ignite	2	-60	2

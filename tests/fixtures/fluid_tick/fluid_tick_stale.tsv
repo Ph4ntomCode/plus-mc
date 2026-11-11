@@ -1,0 +1,39 @@
+# Phase 4 milestone D follow-up: the scheduled fluid-tick loop's interaction trace
+# for run 'stale' (scene 'flat').
+#
+# NOT a vanilla dump (see fluid_tick_meta.tsv): every row is one thing the loop,
+# the rule or the caller did, in order, with the tick it happened in. `action` is
+# the caller's scripted work (see fluid_tick_actions.tsv); `due` is the drain —
+# one row per entry, in the canonical order the region path dispatches them, with
+# the fluid kind the queue stored (the queue's own order is its chunk map's and is
+# deliberately not pinned; see the tool's header); `state` closes each tick with
+# the queue's own clock and pending count; `schedule` is `Level.scheduleTick` with
+# the kind, the delay the rule or the caller asked for and the due tick that
+# follows from it; `read` is a world read the rule makes — the tick asks about
+# its own cell, what is below, what is above and its four sides, and asks each
+# of them once per dispatch, because every later question about that cell is
+# answered from the same read; two `read` rows for one cell in a tick are two
+# entries from the drain asking, not one tick asking twice, and these rows are
+# most of what the trace holds — and `write` a block write (the session's adapter
+# writes nothing when the state is already there, so a settled cell produces no
+# write row);
+# `stale` is an entry that came due and found neither that fluid nor any fluid in
+# the cell.
+#
+# kind	tick	...
+action	0	place	0	-60	0	minecraft:water
+write	0	0	-60	0	minecraft:water
+schedule	0	0	-60	0	water	5	5
+state	1	1	1
+state	2	2	1
+action	2	break	0	-60	0	minecraft:air
+read	2	0	-60	0	minecraft:water
+write	2	0	-60	0	minecraft:air
+state	3	3	1
+state	4	4	1
+due	5	water	0	-60	0
+stale	5	water	0	-60	0	minecraft:air
+state	5	5	0
+state	6	6	0
+state	7	7	0
+state	8	8	0

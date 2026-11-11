@@ -1,0 +1,7 @@
+name = "caretaker"
+version = "1.0.0"
+api = 1
+library = "caretaker"
+entry = "pmc_plugin_entry"
+author = "+MC"
+description = "Seed plugin: /heal, /feed and /gm through the player-state writes."

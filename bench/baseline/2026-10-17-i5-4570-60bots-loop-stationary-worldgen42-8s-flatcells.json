@@ -1,0 +1,202 @@
+{
+  "argv": [
+    "/private/tmp/plusmc-baseline",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/Users/zaid/other projects/plus-mc/data/vanilla",
+    "--motd",
+    "soak",
+    "--max-players",
+    "120",
+    "--view-distance",
+    "8",
+    "--metrics-interval",
+    "1",
+    "--worldgen",
+    "42",
+    "--no-flat-world"
+  ],
+  "binary": "/private/tmp/plusmc-baseline",
+  "binary_sha256": "1180a440c3b7ea491389803593b9a66f7bcf2977e663e94f3940bb41895a29ae",
+  "bot_failures": [],
+  "bot_stats": {
+    "bots": 60,
+    "chunk_body_bytes": 510421827,
+    "chunk_keys_max": 185,
+    "chunks_distinct": 185,
+    "chunks_received": 10683,
+    "connected": 60,
+    "failures": [],
+    "joined": 60,
+    "keepalives": 0,
+    "packets_received": 24783,
+    "packets_sent": 420,
+    "probes_answered": 0,
+    "probes_orphan": 0,
+    "probes_pending": 0,
+    "probes_sent": 0,
+    "received_bytes": 15225120,
+    "spread": 0.0,
+    "stationary": true
+  },
+  "bots": 60,
+  "busy": true,
+  "chunks": {
+    "body_bytes": 510421827,
+    "distinct": 185,
+    "distinct_rule": null,
+    "distinct_sum_bound": null,
+    "per_bot_max": 185,
+    "received": 10683
+  },
+  "engine": "loop",
+  "generated_seed": 42,
+  "idle": {
+    "busy_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 1
+    },
+    "tick_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "tps": {
+      "avg": 19.97,
+      "max": 19.97,
+      "min": 19.97,
+      "n": 1
+    },
+    "work_avg_ms": {
+      "avg": 0.065,
+      "max": 0.065,
+      "min": 0.065,
+      "n": 1
+    },
+    "work_peak_ms": {
+      "avg": 0.771,
+      "max": 0.771,
+      "min": 0.771,
+      "n": 1
+    }
+  },
+  "idle_windows": 1,
+  "join_s": 0.45,
+  "joined": 60,
+  "latency": null,
+  "load_avg_1m": {
+    "after": 9.06,
+    "before": 9.91
+  },
+  "loaded": {
+    "busy_pct": {
+      "avg": 63.925,
+      "max": 75.6,
+      "min": 52.8,
+      "n": 8
+    },
+    "players": {
+      "avg": 60.0,
+      "max": 60.0,
+      "min": 60.0,
+      "n": 8
+    },
+    "resync": {
+      "avg": 0.75,
+      "max": 2.0,
+      "min": 0.0,
+      "n": 8
+    },
+    "tick_pct": {
+      "avg": 84.963,
+      "max": 111.1,
+      "min": 63.3,
+      "n": 8
+    },
+    "tps": {
+      "avg": 15.419,
+      "max": 19.58,
+      "min": 12.89,
+      "n": 8
+    },
+    "work_avg_ms": {
+      "avg": 42.481,
+      "max": 55.552,
+      "min": 31.642,
+      "n": 8
+    },
+    "work_peak_ms": {
+      "avg": 204.638,
+      "max": 305.943,
+      "min": 96.455,
+      "n": 8
+    }
+  },
+  "loaded_windows": 8,
+  "mobs": false,
+  "phases": [],
+  "prewarm": false,
+  "probe_period": 0.0,
+  "quiet_load": 2.0,
+  "relayout_blocks": null,
+  "rss_after_leave": null,
+  "rss_bytes": {
+    "first": 9068544.0,
+    "last": 53415936.0,
+    "peak": 177377280.0
+  },
+  "rss_guard": null,
+  "seconds": 8.0,
+  "server_env": {
+    "PLUSMC_MOB_SPAWNING": "0"
+  },
+  "server_rc": 0,
+  "spread": 0.0,
+  "startup_s": 0.12,
+  "stationary": true,
+  "traffic": {
+    "bytes_in": 10165243,
+    "kib_per_bot_s": 20.7,
+    "packets_in": 9032,
+    "packets_per_bot_s": 18.8,
+    "seconds": 8.0
+  },
+  "traffic_phases": [],
+  "view_distance": 8,
+  "world": {
+    "world_bytes": {
+      "first": 808768,
+      "last": 27426980,
+      "max": 105001732,
+      "n": 13,
+      "windows_at_max": 1
+    },
+    "world_chunks": {
+      "first": 2,
+      "last": 64,
+      "max": 244,
+      "n": 13,
+      "windows_at_max": 1
+    },
+    "world_written_chunks": {
+      "first": 0,
+      "last": 0,
+      "max": 0,
+      "n": 13,
+      "windows_at_max": 13
+    }
+  }
+}

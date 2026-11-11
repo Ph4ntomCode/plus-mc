@@ -1,0 +1,122 @@
+{
+  "argv": [
+    "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/Users/zaid/other projects/plus-mc/data/vanilla",
+    "--motd",
+    "soak",
+    "--max-players",
+    "100",
+    "--view-distance",
+    "8",
+    "--metrics-interval",
+    "1",
+    "--worldgen",
+    "42",
+    "--no-flat-world"
+  ],
+  "binary": "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+  "bot_failures": [],
+  "bots": 20,
+  "generated_seed": 42,
+  "idle": {
+    "busy_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 1
+    },
+    "tick_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "tps": {
+      "avg": 20.0,
+      "max": 20.0,
+      "min": 20.0,
+      "n": 1
+    },
+    "work_avg_ms": {
+      "avg": 0.036,
+      "max": 0.036,
+      "min": 0.036,
+      "n": 1
+    },
+    "work_peak_ms": {
+      "avg": 0.353,
+      "max": 0.353,
+      "min": 0.353,
+      "n": 1
+    }
+  },
+  "idle_windows": 1,
+  "join_s": 0.22,
+  "joined": 20,
+  "loaded": {
+    "busy_pct": {
+      "avg": 2.0,
+      "max": 7.6,
+      "min": 0.9,
+      "n": 8
+    },
+    "players": {
+      "avg": 20.0,
+      "max": 20.0,
+      "min": 20.0,
+      "n": 8
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 8
+    },
+    "tick_pct": {
+      "avg": 1.988,
+      "max": 7.6,
+      "min": 0.9,
+      "n": 8
+    },
+    "tps": {
+      "avg": 19.991,
+      "max": 20.03,
+      "min": 19.95,
+      "n": 8
+    },
+    "work_avg_ms": {
+      "avg": 1.004,
+      "max": 3.815,
+      "min": 0.473,
+      "n": 8
+    },
+    "work_peak_ms": {
+      "avg": 7.188,
+      "max": 40.987,
+      "min": 0.561,
+      "n": 8
+    }
+  },
+  "loaded_windows": 8,
+  "mobs": false,
+  "rss_bytes": {
+    "first": 8900608.0,
+    "last": 48177152.0
+  },
+  "seconds": 8.0,
+  "server_rc": 0,
+  "startup_s": 0.25,
+  "view_distance": 8
+}

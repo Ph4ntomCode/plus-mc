@@ -1,0 +1,33 @@
+# Phase 3 milestone G follow-up: the scheduled block-tick loop's golden run
+# parameters.
+#
+# NOT a vanilla dump: what a fire schedules is `30 + random.nextInt(10)` from the
+# level's own `RandomSource`, whose state on any tick belongs to the server, so
+# this is a regression pin of this runtime's own behaviour rather than a
+# comparison against the game jar. `ctest -R block_tick` replays every row
+# below through the real `BlockTickQueue` and the real dispatch
+# (`run_block_tick_position`'s shape: a fire ticks as fire, a leaf as a leaf,
+# anything else is dropped), and compares the whole trace line for line, so a
+# reschedule one tick early or a dropped entry that silently ran cannot land.
+# Regenerate deliberately with `plusmc-block-tick-dump <fixtures_dir>`, reading
+# `--diff`'s patch first.
+#
+# `ticks` is how many world ticks the run advanced the queue through (one
+# `advance()` each), `schedules`/`due`/`drops`/`writes`/`reads` are the counts
+# of those trace rows, `draws`/`units` the two halves of the recorded stream
+# (integer and float draws) and `endPending`/`endChunks` the queue's own state
+# after the last tick — a fire that survives is still pending, and a settled
+# chop is zero, `blob` (two adjacent leaves whose log is gone) included: its
+# last recompute changes nothing, and a write that changes nothing is skipped
+# the way `LevelChunk.setBlockState`'s unchanged-state early return skips it
+# (the tool's header has the branch and its history). `rows` is the trace's
+# length.
+#
+# seed	run	scene	ticks	schedules	due	drops	writes	reads	units	draws	endNow	endPending	endChunks	rows
+42	one_fire	platform	128	4	3	0	2	38	0	7	128	1	1	190
+42	two_chunks	wide	64	5	3	0	4	46	0	8	64	2	2	140
+42	wood	wood	200	24	18	0	17	4879	0	232	200	6	1	5394
+42	trunk	trunk	12	4	4	0	5	59	0	0	12	0	0	85
+42	blob	blob	10	7	7	0	7	92	0	0	10	0	0	124
+42	stale	platform	48	1	1	1	2	16	0	1	48	0	0	73
+42	relight	platform	40	3	1	0	3	20	0	4	40	1	1	77

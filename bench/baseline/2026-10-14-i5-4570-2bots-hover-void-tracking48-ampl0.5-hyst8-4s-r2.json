@@ -1,0 +1,40 @@
+{
+  "amplitude_blocks": 0.5,
+  "argv": [
+    "bench/tracking_churn.py",
+    "--hysteresis",
+    "8",
+    "--seconds",
+    "4",
+    "--json",
+    "/tmp/a5-h8-r2.json"
+  ],
+  "binary": "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+  "hover_seconds": 4.155,
+  "hysteresis": 8,
+  "load_avg_1m": {
+    "after": 9.36767578125,
+    "before": 9.189453125
+  },
+  "note": "interest-management churn probe: a player hovering on the 48-block tracking line, one observer, one binary",
+  "observer": {
+    "looks": 0,
+    "move_looks": 0,
+    "other_packets": 5,
+    "payload_bytes": 785,
+    "rel_moves": 79,
+    "removes": 0,
+    "spawns": 0,
+    "synched_data": 0,
+    "teleports": 1
+  },
+  "pairing_packets": 0,
+  "period_s": 0.05,
+  "seconds": 4.0,
+  "server_rc": 0,
+  "steps": 80,
+  "tracking_range": 48.0,
+  "transitions": 0,
+  "transitions_per_s": 0.0,
+  "view_distance": 1
+}

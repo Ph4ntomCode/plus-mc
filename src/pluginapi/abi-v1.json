@@ -1,0 +1,496 @@
+{
+  "abi_version": 1,
+  "manifest_api": 1,
+  "structs": {
+    "pmc_event": [
+      {
+        "name": "struct_size",
+        "decl": "uint32_t struct_size"
+      },
+      {
+        "name": "type",
+        "decl": "uint32_t type"
+      },
+      {
+        "name": "cancelable",
+        "decl": "int cancelable"
+      },
+      {
+        "name": "cancel",
+        "decl": "int cancel"
+      },
+      {
+        "name": "player",
+        "decl": "const char*player"
+      },
+      {
+        "name": "message",
+        "decl": "const char*message"
+      },
+      {
+        "name": "tick",
+        "decl": "uint64_t tick"
+      },
+      {
+        "name": "reply",
+        "decl": "pmc_reply*reply"
+      },
+      {
+        "name": "block_z",
+        "decl": "int32_t block_x,block_y,block_z"
+      },
+      {
+        "name": "block",
+        "decl": "const char*block"
+      },
+      {
+        "name": "previous",
+        "decl": "const char*previous"
+      },
+      {
+        "name": "block_id",
+        "decl": "int32_t block_id"
+      },
+      {
+        "name": "item",
+        "decl": "const char*item"
+      },
+      {
+        "name": "face",
+        "decl": "int32_t face"
+      },
+      {
+        "name": "entity_id",
+        "decl": "int32_t entity_id"
+      },
+      {
+        "name": "entity_type",
+        "decl": "const char*entity_type"
+      },
+      {
+        "name": "entity_z",
+        "decl": "double entity_x,entity_y,entity_z"
+      },
+      {
+        "name": "killer_entity_id",
+        "decl": "int32_t killer_entity_id"
+      },
+      {
+        "name": "killer_name",
+        "decl": "const char*killer_name"
+      }
+    ],
+    "pmc_command": [
+      {
+        "name": "struct_size",
+        "decl": "uint32_t struct_size"
+      },
+      {
+        "name": "name",
+        "decl": "const char*name"
+      },
+      {
+        "name": "argc",
+        "decl": "int argc"
+      },
+      {
+        "name": "argv",
+        "decl": "const char*const*argv"
+      },
+      {
+        "name": "player",
+        "decl": "const char*player"
+      },
+      {
+        "name": "reply",
+        "decl": "pmc_reply*reply"
+      }
+    ],
+    "pmc_player": [
+      {
+        "name": "struct_size",
+        "decl": "uint32_t struct_size"
+      },
+      {
+        "name": "name",
+        "decl": "char name[64]"
+      },
+      {
+        "name": "z",
+        "decl": "double x,y,z"
+      },
+      {
+        "name": "pitch",
+        "decl": "float yaw,pitch"
+      },
+      {
+        "name": "gamemode",
+        "decl": "int gamemode"
+      },
+      {
+        "name": "health",
+        "decl": "float health"
+      },
+      {
+        "name": "entity_id",
+        "decl": "int32_t entity_id"
+      },
+      {
+        "name": "vz",
+        "decl": "double vx,vy,vz"
+      }
+    ],
+    "pmc_entity": [
+      {
+        "name": "struct_size",
+        "decl": "uint32_t struct_size"
+      },
+      {
+        "name": "entity_id",
+        "decl": "int32_t entity_id"
+      },
+      {
+        "name": "type_id",
+        "decl": "int32_t type_id"
+      },
+      {
+        "name": "type",
+        "decl": "char type[64]"
+      },
+      {
+        "name": "name",
+        "decl": "char name[64]"
+      },
+      {
+        "name": "z",
+        "decl": "double x,y,z"
+      },
+      {
+        "name": "health",
+        "decl": "float health"
+      },
+      {
+        "name": "age",
+        "decl": "int32_t age"
+      },
+      {
+        "name": "vz",
+        "decl": "double vx,vy,vz"
+      },
+      {
+        "name": "pitch",
+        "decl": "float yaw,pitch"
+      }
+    ],
+    "pmc_item": [
+      {
+        "name": "struct_size",
+        "decl": "uint32_t struct_size"
+      },
+      {
+        "name": "item",
+        "decl": "int32_t item"
+      },
+      {
+        "name": "count",
+        "decl": "int32_t count"
+      },
+      {
+        "name": "damage",
+        "decl": "int32_t damage"
+      },
+      {
+        "name": "max_stack_size",
+        "decl": "int32_t max_stack_size"
+      },
+      {
+        "name": "name",
+        "decl": "char name[64]"
+      }
+    ],
+    "pmc_host_api": [
+      {
+        "name": "struct_size",
+        "decl": "uint32_t struct_size"
+      },
+      {
+        "name": "abi_version",
+        "decl": "uint32_t abi_version"
+      },
+      {
+        "name": "host",
+        "decl": "void*host"
+      },
+      {
+        "name": "log",
+        "decl": "void(*log)(void*host,int level,const char*message)"
+      },
+      {
+        "name": "on",
+        "decl": "int(*on)(void*host,uint32_t event_type,pmc_event_fn fn,void*plugin_data)"
+      },
+      {
+        "name": "command",
+        "decl": "int(*command)(void*host,const char*name,const char*usage,pmc_command_fn fn,void*plugin_data)"
+      },
+      {
+        "name": "reply",
+        "decl": "void(*reply)(void*host,pmc_reply*reply,const char*message)"
+      },
+      {
+        "name": "schedule",
+        "decl": "uint64_t(*schedule)(void*host,uint32_t delay_ticks,uint32_t repeat_ticks,pmc_task_fn fn,void*plugin_data)"
+      },
+      {
+        "name": "cancel",
+        "decl": "int(*cancel)(void*host,uint64_t task_id)"
+      },
+      {
+        "name": "tick_count",
+        "decl": "uint64_t(*tick_count)(void*host)"
+      },
+      {
+        "name": "server_version",
+        "decl": "const char*(*server_version)(void*host)"
+      },
+      {
+        "name": "player_get",
+        "decl": "int(*player_get)(void*host,const char*name,pmc_player*out)"
+      },
+      {
+        "name": "world_block",
+        "decl": "int(*world_block)(void*host,int32_t x,int32_t y,int32_t z,char*out,uint32_t capacity)"
+      },
+      {
+        "name": "world_biome",
+        "decl": "int(*world_biome)(void*host,int32_t x,int32_t y,int32_t z,char*out,uint32_t capacity)"
+      },
+      {
+        "name": "world_set_block",
+        "decl": "int(*world_set_block)(void*host,int32_t x,int32_t y,int32_t z,const char*state)"
+      },
+      {
+        "name": "entities",
+        "decl": "int(*entities)(void*host,pmc_entity_fn fn,void*plugin_data)"
+      },
+      {
+        "name": "inventory_get",
+        "decl": "int(*inventory_get)(void*host,const char*player,int32_t slot,pmc_item*out)"
+      },
+      {
+        "name": "inventory_set",
+        "decl": "int(*inventory_set)(void*host,const char*player,int32_t slot,const char*item,int32_t count)"
+      },
+      {
+        "name": "entity_despawn",
+        "decl": "int(*entity_despawn)(void*host,int32_t entity_id)"
+      },
+      {
+        "name": "entity_damage",
+        "decl": "int(*entity_damage)(void*host,int32_t entity_id,float amount)"
+      },
+      {
+        "name": "entity_teleport",
+        "decl": "int(*entity_teleport)(void*host,int32_t entity_id,double x,double y,double z)"
+      },
+      {
+        "name": "entity_get",
+        "decl": "int(*entity_get)(void*host,int32_t entity_id,pmc_entity*out)"
+      },
+      {
+        "name": "data_dir",
+        "decl": "const char*(*data_dir)(void*host)"
+      },
+      {
+        "name": "config_string",
+        "decl": "const char*(*config_string)(void*host,const char*key)"
+      },
+      {
+        "name": "config_int",
+        "decl": "int64_t(*config_int)(void*host,const char*key,int64_t fallback)"
+      },
+      {
+        "name": "config_bool",
+        "decl": "int(*config_bool)(void*host,const char*key,int fallback)"
+      },
+      {
+        "name": "schedule_async",
+        "decl": "uint64_t(*schedule_async)(void*host,pmc_task_fn fn,void*data)"
+      },
+      {
+        "name": "command_level",
+        "decl": "int(*command_level)(void*host,const char*name,const char*usage,int op_level,pmc_command_fn fn,void*data)"
+      },
+      {
+        "name": "player_op_level",
+        "decl": "int(*player_op_level)(void*host,const char*name)"
+      },
+      {
+        "name": "world_time",
+        "decl": "int64_t(*world_time)(void*host)"
+      },
+      {
+        "name": "world_set_time",
+        "decl": "int(*world_set_time)(void*host,int64_t ticks)"
+      },
+      {
+        "name": "world_weather",
+        "decl": "int(*world_weather)(void*host)"
+      },
+      {
+        "name": "world_set_weather",
+        "decl": "int(*world_set_weather)(void*host,int weather,int32_t duration_ticks)"
+      },
+      {
+        "name": "player_message",
+        "decl": "int(*player_message)(void*host,const char*player,const char*message)"
+      },
+      {
+        "name": "broadcast",
+        "decl": "int(*broadcast)(void*host,const char*message)"
+      },
+      {
+        "name": "player_count",
+        "decl": "int(*player_count)(void*host)"
+      },
+      {
+        "name": "player_set_gamemode",
+        "decl": "int(*player_set_gamemode)(void*host,const char*player,int gamemode)"
+      },
+      {
+        "name": "player_set_health",
+        "decl": "int(*player_set_health)(void*host,const char*player,float health)"
+      },
+      {
+        "name": "player_set_food",
+        "decl": "int(*player_set_food)(void*host,const char*player,int food,float saturation)"
+      },
+      {
+        "name": "entity_find",
+        "decl": "int(*entity_find)(void*host,const char*name,pmc_entity*out)"
+      },
+      {
+        "name": "config_set_string",
+        "decl": "int(*config_set_string)(void*host,const char*key,const char*value)"
+      },
+      {
+        "name": "config_set_int",
+        "decl": "int(*config_set_int)(void*host,const char*key,int64_t value)"
+      },
+      {
+        "name": "config_set_bool",
+        "decl": "int(*config_set_bool)(void*host,const char*key,int value)"
+      }
+    ],
+    "pmc_plugin": [
+      {
+        "name": "struct_size",
+        "decl": "uint32_t struct_size"
+      },
+      {
+        "name": "abi_version",
+        "decl": "uint32_t abi_version"
+      },
+      {
+        "name": "name",
+        "decl": "const char*name"
+      },
+      {
+        "name": "version",
+        "decl": "const char*version"
+      },
+      {
+        "name": "author",
+        "decl": "const char*author"
+      },
+      {
+        "name": "description",
+        "decl": "const char*description"
+      },
+      {
+        "name": "on_load",
+        "decl": "int(*on_load)(const pmc_host_api*api,void**plugin_data)"
+      },
+      {
+        "name": "on_enable",
+        "decl": "void(*on_enable)(void*plugin_data)"
+      },
+      {
+        "name": "on_disable",
+        "decl": "void(*on_disable)(void*plugin_data)"
+      },
+      {
+        "name": "on_unload",
+        "decl": "void(*on_unload)(void*plugin_data)"
+      }
+    ]
+  },
+  "enums": {
+    "pmc_log_level": {
+      "PMC_LOG_DEBUG": 0,
+      "PMC_LOG_INFO": 1,
+      "PMC_LOG_WARN": 2,
+      "PMC_LOG_ERROR": 3
+    },
+    "pmc_event_type": {
+      "PMC_EVENT_SERVER_START": 1,
+      "PMC_EVENT_SERVER_STOP": 2,
+      "PMC_EVENT_TICK": 3,
+      "PMC_EVENT_PLAYER_CHAT": 10,
+      "PMC_EVENT_PLAYER_JOIN": 11,
+      "PMC_EVENT_PLAYER_LEAVE": 12,
+      "PMC_EVENT_BLOCK_PLACE": 20,
+      "PMC_EVENT_BLOCK_BREAK": 21,
+      "PMC_EVENT_ITEM_USE_ON": 30,
+      "PMC_EVENT_ENTITY_DEATH": 40
+    },
+    "pmc_inventory_result": {
+      "PMC_INVENTORY_OK": 0,
+      "PMC_INVENTORY_NO_PLAYER": -1,
+      "PMC_INVENTORY_OUT_OF_RANGE": -2,
+      "PMC_INVENTORY_UNKNOWN_ITEM": -3,
+      "PMC_INVENTORY_WRITE_FAILED": -4
+    },
+    "pmc_entity_result": {
+      "PMC_ENTITY_OK": 0,
+      "PMC_ENTITY_NOT_FOUND": -1,
+      "PMC_ENTITY_UNSUPPORTED": -2,
+      "PMC_ENTITY_INVALID": -3,
+      "PMC_ENTITY_REFUSED": -4
+    },
+    "pmc_block_result": {
+      "PMC_BLOCK_OK": 0,
+      "PMC_BLOCK_NO_WORLD": -1,
+      "PMC_BLOCK_OUT_OF_RANGE": -2,
+      "PMC_BLOCK_UNKNOWN_STATE": -3,
+      "PMC_BLOCK_WRITE_FAILED": -4
+    },
+    "pmc_weather": {
+      "PMC_WEATHER_CLEAR": 0,
+      "PMC_WEATHER_RAIN": 1,
+      "PMC_WEATHER_THUNDER": 2
+    },
+    "pmc_world_result": {
+      "PMC_WORLD_OK": 0,
+      "PMC_WORLD_NO_WORLD": -1,
+      "PMC_WORLD_INVALID": -2
+    },
+    "pmc_message_result": {
+      "PMC_MESSAGE_OK": 0,
+      "PMC_MESSAGE_NO_PLAYER": -1,
+      "PMC_MESSAGE_INVALID": -2
+    },
+    "pmc_player_result": {
+      "PMC_PLAYER_OK": 0,
+      "PMC_PLAYER_NO_PLAYER": -1,
+      "PMC_PLAYER_UNSUPPORTED": -2,
+      "PMC_PLAYER_INVALID": -3,
+      "PMC_PLAYER_REFUSED": -4
+    },
+    "pmc_config_result": {
+      "PMC_CONFIG_OK": 0,
+      "PMC_CONFIG_INVALID": -1,
+      "PMC_CONFIG_IO": -2
+    }
+  }
+}

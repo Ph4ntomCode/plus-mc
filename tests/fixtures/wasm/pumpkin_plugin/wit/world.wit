@@ -1,0 +1,47 @@
+interface %world {
+    use common.{block-pos};
+
+    flags block-flags {
+        notify-neighbors,
+        notify-listeners,
+        force-state,
+        skip-drops,
+        moved,
+        skip-redstone-wire-state-replacement,
+        skip-block-entity-replaced-callback,
+        skip-block-added-callback,
+    }
+
+    record flammable {
+        spread-chance: u8,
+        burn-chance: u8,
+    }
+
+    record block {
+        id: u16,
+        name: string,
+        hardness: f32,
+        blast-resistance: f32,
+        map-color: u8,
+        slipperiness: f32,
+        velocity-multiplier: f32,
+        jump-velocity-multiplier: f32,
+        item-id: u16,
+        default-state-id: u16,
+        state-ids: list<u16>,
+        is-solid: bool,
+        is-air: bool,
+        is-flammable: bool,
+        flammable: option<flammable>,
+    }
+
+    resource %world {
+        get-block-state-id: func(pos: block-pos) -> u16;
+        get-block-id: func(pos: block-pos) -> u16;
+        set-time-of-day: func(time: u64);
+        get-time-of-day: func() -> u64;
+        is-raining: func() -> bool;
+        is-thundering: func() -> bool;
+        set-block: async func(pos: block-pos, block: block, update-flags: block-flags);
+    }
+}

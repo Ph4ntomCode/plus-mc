@@ -1,0 +1,78 @@
+interface command {
+    enum string-type {
+        single-word,
+        quotable,
+        greedy,
+    }
+
+    variant argument-type {
+        %bool,
+        float(tuple<option<f32>, option<f32>>),
+        double(tuple<option<f64>, option<f64>>),
+        integer(tuple<option<s32>, option<s32>>),
+        long(tuple<option<s64>, option<s64>>),
+        %string(string-type),
+        entities,
+        entity,
+        players,
+        game-profile,
+        block-pos,
+        column-pos,
+        position3d,
+        position2d,
+        block-state,
+        block-predicate,
+        item,
+        item-predicate,
+        color,
+        component,
+        style,
+        message,
+        nbt-compound-tag,
+        nbt-tag,
+        nbt-path,
+        objective,
+        objective-criteria,
+        operation,
+        particle,
+        angle,
+        rotation,
+        scoreboard-slot,
+        score-holder(bool),
+        swizzle,
+        team,
+        item-slot,
+        resource-location,
+        mob-effect,
+        function,
+        entity-anchor,
+        int-range,
+        float-range,
+        dimension,
+        gamemode,
+        difficulty,
+        time(option<s32>),
+        %resource(string),
+        resource-or-tag(string),
+        resource-or-tag-key(string),
+        resource-key(string),
+        template-mirror,
+        template-rotation,
+        uuid,
+    }
+
+    resource command-node {
+        literal: static func(name: string) -> command-node;
+        argument: static func(name: string, %type: argument-type) -> command-node;
+        then: func(node: command-node);
+        execute-with-handler-id: func(handler-id: u32);
+        suggest-with-handler-id: func(handler-id: u32);
+        require-with-handler-id: func(handler-id: u32);
+    }
+
+    resource command {
+        constructor(names: list<string>, description: string);
+        then: func(node: command-node);
+        execute-with-handler-id: func(handler-id: u32);
+    }
+}

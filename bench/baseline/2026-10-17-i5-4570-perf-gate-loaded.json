@@ -1,0 +1,31 @@
+{
+ "binary_sha256": "1ba3b8ab5269d3718533ce931a4c07c22b67a6d78f9e550514903d24a192845e",
+ "floors": {
+  "bots": 16,
+  "frame_share_min": 0.4,
+  "reuse_min": 0.25,
+  "tps_min": 12.0,
+  "tps_ok_fraction": 0.7,
+  "windows_min": 8,
+  "work_avg_ms_max": 45.0
+ },
+ "kind": "perf-gate-baseline",
+ "load_avg_1m": 4.65,
+ "machine": "i5-4570 (4 cores, 3.2 GHz), 24 GB RAM, macOS 11.7.11",
+ "name": "perf-gate-loaded",
+ "note": "the loaded half of the Phase-5 CI gate: 16 clustered movers on one flat server, absent vanilla data, a 12 s window. The floors are the gate's thresholds; C is PLAN section 8's sustained-mspt ceiling and D is the load-independent sharing ratio. The reference was measured on a shared box and is recorded for shape, not as a calibration.",
+ "reference": {
+  "body_pct": 4.6,
+  "chunk_sends": 1296,
+  "frame_pct": 77.6,
+  "resync_total": 0,
+  "reuse": 0.8218,
+  "rss_bytes_max": 44761088,
+  "tps_mean": 20.003636363636364,
+  "tps_min": 19.95,
+  "tps_windows_ok": 11,
+  "windows": 11,
+  "work_avg_ms_max": 6.294,
+  "work_peak_ms_max": 45.739
+ }
+}

@@ -1,0 +1,12 @@
+/// Provides internationalization and translation support.
+interface i18n {
+    use common.{locale};
+
+    /// Retrieves a translated string from the host.
+    ///
+    /// Falls back to English or the key itself when no translation exists.
+    translate: func(key: string, locale: locale) -> string;
+
+    /// Loads custom translations from a flat JSON map.
+    load-translations: func(namespace: string, json: string, locale: locale);
+}

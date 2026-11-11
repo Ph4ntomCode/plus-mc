@@ -1,0 +1,11 @@
+# +MC formatting config. Pinned in CI to clang-format 21.1.1 (see .github/workflows/ci.yml).
+# Local: python3 -m venv build/venv && build/venv/bin/pip install clang-format==21.1.1
+# Style derived from LLVM with the project's own defaults.
+BasedOnStyle: LLVM
+IndentWidth: 2
+ColumnLimit: 100
+PointerAlignment: Left
+DerivePointerAlignment: false
+AllowShortFunctionsOnASingleLine: Empty
+SortIncludes: CaseSensitive
+IncludeBlocks: Preserve

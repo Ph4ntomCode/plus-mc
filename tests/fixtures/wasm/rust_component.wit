@@ -1,0 +1,7 @@
+package test:rust-plugin;
+
+world plugin {
+  export init-plugin: func();
+  export on-load: func() -> s32;
+  export on-unload: func() -> s32;
+}

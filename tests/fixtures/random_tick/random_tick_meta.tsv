@@ -1,0 +1,24 @@
+# Phase 3 milestone J: the random-tick pass's golden run parameters and stream ends.
+#
+# NOT a vanilla dump: the pass samples `Level.randValue`, an LCG seeded when the
+# level is constructed, so this is a regression pin of this runtime's own output
+# rather than a comparison against the game jar. `ctest -R random_tick` replays
+# every row below through `tick_chunk_random_blocks` and compares the chunk's
+# trace line for line, so a moved draw or a changed draw count cannot land
+# silently. Regenerate deliberately with `plusmc-random-tick-dump <fixtures_dir>`,
+# reviewing the change first with its `--diff` mode.
+#
+# `randStart`/`randEnd` are `BlockRandomPos.value` before and after the whole run:
+# a pass that draws once too many or too few ends somewhere else even when the
+# samples happen to land on the same cells. `sectionMask` is the per-section
+# ticking count the pass was given (bit i = section `minSectionY + i`), which is
+# `block_is_randomly_ticking`'s per-state answer counted by `set_block_state` —
+# the runner recomputes it from the scene and must agree. `scene` names the
+# layout in random_tick_scene.tsv, `samples` is the number of LCG draws taken
+# (`popcount(sectionMask) * tickSpeed * ticks`) and `rows` the trace's length.
+#
+# seed	chunkX	chunkZ	minSectionY	sectionCount	tickSpeed	ticks	brightness	randStart	randEnd	sectionMask	scene	samples	writes	rows
+42	0	0	-4	24	3	600	15	-1170105035	-1938476251	5376	farm	5400	14	6380
+42	1	0	-4	24	1	600	15	-1170105035	-563969403	5376	farm	1800	6	2081
+42	2	0	-4	24	3	600	15	-1170105035	-1170105035	0	idle	0	0	0
+42	3	0	-4	24	0	600	15	-1170105035	-1170105035	5376	farm	0	0	0

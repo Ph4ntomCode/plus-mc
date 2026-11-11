@@ -1,0 +1,154 @@
+{
+  "argv": [
+    "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/Users/zaid/other projects/plus-mc/data/vanilla",
+    "--motd",
+    "soak",
+    "--max-players",
+    "100",
+    "--view-distance",
+    "8",
+    "--metrics-interval",
+    "1"
+  ],
+  "binary": "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+  "bot_failures": [],
+  "bot_stats": {
+    "bots": 20,
+    "connected": 20,
+    "failures": [],
+    "joined": 20,
+    "keepalives": 20,
+    "packets_sent": 13723,
+    "probes_answered": 280,
+    "probes_orphan": 0,
+    "probes_pending": 0,
+    "probes_sent": 280,
+    "spread": 256.0,
+    "stationary": false
+  },
+  "bots": 20,
+  "engine": "loop",
+  "generated_seed": null,
+  "idle": {
+    "busy_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 1
+    },
+    "tick_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "tps": {
+      "avg": 19.93,
+      "max": 19.93,
+      "min": 19.93,
+      "n": 1
+    },
+    "work_avg_ms": {
+      "avg": 0.034,
+      "max": 0.034,
+      "min": 0.034,
+      "n": 1
+    },
+    "work_peak_ms": {
+      "avg": 0.452,
+      "max": 0.452,
+      "min": 0.452,
+      "n": 1
+    }
+  },
+  "idle_windows": 1,
+  "join_s": 0.18,
+  "joined": 20,
+  "latency": {
+    "max_ms": 6634.184,
+    "min_ms": 0.388,
+    "n": 277,
+    "p50_ms": 1.312,
+    "p90_ms": 5480.876,
+    "p99_ms": 6536.335,
+    "target_ms": 50.0,
+    "within_target_pct": 50.9
+  },
+  "load_avg_1m": {
+    "after": 12.21,
+    "before": 11.79
+  },
+  "loaded": {
+    "busy_pct": {
+      "avg": 11.32,
+      "max": 25.1,
+      "min": 6.3,
+      "n": 10
+    },
+    "players": {
+      "avg": 20.0,
+      "max": 20.0,
+      "min": 20.0,
+      "n": 10
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 10
+    },
+    "tick_pct": {
+      "avg": 11.32,
+      "max": 25.5,
+      "min": 6.3,
+      "n": 10
+    },
+    "tps": {
+      "avg": 19.995,
+      "max": 20.33,
+      "min": 19.68,
+      "n": 10
+    },
+    "work_avg_ms": {
+      "avg": 5.667,
+      "max": 12.765,
+      "min": 3.171,
+      "n": 10
+    },
+    "work_peak_ms": {
+      "avg": 10.632,
+      "max": 32.839,
+      "min": 3.468,
+      "n": 10
+    }
+  },
+  "loaded_windows": 10,
+  "mobs": false,
+  "phases": [],
+  "prewarm": false,
+  "probe_period": 1.0,
+  "relayout_blocks": null,
+  "rss_bytes": {
+    "first": 5210112.0,
+    "last": 1936412672.0
+  },
+  "seconds": 10.0,
+  "server_rc": 0,
+  "spread": 256.0,
+  "startup_s": 0.02,
+  "stationary": false,
+  "view_distance": 8
+}

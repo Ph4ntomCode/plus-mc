@@ -1,0 +1,85 @@
+name: container-checks
+
+# The Linux half of the cross-platform pins: `tools/check_column_digests_linux.sh`
+# and `tools/check_light_seam_linux.sh`, which build the probes with Ubuntu's gcc
+# 13.3.0 in an ubuntu:24.04 container and compare the records with the pins the
+# main workflow uses — `COLUMN_BASELINE`, `SEAM_BASELINE`.
+#
+# They are not on every push. The two checks already run on every push from the
+# `ci.yml` build matrix (the ubuntu-gcc runner *is* this compiler) and from the
+# three-runner `column-digest` job; what this workflow adds is the other
+# platform those pins are a statement about — the emulated aarch64 legs, which
+# take tens of minutes (72 for the seam's 75 columns on the development box,
+# ~13 for the digest's) and would put an hour on every push.
+#
+# Three ways in: weekly on a schedule, `workflow_dispatch` for a branch whose
+# pins moved, and a pull request labelled `container-checks` — the label is what
+# a pin-changing PR gets when its whole point is that the recorded values moved
+# and a reviewer wants the second platform's word on them before merging.
+# GitHub has no label filter at the trigger level, so every labelled event wakes
+# the workflow and the job's `if` decides; other labels leave the pair of checks
+# skipped on the PR rather than consuming a runner.
+on:
+  schedule:
+    # Mondays 04:17 UTC: off the hour, and far enough from the Monday-morning
+    # push queue that the emulated job is not competing with the normal runs.
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+  pull_request:
+    types: [labeled]
+
+# Read-only, because one of the three ways in is a pull request: the checks read
+# the tree and run it in a container, and nothing here needs a write scope.
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: ${{ matrix.arch }}
+    # `github.event.label` exists only on a labelled `pull_request`, so the first
+    # half of the test keeps the schedule and the dispatch arms running, and the
+    # second half is the label the pin-changing PRs carry.
+    if: github.event_name != 'pull_request' || github.event.label.name == 'container-checks'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [amd64, arm64]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Register the arm64 emulator
+        if: matrix.arch == 'arm64'
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+
+      # The records, not the timings: `check_column_digests_linux.sh` compares
+      # every decorated column's digest with COLUMN_BASELINE and
+      # `check_light_seam_linux.sh` every tally field with SEAM_BASELINE, both
+      # read from `ci.yml` rather than copied here, so the two workflows cannot
+      # drift apart. Digest first: it is the shorter of the two, so a broken pin
+      # or toolchain fails the job in minutes rather than after the seam.
+      # The scripts keep the record in a temporary directory on failure, so
+      # putting that directory inside the runner's workspace lets the failure
+      # step below upload it: the moved fields are then readable from the run,
+      # not only from the log. `runner` is a step context, not a job one, which
+      # is why TMPDIR is set on the steps rather than on the job's env.
+      - name: Decorated columns (${{ matrix.arch }})
+        env:
+          TMPDIR: ${{ runner.temp }}
+        run: bash tools/check_column_digests_linux.sh --arch ${{ matrix.arch }}
+
+      - name: Light seam (${{ matrix.arch }})
+        env:
+          TMPDIR: ${{ runner.temp }}
+        run: bash tools/check_light_seam_linux.sh --arch ${{ matrix.arch }}
+
+      - name: Keep the records on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: container-records-${{ matrix.arch }}
+          path: ${{ runner.temp }}/plusmc-linux-*/*.json
+          if-no-files-found: ignore

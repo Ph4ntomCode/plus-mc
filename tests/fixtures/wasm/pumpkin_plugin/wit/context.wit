@@ -1,0 +1,28 @@
+interface context {
+    use server.{server};
+    use event.{event-type, event-priority};
+    use command.{command};
+    use permission.{permission};
+
+    record marketplace-metadata {
+        marketplace-url: string,
+        plugin-id: s64,
+        plugin-name: string,
+        version: string,
+        dev-id: s64,
+        dev-name: string,
+        is-paid: bool,
+        user-id: s64,
+        license-key: option<string>,
+        issued-at: string,
+    }
+
+    resource context {
+        get-server: func() -> server;
+        get-data-folder: func() -> string;
+        register-event: func(handler-id: u32, event-type: event-type, event-priority: event-priority, blocking: bool);
+        register-command: func(command: command, permission: string);
+        register-permission: func(permission: permission) -> result<_, string>;
+        get-marketplace-metadata: func() -> option<marketplace-metadata>;
+    }
+}

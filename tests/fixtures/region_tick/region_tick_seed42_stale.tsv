@@ -1,0 +1,98 @@
+# Phase 5 ordered item 3 follow-up: the region-parallel scheduled-tick loop's
+# interaction trace for run 'stale' (scene 'platform'), seed 42, 4 lane(s).
+#
+# NOT a vanilla dump (see region_tick_meta.tsv): every row is one thing the
+# partition, the rule or the caller did, in order, with the tick it happened in.
+# `action` is the caller's own scripted work (see region_tick_actions.tsv). A
+# tick's rows are: the `due` rows — every entry that tick drained, in the
+# canonical order the region arm sorts them into (owning region, then x, y, z),
+# each row naming its region; the `plan` row, the number of regions and entries
+# one `RegionScheduler::run` was handed; then one block per region, in canonical
+# region order: a `region` row naming the region and the slice of this tick's
+# `due` list it owned, followed by that region's own rows in the order its lane
+# did them (`dispatch` — which arm the entry took, fire, leaves or drop — and
+# everything the rule then logged: `schedule`, `read`, `sturdy`, `light`,
+# `write`, `item`, `prime`, `draw i`, `draw u`); and finally the `state` row, the
+# queue's own clock, pending count, chunk count and this tick's region count. The
+# lanes themselves are not in the trace: the recorded order is the canonical one,
+# assembled after the barrier, because the lane assignment is the scheduler's own
+# contract and not the loop's. The `world` row closes the trace with the whole
+# world's hash.
+#
+# kind	tick	...
+action	0	ignite	2	-60	2
+read	0	2	-61	2	minecraft:stone
+read	0	2	-61	2	minecraft:stone
+sturdy	0	2	-61	2	true
+write	0	2	-60	2	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]	true
+read	0	2	-61	2	minecraft:stone
+read	0	2	-59	2	minecraft:air
+read	0	2	-60	1	minecraft:air
+read	0	2	-60	3	minecraft:air
+read	0	1	-60	2	minecraft:air
+read	0	3	-60	2	minecraft:air
+draw i	0	10	4
+schedule	0	2	-60	2	34	34
+state	1	1	1	1	0
+state	2	2	1	1	0
+state	3	3	1	1	0
+state	4	4	1	1	0
+action	4	break	2	-60	2
+read	4	2	-60	2	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]
+write	4	2	-60	2	minecraft:air	true
+read	4	2	-61	2	minecraft:stone
+read	4	2	-59	2	minecraft:air
+read	4	2	-60	1	minecraft:air
+read	4	2	-60	3	minecraft:air
+read	4	1	-60	2	minecraft:air
+read	4	3	-60	2	minecraft:air
+state	5	5	1	1	0
+state	6	6	1	1	0
+state	7	7	1	1	0
+state	8	8	1	1	0
+state	9	9	1	1	0
+state	10	10	1	1	0
+state	11	11	1	1	0
+state	12	12	1	1	0
+state	13	13	1	1	0
+state	14	14	1	1	0
+state	15	15	1	1	0
+state	16	16	1	1	0
+state	17	17	1	1	0
+state	18	18	1	1	0
+state	19	19	1	1	0
+state	20	20	1	1	0
+state	21	21	1	1	0
+state	22	22	1	1	0
+state	23	23	1	1	0
+state	24	24	1	1	0
+state	25	25	1	1	0
+state	26	26	1	1	0
+state	27	27	1	1	0
+state	28	28	1	1	0
+state	29	29	1	1	0
+state	30	30	1	1	0
+state	31	31	1	1	0
+state	32	32	1	1	0
+state	33	33	1	1	0
+due	34	0	0	2	-60	2
+plan	34	1	1
+region	34	0	0	0	1
+read	34	2	-60	2	minecraft:air
+dispatch	34	drop	2	-60	2
+state	34	34	0	0	1
+state	35	35	0	0	0
+state	36	36	0	0	0
+state	37	37	0	0	0
+state	38	38	0	0	0
+state	39	39	0	0	0
+state	40	40	0	0	0
+state	41	41	0	0	0
+state	42	42	0	0	0
+state	43	43	0	0	0
+state	44	44	0	0	0
+state	45	45	0	0	0
+state	46	46	0	0	0
+state	47	47	0	0	0
+state	48	48	0	0	0
+world	49	3020819757511907358

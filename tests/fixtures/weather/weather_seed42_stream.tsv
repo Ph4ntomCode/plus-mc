@@ -1,0 +1,144 @@
+# Phase 3 milestone H: the precipitation pass's interaction trace for run 'stream' (scene 'rain'), seed 42.
+#
+# NOT a vanilla dump (see weather_meta.tsv): every row is one interaction the pass had
+# with the level or one draw it took, in order. `gate` is the pass's own 1-in-48 draw
+# (drawn whatever the weather is, and written only by the runs whose meta row says
+# `logGates`); `lcg` is the column draw's own step — `BlockRandomPos.value` right after
+# it, once per draw that passed the gate; `column` is the sampled column (x, z and the
+# same LCG value) and the height the pass read there, which it only asks when it is
+# raining; `biome` is the query at the column's first free cell, with the precipitation
+# it answers; `read` is the block the rain lands on, one cell below that; `roll` is a
+# cauldron's chance draw and `fill` the write. The precipitation label on a `biome`
+# row is `biome_precipitation_at`'s own answer, the same call the pass makes.
+#
+# kind	tick	...
+gate	0	26	skipped
+gate	0	27	skipped
+gate	0	0	sampled
+column	0	15	2	1798556414
+biome	0	15	66	2	minecraft:plains	rain
+read	0	15	65	2	minecraft:water_cauldron[level=3]
+roll	0	0.047939
+lcg	0	2	1798556414
+gate	1	18	skipped
+gate	1	37	skipped
+gate	1	17	skipped
+gate	2	38	skipped
+gate	2	31	skipped
+gate	2	29	skipped
+gate	3	14	skipped
+gate	3	14	skipped
+gate	3	12	skipped
+gate	4	36	skipped
+gate	4	44	skipped
+gate	4	32	skipped
+gate	5	24	skipped
+gate	5	42	skipped
+gate	5	7	skipped
+gate	6	17	skipped
+gate	6	8	skipped
+gate	6	7	skipped
+gate	7	26	skipped
+gate	7	33	skipped
+gate	7	11	skipped
+gate	8	9	skipped
+gate	8	46	skipped
+gate	8	34	skipped
+gate	9	43	skipped
+gate	9	6	skipped
+gate	9	10	skipped
+gate	10	36	skipped
+gate	10	14	skipped
+gate	10	29	skipped
+gate	11	41	skipped
+gate	11	47	skipped
+gate	11	12	skipped
+gate	12	13	skipped
+gate	12	25	skipped
+gate	12	12	skipped
+gate	13	11	skipped
+gate	13	1	skipped
+gate	13	47	skipped
+gate	14	1	skipped
+gate	14	23	skipped
+gate	14	6	skipped
+gate	15	7	skipped
+gate	15	23	skipped
+gate	15	13	skipped
+gate	16	43	skipped
+gate	16	25	skipped
+gate	16	8	skipped
+gate	17	38	skipped
+gate	17	4	skipped
+gate	17	8	skipped
+gate	18	10	skipped
+gate	18	1	skipped
+gate	18	43	skipped
+gate	19	21	skipped
+gate	19	3	skipped
+gate	19	25	skipped
+gate	20	35	skipped
+gate	20	32	skipped
+gate	20	25	skipped
+gate	21	38	skipped
+gate	21	26	skipped
+gate	21	14	skipped
+gate	22	7	skipped
+gate	22	15	skipped
+gate	22	27	skipped
+gate	23	22	skipped
+gate	23	29	skipped
+gate	23	13	skipped
+gate	24	13	skipped
+gate	24	37	skipped
+gate	24	5	skipped
+gate	25	26	skipped
+gate	25	28	skipped
+gate	25	17	skipped
+gate	26	45	skipped
+gate	26	24	skipped
+gate	26	34	skipped
+gate	27	11	skipped
+gate	27	38	skipped
+gate	27	31	skipped
+gate	28	33	skipped
+gate	28	45	skipped
+gate	28	24	skipped
+gate	29	14	skipped
+gate	29	31	skipped
+gate	29	3	skipped
+gate	30	0	sampled
+column	30	6	5	2114606169
+biome	30	6	66	5	minecraft:plains	rain
+read	30	6	65	5	minecraft:powder_snow_cauldron[level=1]
+roll	30	0.195964
+lcg	30	0	2114606169
+gate	30	15	skipped
+gate	30	23	skipped
+gate	31	39	skipped
+gate	31	21	skipped
+gate	31	24	skipped
+gate	32	20	skipped
+gate	32	16	skipped
+gate	32	30	skipped
+gate	33	4	skipped
+gate	33	12	skipped
+gate	33	13	skipped
+gate	34	23	skipped
+gate	34	7	skipped
+gate	34	21	skipped
+gate	35	14	skipped
+gate	35	43	skipped
+gate	35	26	skipped
+gate	36	14	skipped
+gate	36	40	skipped
+gate	36	45	skipped
+gate	37	19	skipped
+gate	37	15	skipped
+gate	37	30	skipped
+gate	38	22	skipped
+gate	38	19	skipped
+gate	38	14	skipped
+gate	39	15	skipped
+gate	39	6	skipped
+gate	39	12	skipped

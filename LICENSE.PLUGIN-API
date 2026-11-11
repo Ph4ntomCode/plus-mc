@@ -1,0 +1,23 @@
++MC (PlusMC) — Native Plugin API license
+=========================================
+
+The +MC **server core** (everything under the repo root except the plugin API and third-party
+data) is licensed under the GNU General Public License v3.0 — see ./LICENSE.
+
+The **native plugin API** (the ABI headers and SDK that plugin authors compile against,
+planned at src/pluginapi/) is dual-licensed under **MIT OR Apache-2.0**, mirroring PumpkinMC's
+plugin ecosystem so plugin authors can ship closed-source plugins and pick whichever license
+suits them.
+
+- Apache License 2.0: full text at https://www.apache.org/licenses/LICENSE-2.0.txt
+- MIT License: full text at https://opensource.org/license/mit
+
+Files in the plugin-API tree will carry an SPDX header, e.g.:
+
+    // SPDX-License-Identifier: MIT OR Apache-2.0
+
+The canonical license texts will be vendored into src/pluginapi/ when that code lands
+(roadmap Phase 6 in docs/PLAN.md).
+
+Third-party data (extracted Mojang data, mappings, etc.) is NOT covered by either license —
+see NOTICE.md.

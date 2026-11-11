@@ -1,0 +1,28 @@
+# Phase 4 milestone C: the natural spawner's golden run parameters.
+#
+# NOT a vanilla dump: the pass is driven by `Level.random`, a legacy LCG the server owns,
+# so this is a regression pin of this runtime's own output rather than a comparison
+# against the game jar. `ctest -R mob_spawn` replays every row below through the real
+# `SpawnState::build` / `filtered_spawning_categories` / `spawn_for_chunk` and compares
+# the run's trace line for line, so a reordered gate or one draw too many cannot land
+# silently. Regenerate deliberately with `plusmc-mob-spawn-dump <fixtures_dir>`,
+# reviewing the change first with its `--diff` mode.
+#
+# `categories` is what `getFilteredSpawningCategories` answered for this run, in
+# `MobCategory.values()` order (the replay recomputes it and must agree), so a run can
+# be read as "which categories were even considered". `ticks` is how many passes over
+# the chunk the run made, each one a `spawnForChunk` through the same state, and the
+# trace's own tick column has to cover all of them in order. `spawnableChunks` is the
+# `DistanceManager` count the global cap scales by (289 is exactly one cap of 70
+# monsters), `minY`/`skyDarken`/`thundering` are the environment terms the predicates
+# read, and the spawn point is the world spawn `isRightDistanceToPlayerAnd SpawnPoint`
+# keeps clear. `draws`/`units` are the two streams' call counts and `spawns` the mobs
+# created; `rows` is the trace's length.
+#
+# seed	run	scene	chunkX	chunkZ	category	spawnEnemies	spawnPersistent	ticks	spawnableChunks	minY	skyDarken	thundering	canSeeSky	spawnPointX	spawnPointY	spawnPointZ	categories	draws	units	spawns	rows
+42	dark_monster	dark_platform	0	0	monster	true	false	32	289	-64	0	false	false	1000.0	1000.0	1000.0	monster,ambient,axolotls,underground_water_creature,water_creature,water_ambient	719	96	21	1484
+42	lit_monster	lit_platform	0	0	monster	true	false	8	289	-64	0	false	true	1000.0	1000.0	1000.0	monster,ambient,axolotls,underground_water_creature,water_creature,water_ambient	135	12	0	244
+42	lit_creature	grass_platform	0	0	creature	true	true	32	289	-64	0	false	true	1000.0	1000.0	1000.0	monster,creature,ambient,axolotls,underground_water_creature,water_creature,water_ambient	403	56	12	799
+42	valley_monster	soul_valley	0	0	monster	true	false	16	289	-64	0	false	false	1000.0	1000.0	1000.0	monster,ambient,axolotls,underground_water_creature,water_creature,water_ambient	553	53	1	1115
+42	unwatched	unwatched	0	0	monster	true	false	8	289	-64	0	false	false	1000.0	1000.0	1000.0	monster,ambient,axolotls,underground_water_creature,water_creature,water_ambient	0	0	0	0
+42	capped	capped	0	0	monster	true	false	8	289	-64	0	false	false	1000.0	1000.0	1000.0	ambient,axolotls,underground_water_creature,water_creature,water_ambient	0	0	0	70

@@ -1,0 +1,37 @@
+# Phase 4 milestone D follow-up: the scheduled fluid-tick loop's golden run
+# parameters.
+#
+# NOT a vanilla dump: `tests/fluid_test.cpp` pins the state encoding and each
+# branch of `fluid_tick` one call at a time, but nothing there runs the loop.
+# `ctest -R fluid_tick` replays every row below through the real
+# `FluidTickQueue` and the real dispatch (`run_fluid_tick_position`'s shape: the
+# schedule callback rebound to the entry's own kind, then `fluid_tick`), and
+# compares the whole trace line for line, so a write that moved, a schedule one
+# tick early or an entry that silently ran cannot land.
+#
+# There is no seed column. `fluid_tick` takes no draw at all — its stream is a
+# function of the world and the two constants `fluid_drop_off` (1 water, 2
+# lava) and `fluid_tick_delay` (5 and 30) — so unlike the fire dump there is no
+# level stream whose state belongs to the server, and this trace is the whole
+# stream rather than a sampled part of it.
+#
+# `ticks` is how many world ticks the run advanced the queue through (one
+# `advance()` each), `schedules`/`due`/`stales`/`writes`/`reads` are the counts
+# of those trace rows — `reads` is one row per world read, and a dispatch
+# makes exactly one per cell it asks about — and `endNow`/`endPending` the
+# queue's own state after the last tick — a run that settles is zero (the rule
+# only re-queues a cell that actually moved, so a settled pool stops ticking
+# itself), and every run here does. `rows` is the trace's length.
+#
+# run	scene	ticks	schedules	due	stales	writes	reads	endNow	endPending	rows
+spread	flat	45	198	198	0	113	1386	45	0	1941
+fall	shaft	70	403	181	30	154	1057	70	0	1896
+fall_cut	shaft	30	8	5	1	8	29	30	0	83
+two_chunks	wide	45	396	396	0	226	2772	45	0	3837
+lava	flat	155	66	66	0	41	462	155	0	791
+cut	canal	160	53	44	0	28	309	160	0	596
+waterlog	rail	55	262	251	0	140	1757	55	0	2466
+resume	wall	125	178	178	0	102	1247	125	0	1832
+stale	flat	8	1	1	1	2	1	8	0	16
+reschedule	flat	45	199	198	0	114	1386	45	0	1944
+mixed	flat	157	67	67	1	42	462	157	0	798

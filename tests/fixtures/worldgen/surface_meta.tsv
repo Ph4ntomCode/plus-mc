@@ -1,0 +1,13 @@
+# seed	chunkX	chunkZ	minY	height	cells	defaultBlock	seaLevel	stateCodes
+42	0	0	-64	384	98304	minecraft:stone	63	0=minecraft:bedrock,1=minecraft:deepslate[axis=y],2=minecraft:stone,3=minecraft:water[level=0],4=minecraft:air,5=minecraft:dirt,6=minecraft:gravel
+42	-1	-1	-64	384	98304	minecraft:stone	63	0=minecraft:bedrock,1=minecraft:deepslate[axis=y],2=minecraft:stone,3=minecraft:dirt,4=minecraft:water[level=0],5=minecraft:air,6=minecraft:grass_block[snowy=false],7=minecraft:gravel
+42	-252	-256	-64	384	98304	minecraft:stone	63	0=minecraft:bedrock,1=minecraft:deepslate[axis=y],2=minecraft:stone,3=minecraft:sandstone,4=minecraft:sand,5=minecraft:air,6=minecraft:water[level=0]
+42	-199	-256	-64	384	98304	minecraft:stone	63	0=minecraft:bedrock,1=minecraft:deepslate[axis=y],2=minecraft:stone,3=minecraft:terracotta,4=minecraft:orange_terracotta,5=minecraft:light_gray_terracotta,6=minecraft:white_terracotta,7=minecraft:yellow_terracotta,8=minecraft:air,9=minecraft:red_sand
+42	-229	-256	-64	384	98304	minecraft:stone	63	0=minecraft:bedrock,1=minecraft:deepslate[axis=y],2=minecraft:lava[level=0],3=minecraft:air,4=minecraft:stone,5=minecraft:orange_terracotta,6=minecraft:terracotta,7=minecraft:red_sand,8=minecraft:water[level=0],9=minecraft:tuff,10=minecraft:deepslate_iron_ore
+42	216	-66	-64	384	98304	minecraft:stone	63	0=minecraft:bedrock,1=minecraft:deepslate[axis=y],2=minecraft:air,3=minecraft:water[level=0],4=minecraft:stone,5=minecraft:dirt,6=minecraft:mycelium[snowy=false]
+42	106	-84	-64	384	98304	minecraft:stone	63	0=minecraft:bedrock,1=minecraft:deepslate[axis=y],2=minecraft:stone,3=minecraft:water[level=0],4=minecraft:dirt,5=minecraft:podzol[snowy=false],6=minecraft:air
+42	10	164	-64	384	98304	minecraft:stone	63	0=minecraft:bedrock,1=minecraft:deepslate[axis=y],2=minecraft:stone,3=minecraft:air
+42	199	432	-64	384	98304	minecraft:stone	63	0=minecraft:bedrock,1=minecraft:deepslate[axis=y],2=minecraft:stone,3=minecraft:dirt,4=minecraft:grass_block[snowy=false],5=minecraft:air,6=minecraft:water[level=0]
+42	201	442	-64	384	98304	minecraft:stone	63	0=minecraft:bedrock,1=minecraft:deepslate[axis=y],2=minecraft:stone,3=minecraft:gravel,4=minecraft:water[level=0],5=minecraft:air,6=minecraft:dirt,7=minecraft:packed_ice
+42	223	445	-64	384	98304	minecraft:stone	63	0=minecraft:bedrock,1=minecraft:deepslate[axis=y],2=minecraft:stone,3=minecraft:dirt,4=minecraft:snow_block,5=minecraft:air,6=minecraft:water[level=0]
+42	-15	-256	-64	384	98304	minecraft:stone	63	0=minecraft:bedrock,1=minecraft:deepslate[axis=y],2=minecraft:stone,3=minecraft:mud,4=minecraft:air,5=minecraft:water[level=0]

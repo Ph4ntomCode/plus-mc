@@ -1,0 +1,475 @@
+{
+  "ambient": {
+    "blockers": [],
+    "idle_pct": 77.61,
+    "load1": 3.09
+  },
+  "argv": [
+    "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/Users/zaid/other projects/plus-mc/data/vanilla",
+    "--motd",
+    "soak",
+    "--max-players",
+    "120",
+    "--view-distance",
+    "8",
+    "--metrics-interval",
+    "1",
+    "--worldgen",
+    "42",
+    "--no-flat-world"
+  ],
+  "binary": "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+  "binary_sha256": "c50d61ddf9d6c54f44609ed20c19ae1d893a71fa5f53d4028ce8974bc39c8d51",
+  "biome_memo": {
+    "entries": 8192,
+    "hit_pct": 31.1,
+    "hits": 500189,
+    "misses": 1110025,
+    "most_entries": 2048,
+    "refills": 1101833,
+    "threads": 4
+  },
+  "bot_failures": [],
+  "bot_processes": 1,
+  "bot_stats": {
+    "bots": 60,
+    "chunk_body_bytes": 1196875800,
+    "chunk_keys_max": 322,
+    "chunks_distinct": 322,
+    "chunks_received": 19320,
+    "connected": 60,
+    "failures": [],
+    "joined": 60,
+    "keepalives": 60,
+    "packets_received": 190125,
+    "packets_sent": 704,
+    "probes_answered": 0,
+    "probes_orphan": 0,
+    "probes_pending": 0,
+    "probes_sent": 0,
+    "received_bytes": 135375206,
+    "spread": 0.0,
+    "stationary": true
+  },
+  "bots": 60,
+  "busy": true,
+  "busy_reasons": [
+    "CPU 77.6% idle (floor 80%)",
+    "load 3.09 (limit 2.5)"
+  ],
+  "chunk_sharing": {
+    "bodies_reused": 285,
+    "body_pct": 1.5,
+    "frame_pct": 92.6,
+    "frames_reused": 17899,
+    "sends": 19320
+  },
+  "chunks": {
+    "body_bytes": 1196875800,
+    "distinct": 322,
+    "distinct_rule": null,
+    "distinct_sum_bound": null,
+    "per_bot_max": 322,
+    "received": 19320
+  },
+  "engine": "loop",
+  "entity_relays": null,
+  "generated_seed": 42,
+  "generation": {
+    "columns": 428,
+    "columns_per_cpu_s": null,
+    "columns_per_s": 8.24,
+    "counter": "world_chunks_stored",
+    "cpu_fill_s": null,
+    "cpu_s": 51.802,
+    "cpu_samples": 105,
+    "fill_seconds": 51.95,
+    "generating_seconds": 21.01,
+    "peak_per_s": 39.1,
+    "per_second": [
+      [
+        1.0,
+        11
+      ],
+      [
+        2.02,
+        37
+      ],
+      [
+        3.06,
+        41
+      ],
+      [
+        4.08,
+        38
+      ],
+      [
+        5.1,
+        32
+      ],
+      [
+        6.19,
+        37
+      ],
+      [
+        7.2,
+        39
+      ],
+      [
+        9.0,
+        61
+      ],
+      [
+        10.02,
+        30
+      ],
+      [
+        11.14,
+        36
+      ],
+      [
+        12.18,
+        35
+      ],
+      [
+        13.22,
+        9
+      ],
+      [
+        14.27,
+        1
+      ],
+      [
+        15.27,
+        0
+      ],
+      [
+        16.32,
+        0
+      ],
+      [
+        17.37,
+        3
+      ],
+      [
+        18.37,
+        0
+      ],
+      [
+        19.42,
+        0
+      ],
+      [
+        20.47,
+        1
+      ],
+      [
+        21.52,
+        0
+      ],
+      [
+        22.57,
+        0
+      ],
+      [
+        23.57,
+        0
+      ],
+      [
+        24.57,
+        0
+      ],
+      [
+        25.63,
+        0
+      ],
+      [
+        26.67,
+        0
+      ],
+      [
+        27.72,
+        1
+      ],
+      [
+        28.73,
+        1
+      ],
+      [
+        29.77,
+        0
+      ],
+      [
+        30.77,
+        0
+      ],
+      [
+        31.82,
+        0
+      ],
+      [
+        32.87,
+        0
+      ],
+      [
+        33.89,
+        0
+      ],
+      [
+        34.92,
+        0
+      ],
+      [
+        35.92,
+        0
+      ],
+      [
+        36.97,
+        0
+      ],
+      [
+        38.02,
+        0
+      ],
+      [
+        39.04,
+        0
+      ],
+      [
+        40.07,
+        0
+      ],
+      [
+        41.12,
+        0
+      ],
+      [
+        42.12,
+        0
+      ],
+      [
+        43.17,
+        0
+      ],
+      [
+        44.22,
+        0
+      ],
+      [
+        45.22,
+        0
+      ],
+      [
+        46.22,
+        0
+      ],
+      [
+        47.22,
+        3
+      ],
+      [
+        48.27,
+        0
+      ],
+      [
+        49.32,
+        0
+      ],
+      [
+        50.37,
+        0
+      ],
+      [
+        51.95,
+        12
+      ]
+    ],
+    "since_last_column_s": 0.0,
+    "tps_min": 2.74,
+    "while_generating_per_s": 20.37
+  },
+  "generation_pool": {
+    "already": 12300,
+    "dropped": 0,
+    "failed": 0,
+    "generated": 397,
+    "queued": 0,
+    "requested": 397,
+    "threads": 3
+  },
+  "idle": {
+    "busy_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 1
+    },
+    "tick_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "tps": {
+      "avg": 19.86,
+      "max": 19.86,
+      "min": 19.86,
+      "n": 1
+    },
+    "work_avg_ms": {
+      "avg": 0.056,
+      "max": 0.056,
+      "min": 0.056,
+      "n": 1
+    },
+    "work_peak_ms": {
+      "avg": 0.689,
+      "max": 0.689,
+      "min": 0.689,
+      "n": 1
+    }
+  },
+  "idle_windows": 1,
+  "interrupted": false,
+  "interrupted_after_s": null,
+  "item_tracking": {
+    "pairings": 1027,
+    "payloads": 3673,
+    "peak_viewers": 60,
+    "writes": 63585,
+    "writes_per_payload": 17.31
+  },
+  "join_s": 0.25,
+  "joined": 60,
+  "latency": null,
+  "load_avg_1m": {
+    "after": 6.75,
+    "before": 3.09
+  },
+  "loaded": {
+    "busy_pct": {
+      "avg": 39.685,
+      "max": 55.5,
+      "min": 30.6,
+      "n": 20
+    },
+    "players": {
+      "avg": 60.0,
+      "max": 60.0,
+      "min": 60.0,
+      "n": 20
+    },
+    "resync": {
+      "avg": 0.05,
+      "max": 1.0,
+      "min": 0.0,
+      "n": 20
+    },
+    "tick_pct": {
+      "avg": 41.205,
+      "max": 85.5,
+      "min": 30.7,
+      "n": 20
+    },
+    "tps": {
+      "avg": 19.653,
+      "max": 20.5,
+      "min": 12.99,
+      "n": 20
+    },
+    "work_avg_ms": {
+      "avg": 20.595,
+      "max": 42.746,
+      "min": 15.35,
+      "n": 20
+    },
+    "work_peak_ms": {
+      "avg": 40.748,
+      "max": 304.694,
+      "min": 21.733,
+      "n": 20
+    }
+  },
+  "loaded_windows": 20,
+  "mob_tracking": null,
+  "mobs": false,
+  "natural_spawn": null,
+  "phases": [],
+  "prewarm": false,
+  "probe_period": 0.0,
+  "proxy": null,
+  "quiet_hold": 2,
+  "quiet_idle": 80.0,
+  "quiet_load": 2.5,
+  "relayout_blocks": null,
+  "rss_after_leave": null,
+  "rss_bytes": {
+    "first": 14897152.0,
+    "last": 60493824.0,
+    "peak": 109195264.0
+  },
+  "rss_guard": null,
+  "seconds": 20.0,
+  "server_cpu_s": 51.802,
+  "server_env": {
+    "PLUSMC_MOB_SPAWNING": "0",
+    "PLUSMC_TICK_REGIONS": "8",
+    "PLUSMC_TICK_THREADS": "1"
+  },
+  "server_rc": 0,
+  "spread": 0.0,
+  "startup_s": 0.16,
+  "stationary": true,
+  "traffic": {
+    "bytes_in": 6374580,
+    "kib_per_bot_s": 5.2,
+    "packets_in": 48360,
+    "packets_per_bot_s": 40.3,
+    "seconds": 20.0
+  },
+  "traffic_phases": [],
+  "view_distance": 8,
+  "world": {
+    "world_bytes": {
+      "first": 47334,
+      "last": 11715166,
+      "max": 18781257,
+      "n": 50,
+      "windows_at_max": 1
+    },
+    "world_chunks": {
+      "first": 1,
+      "last": 260,
+      "max": 417,
+      "n": 50,
+      "windows_at_max": 4
+    },
+    "world_chunks_stored": {
+      "first": 1,
+      "last": 429,
+      "max": 429,
+      "n": 50,
+      "windows_at_max": 1
+    },
+    "world_written_chunks": {
+      "first": 0,
+      "last": 184,
+      "max": 184,
+      "n": 50,
+      "windows_at_max": 3
+    }
+  }
+}

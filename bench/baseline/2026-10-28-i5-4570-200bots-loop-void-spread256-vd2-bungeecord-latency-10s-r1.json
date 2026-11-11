@@ -1,0 +1,417 @@
+{
+  "ambient": {
+    "blockers": [],
+    "idle_pct": 0.38,
+    "load1": 20.2
+  },
+  "argv": [
+    "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/Users/zaid/other projects/plus-mc/data/vanilla",
+    "--motd",
+    "soak",
+    "--max-players",
+    "400",
+    "--view-distance",
+    "2",
+    "--metrics-interval",
+    "1",
+    "--bungeecord"
+  ],
+  "binary": "/Users/zaid/other projects/plus-mc/build/src/plusmc",
+  "binary_sha256": "f0a7dfe766490183d60cd15cac533f58a05c02bd3204eb1add2d5da726ccd136",
+  "biome_memo": null,
+  "bot_failures": [
+    "B81: recv: ConnectionResetError(54, 'Connection reset by peer')",
+    "B82: recv: ConnectionResetError(54, 'Connection reset by peer')"
+  ],
+  "bot_processes": 2,
+  "bot_stats": {
+    "bots": 200,
+    "bots_per_worker": [
+      100,
+      100
+    ],
+    "chunk_body_bytes": 496989000,
+    "chunk_keys_max": 50,
+    "chunks_distinct": 4950,
+    "chunks_distinct_per_worker": [
+      2450,
+      2525
+    ],
+    "chunks_distinct_rule": "exact union of the K workers' key pairs",
+    "chunks_distinct_sum_bound": 4975,
+    "chunks_received": 9875,
+    "connected": 200,
+    "failures": [
+      "B81: recv: ConnectionResetError(54, 'Connection reset by peer')",
+      "B82: recv: ConnectionResetError(54, 'Connection reset by peer')"
+    ],
+    "joined": 198,
+    "keepalives": 198,
+    "packets_received": 183253,
+    "packets_sent": 264431,
+    "probes_answered": 5206,
+    "probes_orphan": 0,
+    "probes_pending": 0,
+    "probes_sent": 5206,
+    "received_bytes": 15347650,
+    "spread": 256.0,
+    "stationary": false,
+    "workers": 2
+  },
+  "bots": 200,
+  "busy": true,
+  "busy_reasons": [
+    "CPU 0.4% idle (floor 85%)",
+    "load 20.20 (limit 2)"
+  ],
+  "chunk_sharing": {
+    "bodies_reused": 4,
+    "body_pct": 0.0,
+    "frame_pct": 49.1,
+    "frames_reused": 4847,
+    "sends": 9875
+  },
+  "chunks": {
+    "body_bytes": 496989000,
+    "distinct": 4950,
+    "distinct_rule": "exact union of the K workers' key pairs",
+    "distinct_sum_bound": 4975,
+    "per_bot_max": 50,
+    "received": 9875
+  },
+  "engine": "loop",
+  "entity_relays": null,
+  "generated_seed": null,
+  "generation": {
+    "columns": 4950,
+    "columns_per_cpu_s": 641.34,
+    "columns_per_s": 473.35,
+    "counter": "world_chunks_stored",
+    "cpu_fill_s": 7.718,
+    "cpu_s": 34.595,
+    "cpu_samples": 64,
+    "fill_seconds": 10.46,
+    "generating_seconds": 9.41,
+    "peak_per_s": 1048.2,
+    "per_second": [
+      [
+        1.05,
+        0
+      ],
+      [
+        2.1,
+        75
+      ],
+      [
+        3.12,
+        84
+      ],
+      [
+        4.15,
+        141
+      ],
+      [
+        5.26,
+        831
+      ],
+      [
+        6.85,
+        1153
+      ],
+      [
+        8.43,
+        1655
+      ],
+      [
+        9.45,
+        776
+      ],
+      [
+        10.46,
+        235
+      ],
+      [
+        11.56,
+        0
+      ],
+      [
+        12.56,
+        0
+      ],
+      [
+        13.61,
+        0
+      ],
+      [
+        14.61,
+        0
+      ],
+      [
+        15.66,
+        0
+      ],
+      [
+        16.71,
+        0
+      ],
+      [
+        17.71,
+        0
+      ],
+      [
+        18.77,
+        0
+      ],
+      [
+        19.81,
+        0
+      ],
+      [
+        20.82,
+        0
+      ],
+      [
+        21.86,
+        0
+      ],
+      [
+        22.86,
+        0
+      ],
+      [
+        23.87,
+        0
+      ],
+      [
+        24.92,
+        0
+      ],
+      [
+        25.96,
+        0
+      ],
+      [
+        26.96,
+        0
+      ],
+      [
+        27.96,
+        0
+      ],
+      [
+        29.01,
+        0
+      ],
+      [
+        30.02,
+        0
+      ],
+      [
+        31.06,
+        0
+      ],
+      [
+        32.07,
+        0
+      ],
+      [
+        33.11,
+        0
+      ],
+      [
+        34.12,
+        0
+      ],
+      [
+        35.16,
+        0
+      ],
+      [
+        35.99,
+        0
+      ]
+    ],
+    "since_last_column_s": 25.53,
+    "tps_min": 0.98,
+    "while_generating_per_s": 526.28
+  },
+  "generation_pool": null,
+  "idle": {
+    "busy_pct": {
+      "avg": 1.7,
+      "max": 1.7,
+      "min": 1.7,
+      "n": 1
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 1
+    },
+    "tick_pct": {
+      "avg": 1.7,
+      "max": 1.7,
+      "min": 1.7,
+      "n": 1
+    },
+    "tps": {
+      "avg": 20.0,
+      "max": 20.0,
+      "min": 20.0,
+      "n": 1
+    },
+    "work_avg_ms": {
+      "avg": 0.83,
+      "max": 0.83,
+      "min": 0.83,
+      "n": 1
+    },
+    "work_peak_ms": {
+      "avg": 16.306,
+      "max": 16.306,
+      "min": 16.306,
+      "n": 1
+    }
+  },
+  "idle_windows": 1,
+  "item_tracking": null,
+  "join_s": 9.1,
+  "joined": 198,
+  "latency": {
+    "max_ms": 41.58,
+    "min_ms": 1.47,
+    "n": 1980,
+    "p50_ms": 11.57,
+    "p90_ms": 20.51,
+    "p99_ms": 26.05,
+    "target_ms": 50.0,
+    "within_target_pct": 100.0
+  },
+  "load_avg_1m": {
+    "after": 31.7,
+    "before": 20.2
+  },
+  "loaded": {
+    "busy_pct": {
+      "avg": 19.61,
+      "max": 23.2,
+      "min": 16.6,
+      "n": 10
+    },
+    "players": {
+      "avg": 198.0,
+      "max": 198.0,
+      "min": 198.0,
+      "n": 10
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 10
+    },
+    "tick_pct": {
+      "avg": 19.59,
+      "max": 23.3,
+      "min": 16.4,
+      "n": 10
+    },
+    "tps": {
+      "avg": 20.032,
+      "max": 20.38,
+      "min": 19.72,
+      "n": 10
+    },
+    "work_avg_ms": {
+      "avg": 9.793,
+      "max": 11.666,
+      "min": 8.218,
+      "n": 10
+    },
+    "work_peak_ms": {
+      "avg": 19.238,
+      "max": 24.412,
+      "min": 12.984,
+      "n": 10
+    }
+  },
+  "loaded_windows": 10,
+  "mob_tracking": null,
+  "mobs": false,
+  "natural_spawn": null,
+  "phases": [],
+  "prewarm": false,
+  "probe_period": 1.0,
+  "proxy": {
+    "backend_port": 54436,
+    "mode": "bungeecord",
+    "port": 54437
+  },
+  "quiet_hold": 3,
+  "quiet_idle": 85.0,
+  "quiet_load": 2.0,
+  "relayout_blocks": null,
+  "rss_after_leave": null,
+  "rss_bytes": {
+    "first": 5943296.0,
+    "last": 121663488.0,
+    "peak": 410349568.0
+  },
+  "rss_guard": null,
+  "seconds": 10.0,
+  "server_cpu_s": 34.595,
+  "server_env": {
+    "PLUSMC_MOB_SPAWNING": "0"
+  },
+  "server_rc": 0,
+  "spread": 256.0,
+  "startup_s": 1.02,
+  "stationary": false,
+  "traffic": {
+    "bytes_in": 62370,
+    "kib_per_bot_s": 0.0,
+    "packets_in": 4158,
+    "packets_per_bot_s": 2.1,
+    "seconds": 10.0
+  },
+  "traffic_phases": [],
+  "view_distance": 2,
+  "world": {
+    "world_bytes": {
+      "first": 0,
+      "last": 260288,
+      "max": 16658432,
+      "n": 35,
+      "windows_at_max": 26
+    },
+    "world_chunks": {
+      "first": 0,
+      "last": 64,
+      "max": 4096,
+      "n": 35,
+      "windows_at_max": 26
+    },
+    "world_chunks_stored": {
+      "first": 0,
+      "last": 4950,
+      "max": 4950,
+      "n": 35,
+      "windows_at_max": 26
+    },
+    "world_written_chunks": {
+      "first": 0,
+      "last": 0,
+      "max": 0,
+      "n": 35,
+      "windows_at_max": 35
+    }
+  }
+}

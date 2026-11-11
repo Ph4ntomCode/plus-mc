@@ -1,0 +1,26 @@
+package pumpkin:plugin@0.2.0;
+
+world plugin {
+    use context.{context};
+    use event.{event};
+    use server.{server};
+
+    import logging;
+    import command;
+    import context;
+    import server;
+    import %world;
+    import player;
+    import text;
+    import event;
+    import scheduler;
+    import uuid;
+    import i18n;
+    import item-stack;
+
+    export init-plugin: func();
+    export on-load: func(ctx: context);
+    export on-unload: func(ctx: context);
+    export handle-event: func(event-id: u32, server: server, event: event) -> event;
+    export handle-task: func(handler-id: u32, server: server);
+}

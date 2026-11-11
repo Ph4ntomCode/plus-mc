@@ -1,0 +1,1131 @@
+# Phase 4 milestone C: the natural spawner's interaction trace for run 'valley_monster' (scene 'soul_valley' category 'monster'), seed 42.
+#
+# NOT a vanilla dump (see mob_spawn_meta.tsv): every row is one interaction the pass had
+# with the level or one draw it took, in order, and the column after the kind is the
+# tick it happened in — the run is `ticks` passes over one chunk through one state,
+# so the tick boundary is where one pass's rows end and the next begin. `surface` is the
+# column the attempt started from (`getHeight(WORLD_SURFACE, x, z)`); `chunk` is
+# `canSpawnEntitiesInChunk`; `read`, `light` and `biome` are the placement rule and
+# cost predicates' own queries, so the order the gates consult the world is visible;
+# `draw i` is a `nextInt(bound)` (the columns are the pass's own chain: 16, 16, the
+# surface span, then the group and walk draws) and `draw u` a `nextFloat`. `spawn` rows
+# are the mobs that tick's attempt created, in the order the pass made them — the pass
+# returns them at the end of the tick, so they follow that tick's draws rather than
+# interleaving with them.
+#
+# kind	tick	...
+biome	0	4	-60	4	minecraft:soul_sand_valley
+biome	0	12	-60	12	minecraft:soul_sand_valley
+draw	0	i	16	11
+draw	0	i	16	0
+surface	0	11	0	-61
+draw	0	i	5	3
+read	0	11	-61	0	minecraft:soul_sand
+draw	1	i	16	0
+draw	1	i	16	4
+surface	1	0	4	-61
+draw	1	i	5	0
+draw	2	i	16	4
+draw	2	i	16	11
+surface	2	4	11	-61
+draw	2	i	5	4
+read	2	4	-60	11	minecraft:air
+draw	2	u	0.091325
+draw	2	i	6	2
+draw	2	i	6	2
+draw	2	i	6	0
+draw	2	i	6	0
+chunk	2	0	0	true
+biome	2	4	-60	11	minecraft:soul_sand_valley
+draw	2	u	0.275748
+draw	2	i	1	0
+read	2	4	-61	11	minecraft:soul_sand
+read	2	4	-60	11	minecraft:air
+read	2	4	-59	11	minecraft:air
+light	2	sky	4	-60	11	0
+draw	2	i	32	14
+light	2	block	4	-60	11	0
+light	2	block	4	-60	11	0
+light	2	sky	4	-60	11	0
+draw	2	i	8	6
+read	2	4	-61	11	minecraft:soul_sand
+read	2	4	-60	11	minecraft:air
+read	2	4	-59	11	minecraft:air
+biome	2	4	-60	11	minecraft:soul_sand_valley
+read	2	4	-60	11	minecraft:air
+read	2	4	-59	11	minecraft:air
+draw	2	u	0.782902
+draw	2	i	6	5
+draw	2	i	6	2
+draw	2	i	6	1
+draw	2	i	6	2
+chunk	2	0	0	true
+read	2	7	-61	10	minecraft:soul_sand
+read	2	7	-60	10	minecraft:air
+read	2	7	-59	10	minecraft:air
+light	2	sky	7	-60	10	0
+draw	2	i	32	14
+light	2	block	7	-60	10	0
+light	2	block	7	-60	10	0
+light	2	sky	7	-60	10	0
+draw	2	i	8	5
+read	2	7	-61	10	minecraft:soul_sand
+read	2	7	-60	10	minecraft:air
+read	2	7	-59	10	minecraft:air
+biome	2	7	-60	10	minecraft:soul_sand_valley
+draw	2	i	6	3
+draw	2	i	6	4
+draw	2	i	6	4
+draw	2	i	6	1
+chunk	2	0	0	true
+read	2	6	-61	13	minecraft:soul_sand
+read	2	6	-60	13	minecraft:air
+read	2	6	-59	13	minecraft:air
+light	2	sky	6	-60	13	0
+draw	2	i	32	4
+light	2	block	6	-60	13	0
+light	2	block	6	-60	13	0
+light	2	sky	6	-60	13	0
+draw	2	i	8	4
+read	2	6	-61	13	minecraft:soul_sand
+read	2	6	-60	13	minecraft:air
+read	2	6	-59	13	minecraft:air
+biome	2	6	-60	13	minecraft:soul_sand_valley
+draw	2	i	6	0
+draw	2	i	6	2
+draw	2	i	6	5
+draw	2	i	6	5
+chunk	2	0	0	true
+read	2	4	-61	13	minecraft:soul_sand
+read	2	4	-60	13	minecraft:air
+read	2	4	-59	13	minecraft:air
+light	2	sky	4	-60	13	0
+draw	2	i	32	11
+light	2	block	4	-60	13	0
+light	2	block	4	-60	13	0
+light	2	sky	4	-60	13	0
+draw	2	i	8	1
+read	2	4	-61	13	minecraft:soul_sand
+read	2	4	-60	13	minecraft:air
+read	2	4	-59	13	minecraft:air
+biome	2	4	-60	13	minecraft:soul_sand_valley
+draw	2	i	6	1
+draw	2	i	6	1
+draw	2	i	6	0
+draw	2	i	6	5
+chunk	2	0	0	true
+read	2	4	-61	8	minecraft:soul_sand
+read	2	4	-60	8	minecraft:air
+read	2	4	-59	8	minecraft:air
+light	2	sky	4	-60	8	0
+draw	2	i	32	20
+light	2	block	4	-60	8	0
+light	2	block	4	-60	8	0
+light	2	sky	4	-60	8	0
+draw	2	i	8	4
+read	2	4	-61	8	minecraft:soul_sand
+read	2	4	-60	8	minecraft:air
+read	2	4	-59	8	minecraft:air
+biome	2	4	-60	8	minecraft:soul_sand_valley
+draw	2	u	0.080286
+draw	2	i	6	5
+draw	2	i	6	0
+draw	2	i	6	1
+draw	2	i	6	5
+chunk	2	0	0	true
+biome	2	9	-60	7	minecraft:soul_sand_valley
+draw	2	u	0.031418
+draw	2	i	1	0
+read	2	9	-61	7	minecraft:soul_sand
+read	2	9	-60	7	minecraft:air
+read	2	9	-59	7	minecraft:air
+light	2	sky	9	-60	7	0
+draw	2	i	32	11
+light	2	block	9	-60	7	0
+light	2	block	9	-60	7	0
+light	2	sky	9	-60	7	0
+draw	2	i	8	1
+read	2	9	-61	7	minecraft:soul_sand
+read	2	9	-60	7	minecraft:air
+read	2	9	-59	7	minecraft:air
+biome	2	9	-60	7	minecraft:soul_sand_valley
+draw	2	i	6	2
+draw	2	i	6	4
+draw	2	i	6	2
+draw	2	i	6	4
+chunk	2	0	0	true
+read	2	7	-61	5	minecraft:soul_sand
+read	2	7	-60	5	minecraft:air
+read	2	7	-59	5	minecraft:air
+light	2	sky	7	-60	5	0
+draw	2	i	32	31
+light	2	block	7	-60	5	0
+light	2	block	7	-60	5	0
+light	2	sky	7	-60	5	0
+draw	2	i	8	0
+read	2	7	-61	5	minecraft:soul_sand
+read	2	7	-60	5	minecraft:air
+read	2	7	-59	5	minecraft:air
+biome	2	7	-60	5	minecraft:soul_sand_valley
+draw	2	i	6	3
+draw	2	i	6	3
+draw	2	i	6	1
+draw	2	i	6	5
+chunk	2	0	0	true
+read	2	7	-61	1	minecraft:soul_sand
+read	2	7	-60	1	minecraft:air
+read	2	7	-59	1	minecraft:air
+light	2	sky	7	-60	1	0
+draw	2	i	32	9
+light	2	block	7	-60	1	0
+light	2	block	7	-60	1	0
+light	2	sky	7	-60	1	0
+draw	2	i	8	1
+read	2	7	-61	1	minecraft:soul_sand
+read	2	7	-60	1	minecraft:air
+read	2	7	-59	1	minecraft:air
+biome	2	7	-60	1	minecraft:soul_sand_valley
+draw	2	i	6	2
+draw	2	i	6	2
+draw	2	i	6	2
+draw	2	i	6	1
+chunk	2	0	0	true
+read	2	7	-61	2	minecraft:soul_sand
+read	2	7	-60	2	minecraft:air
+read	2	7	-59	2	minecraft:air
+light	2	sky	7	-60	2	0
+draw	2	i	32	20
+light	2	block	7	-60	2	0
+light	2	block	7	-60	2	0
+light	2	sky	7	-60	2	0
+draw	2	i	8	3
+read	2	7	-61	2	minecraft:soul_sand
+read	2	7	-60	2	minecraft:air
+read	2	7	-59	2	minecraft:air
+biome	2	7	-60	2	minecraft:soul_sand_valley
+draw	2	i	6	4
+draw	2	i	6	5
+draw	2	i	6	1
+draw	2	i	6	1
+chunk	2	0	0	true
+read	2	6	-61	2	minecraft:soul_sand
+read	2	6	-60	2	minecraft:air
+read	2	6	-59	2	minecraft:air
+light	2	sky	6	-60	2	0
+draw	2	i	32	13
+light	2	block	6	-60	2	0
+light	2	block	6	-60	2	0
+light	2	sky	6	-60	2	0
+draw	2	i	8	5
+read	2	6	-61	2	minecraft:soul_sand
+read	2	6	-60	2	minecraft:air
+read	2	6	-59	2	minecraft:air
+biome	2	6	-60	2	minecraft:soul_sand_valley
+draw	2	u	0.457317
+draw	2	i	6	4
+draw	2	i	6	5
+draw	2	i	6	3
+draw	2	i	6	0
+chunk	2	0	0	true
+biome	2	3	-60	14	minecraft:soul_sand_valley
+draw	2	u	0.548927
+draw	2	i	1	0
+read	2	3	-61	14	minecraft:soul_sand
+read	2	3	-60	14	minecraft:air
+read	2	3	-59	14	minecraft:air
+draw	2	i	6	2
+draw	2	i	6	1
+draw	2	i	6	3
+draw	2	i	6	3
+chunk	2	0	0	true
+read	2	4	-61	14	minecraft:soul_sand
+read	2	4	-60	14	minecraft:air
+read	2	4	-59	14	minecraft:air
+draw	2	i	6	0
+draw	2	i	6	2
+draw	2	i	6	1
+draw	2	i	6	3
+chunk	2	0	0	true
+read	2	2	-61	12	minecraft:soul_sand
+read	2	2	-60	12	minecraft:air
+read	2	2	-59	12	minecraft:air
+draw	2	i	6	0
+draw	2	i	6	3
+draw	2	i	6	3
+draw	2	i	6	5
+chunk	2	-1	0	true
+read	2	-1	-61	10	minecraft:air
+spawn	2	minecraft:skeleton	4.5	-60	11.5	281.8446
+draw	3	i	16	15
+draw	3	i	16	13
+surface	3	15	13	-61
+draw	3	i	5	1
+read	3	15	-63	13	minecraft:air
+draw	3	u	0.486591
+draw	3	i	6	4
+draw	3	i	6	0
+draw	3	i	6	4
+draw	3	i	6	0
+draw	3	i	6	1
+draw	3	i	6	5
+draw	3	i	6	1
+draw	3	i	6	3
+chunk	3	0	0	true
+biome	3	15	-63	15	minecraft:soul_sand_valley
+draw	3	u	0.070251
+draw	3	i	1	0
+read	3	15	-64	15	minecraft:air
+draw	3	i	6	2
+draw	3	i	6	2
+draw	3	i	6	4
+draw	3	i	6	3
+chunk	3	0	1	true
+read	3	15	-64	16	minecraft:air
+draw	3	i	6	1
+draw	3	i	6	3
+draw	3	i	6	0
+draw	3	i	6	4
+chunk	3	0	0	true
+read	3	13	-64	12	minecraft:air
+draw	3	i	6	1
+draw	3	i	6	2
+draw	3	i	6	3
+draw	3	i	6	0
+chunk	3	0	0	true
+read	3	12	-64	15	minecraft:air
+draw	3	u	0.146735
+draw	3	i	6	2
+draw	3	i	6	1
+draw	3	i	6	2
+draw	3	i	6	0
+chunk	3	1	0	true
+biome	3	16	-63	15	minecraft:soul_sand_valley
+draw	3	u	0.809125
+draw	3	i	1	0
+read	3	16	-64	15	minecraft:air
+draw	3	i	6	1
+draw	3	i	6	4
+draw	3	i	6	4
+draw	3	i	6	2
+chunk	3	0	1	true
+read	3	13	-64	17	minecraft:air
+draw	3	i	6	4
+draw	3	i	6	4
+draw	3	i	6	0
+draw	3	i	6	2
+chunk	3	0	0	true
+read	3	13	-64	15	minecraft:air
+draw	3	i	6	3
+draw	3	i	6	2
+draw	3	i	6	5
+draw	3	i	6	1
+chunk	3	0	1	true
+read	3	14	-64	19	minecraft:air
+draw	3	u	0.497327
+draw	3	i	6	5
+draw	3	i	6	1
+draw	3	i	6	5
+draw	3	i	6	2
+draw	3	i	6	5
+draw	3	i	6	0
+draw	3	i	6	5
+draw	3	i	6	1
+draw	4	i	16	4
+draw	4	i	16	6
+surface	4	4	6	-61
+draw	4	i	5	0
+draw	5	i	16	15
+draw	5	i	16	2
+surface	5	15	2	-61
+draw	5	i	5	1
+read	5	15	-63	2	minecraft:air
+draw	5	u	0.817371
+draw	5	i	6	2
+draw	5	i	6	5
+draw	5	i	6	2
+draw	5	i	6	3
+chunk	5	0	0	true
+biome	5	12	-63	1	minecraft:soul_sand_valley
+draw	5	u	0.894043
+draw	5	i	1	0
+read	5	12	-64	1	minecraft:air
+draw	5	i	6	2
+draw	5	i	6	2
+draw	5	i	6	1
+draw	5	i	6	0
+chunk	5	0	0	true
+read	5	12	-64	2	minecraft:air
+draw	5	i	6	2
+draw	5	i	6	3
+draw	5	i	6	5
+draw	5	i	6	1
+chunk	5	0	0	true
+read	5	11	-64	6	minecraft:air
+draw	5	i	6	2
+draw	5	i	6	2
+draw	5	i	6	3
+draw	5	i	6	0
+chunk	5	0	0	true
+read	5	11	-64	9	minecraft:air
+draw	5	u	0.373836
+draw	5	i	6	3
+draw	5	i	6	0
+draw	5	i	6	0
+draw	5	i	6	1
+draw	5	i	6	4
+draw	5	i	6	2
+draw	5	i	6	1
+draw	5	i	6	2
+draw	5	u	0.125376
+draw	5	i	6	0
+draw	5	i	6	5
+draw	5	i	6	0
+draw	5	i	6	3
+chunk	5	0	-1	true
+biome	5	10	-63	-1	minecraft:soul_sand_valley
+draw	5	u	0.170860
+draw	5	i	1	0
+read	5	10	-64	-1	minecraft:air
+draw	5	i	6	2
+draw	5	i	6	3
+draw	5	i	6	2
+draw	5	i	6	4
+chunk	5	0	-1	true
+read	5	9	-64	-3	minecraft:air
+draw	5	i	6	0
+draw	5	i	6	5
+draw	5	i	6	5
+draw	5	i	6	5
+chunk	5	0	-1	true
+read	5	4	-64	-3	minecraft:air
+draw	5	i	6	1
+draw	5	i	6	0
+draw	5	i	6	3
+draw	5	i	6	2
+chunk	5	0	-1	true
+read	5	5	-64	-2	minecraft:air
+draw	5	i	6	0
+draw	5	i	6	2
+draw	5	i	6	5
+draw	5	i	6	1
+chunk	5	0	0	true
+read	5	3	-64	2	minecraft:air
+draw	6	i	16	5
+draw	6	i	16	11
+surface	6	5	11	-61
+draw	6	i	5	4
+read	6	5	-60	11	minecraft:air
+draw	6	u	0.008953
+draw	6	i	6	0
+draw	6	i	6	1
+draw	6	i	6	2
+draw	6	i	6	4
+chunk	6	0	0	true
+biome	6	4	-60	9	minecraft:soul_sand_valley
+draw	6	u	0.835156
+draw	6	i	1	0
+read	6	4	-61	9	minecraft:soul_sand
+read	6	4	-60	9	minecraft:air
+read	6	4	-59	9	minecraft:air
+draw	6	i	6	5
+draw	6	i	6	5
+draw	6	i	6	5
+draw	6	i	6	1
+chunk	6	0	0	true
+read	6	4	-61	13	minecraft:soul_sand
+read	6	4	-60	13	minecraft:air
+read	6	4	-59	13	minecraft:air
+draw	6	i	6	5
+draw	6	i	6	5
+draw	6	i	6	1
+draw	6	i	6	5
+chunk	6	0	0	true
+read	6	4	-61	9	minecraft:soul_sand
+read	6	4	-60	9	minecraft:air
+read	6	4	-59	9	minecraft:air
+draw	6	i	6	3
+draw	6	i	6	5
+draw	6	i	6	4
+draw	6	i	6	1
+chunk	6	0	0	true
+read	6	2	-61	12	minecraft:soul_sand
+read	6	2	-60	12	minecraft:air
+read	6	2	-59	12	minecraft:air
+draw	6	u	0.626475
+draw	6	i	6	1
+draw	6	i	6	3
+draw	6	i	6	1
+draw	6	i	6	4
+chunk	6	0	0	true
+biome	6	3	-60	8	minecraft:soul_sand_valley
+draw	6	u	0.590581
+draw	6	i	1	0
+read	6	3	-61	8	minecraft:soul_sand
+read	6	3	-60	8	minecraft:air
+read	6	3	-59	8	minecraft:air
+draw	6	i	6	3
+draw	6	i	6	1
+draw	6	i	6	0
+draw	6	i	6	5
+chunk	6	0	0	true
+read	6	5	-61	3	minecraft:soul_sand
+read	6	5	-60	3	minecraft:air
+read	6	5	-59	3	minecraft:air
+draw	6	i	6	0
+draw	6	i	6	0
+draw	6	i	6	0
+draw	6	i	6	5
+chunk	6	0	-1	true
+read	6	5	-61	-2	minecraft:air
+draw	6	i	6	4
+draw	6	i	6	0
+draw	6	i	6	3
+draw	6	i	6	1
+chunk	6	0	0	true
+read	6	9	-61	0	minecraft:soul_sand
+read	6	9	-60	0	minecraft:air
+read	6	9	-59	0	minecraft:air
+draw	6	u	0.891318
+draw	6	i	6	0
+draw	6	i	6	1
+draw	6	i	6	3
+draw	6	i	6	3
+chunk	6	0	0	true
+biome	6	4	-60	11	minecraft:soul_sand_valley
+draw	6	u	0.488197
+draw	6	i	1	0
+read	6	4	-61	11	minecraft:soul_sand
+read	6	4	-60	11	minecraft:air
+read	6	4	-59	11	minecraft:air
+draw	6	i	6	3
+draw	6	i	6	3
+draw	6	i	6	5
+draw	6	i	6	3
+chunk	6	0	0	true
+read	6	4	-61	13	minecraft:soul_sand
+read	6	4	-60	13	minecraft:air
+read	6	4	-59	13	minecraft:air
+draw	6	i	6	3
+draw	6	i	6	1
+draw	6	i	6	2
+draw	6	i	6	3
+chunk	6	0	0	true
+read	6	6	-61	12	minecraft:soul_sand
+read	6	6	-60	12	minecraft:air
+read	6	6	-59	12	minecraft:air
+draw	6	i	6	0
+draw	6	i	6	4
+draw	6	i	6	4
+draw	6	i	6	1
+chunk	6	0	0	true
+read	6	2	-61	15	minecraft:soul_sand
+read	6	2	-60	15	minecraft:air
+read	6	2	-59	15	minecraft:air
+draw	7	i	16	8
+draw	7	i	16	13
+surface	7	8	13	-61
+draw	7	i	5	4
+read	7	8	-60	13	minecraft:air
+draw	7	u	0.771073
+draw	7	i	6	2
+draw	7	i	6	0
+draw	7	i	6	0
+draw	7	i	6	1
+chunk	7	0	0	true
+biome	7	10	-60	12	minecraft:soul_sand_valley
+draw	7	u	0.697093
+draw	7	i	1	0
+read	7	10	-61	12	minecraft:soul_sand
+read	7	10	-60	12	minecraft:air
+read	7	10	-59	12	minecraft:air
+draw	7	i	6	0
+draw	7	i	6	4
+draw	7	i	6	3
+draw	7	i	6	4
+chunk	7	0	0	true
+read	7	6	-61	11	minecraft:soul_sand
+read	7	6	-60	11	minecraft:air
+read	7	6	-59	11	minecraft:air
+draw	7	i	6	1
+draw	7	i	6	5
+draw	7	i	6	0
+draw	7	i	6	3
+chunk	7	0	0	true
+read	7	2	-61	8	minecraft:soul_sand
+read	7	2	-60	8	minecraft:air
+read	7	2	-59	8	minecraft:air
+draw	7	i	6	4
+draw	7	i	6	0
+draw	7	i	6	1
+draw	7	i	6	2
+chunk	7	0	0	true
+read	7	6	-61	7	minecraft:soul_sand
+read	7	6	-60	7	minecraft:air
+read	7	6	-59	7	minecraft:air
+draw	7	u	0.984979
+draw	7	i	6	2
+draw	7	i	6	0
+draw	7	i	6	0
+draw	7	i	6	1
+chunk	7	0	0	true
+biome	7	10	-60	12	minecraft:soul_sand_valley
+draw	7	u	0.040269
+draw	7	i	1	0
+read	7	10	-61	12	minecraft:soul_sand
+read	7	10	-60	12	minecraft:air
+read	7	10	-59	12	minecraft:air
+light	7	sky	10	-60	12	0
+draw	7	i	32	4
+light	7	block	10	-60	12	0
+light	7	block	10	-60	12	0
+light	7	sky	10	-60	12	0
+draw	7	i	8	1
+read	7	10	-61	12	minecraft:soul_sand
+read	7	10	-60	12	minecraft:air
+read	7	10	-59	12	minecraft:air
+biome	7	10	-60	12	minecraft:soul_sand_valley
+draw	7	i	6	1
+draw	7	i	6	5
+draw	7	i	6	1
+draw	7	i	6	5
+chunk	7	0	0	true
+read	7	6	-61	8	minecraft:soul_sand
+read	7	6	-60	8	minecraft:air
+read	7	6	-59	8	minecraft:air
+light	7	sky	6	-60	8	0
+draw	7	i	32	24
+light	7	block	6	-60	8	0
+light	7	block	6	-60	8	0
+light	7	sky	6	-60	8	0
+draw	7	i	8	2
+read	7	6	-61	8	minecraft:soul_sand
+read	7	6	-60	8	minecraft:air
+read	7	6	-59	8	minecraft:air
+biome	7	6	-60	8	minecraft:soul_sand_valley
+draw	7	i	6	0
+draw	7	i	6	0
+draw	7	i	6	3
+draw	7	i	6	1
+chunk	7	0	0	true
+read	7	6	-61	10	minecraft:soul_sand
+read	7	6	-60	10	minecraft:air
+read	7	6	-59	10	minecraft:air
+light	7	sky	6	-60	10	0
+draw	7	i	32	20
+light	7	block	6	-60	10	0
+light	7	block	6	-60	10	0
+light	7	sky	6	-60	10	0
+draw	7	i	8	0
+read	7	6	-61	10	minecraft:soul_sand
+read	7	6	-60	10	minecraft:air
+read	7	6	-59	10	minecraft:air
+biome	7	6	-60	10	minecraft:soul_sand_valley
+draw	7	i	6	2
+draw	7	i	6	5
+draw	7	i	6	2
+draw	7	i	6	4
+chunk	7	0	0	true
+read	7	3	-61	8	minecraft:soul_sand
+read	7	3	-60	8	minecraft:air
+read	7	3	-59	8	minecraft:air
+light	7	sky	3	-60	8	0
+draw	7	i	32	12
+light	7	block	3	-60	8	0
+light	7	block	3	-60	8	0
+light	7	sky	3	-60	8	0
+draw	7	i	8	1
+read	7	3	-61	8	minecraft:soul_sand
+read	7	3	-60	8	minecraft:air
+read	7	3	-59	8	minecraft:air
+biome	7	3	-60	8	minecraft:soul_sand_valley
+draw	7	i	6	2
+draw	7	i	6	1
+draw	7	i	6	1
+draw	7	i	6	3
+chunk	7	0	0	true
+read	7	4	-61	6	minecraft:soul_sand
+read	7	4	-60	6	minecraft:air
+read	7	4	-59	6	minecraft:air
+light	7	sky	4	-60	6	0
+draw	7	i	32	21
+light	7	block	4	-60	6	0
+light	7	block	4	-60	6	0
+light	7	sky	4	-60	6	0
+draw	7	i	8	6
+read	7	4	-61	6	minecraft:soul_sand
+read	7	4	-60	6	minecraft:air
+read	7	4	-59	6	minecraft:air
+biome	7	4	-60	6	minecraft:soul_sand_valley
+draw	7	u	0.441701
+draw	7	i	6	0
+draw	7	i	6	1
+draw	7	i	6	2
+draw	7	i	6	0
+chunk	7	0	0	true
+biome	7	7	-60	15	minecraft:soul_sand_valley
+draw	7	u	0.052407
+draw	7	i	1	0
+read	7	7	-61	15	minecraft:soul_sand
+read	7	7	-60	15	minecraft:air
+read	7	7	-59	15	minecraft:air
+light	7	sky	7	-60	15	0
+draw	7	i	32	19
+light	7	block	7	-60	15	0
+light	7	block	7	-60	15	0
+light	7	sky	7	-60	15	0
+draw	7	i	8	7
+read	7	7	-61	15	minecraft:soul_sand
+read	7	7	-60	15	minecraft:air
+read	7	7	-59	15	minecraft:air
+biome	7	7	-60	15	minecraft:soul_sand_valley
+draw	7	i	6	2
+draw	7	i	6	5
+draw	7	i	6	5
+draw	7	i	6	1
+chunk	7	0	1	true
+read	7	4	-61	19	minecraft:air
+draw	7	i	6	2
+draw	7	i	6	2
+draw	7	i	6	1
+draw	7	i	6	1
+chunk	7	0	1	true
+read	7	4	-61	19	minecraft:air
+draw	7	i	6	1
+draw	7	i	6	2
+draw	7	i	6	3
+draw	7	i	6	0
+chunk	7	0	1	true
+read	7	3	-61	22	minecraft:air
+draw	7	i	6	3
+draw	7	i	6	0
+draw	7	i	6	1
+draw	7	i	6	2
+chunk	7	0	1	true
+read	7	6	-61	21	minecraft:air
+draw	8	i	16	4
+draw	8	i	16	9
+surface	8	4	9	-61
+draw	8	i	5	4
+read	8	4	-60	9	minecraft:air
+draw	8	u	0.249348
+draw	8	i	6	0
+draw	8	i	6	1
+draw	8	i	6	3
+draw	8	i	6	0
+chunk	8	0	0	true
+biome	8	3	-60	12	minecraft:soul_sand_valley
+draw	8	u	0.975008
+draw	8	i	1	0
+read	8	3	-61	12	minecraft:soul_sand
+read	8	3	-60	12	minecraft:air
+read	8	3	-59	12	minecraft:air
+draw	8	i	6	4
+draw	8	i	6	2
+draw	8	i	6	1
+draw	8	i	6	4
+chunk	8	0	0	true
+read	8	5	-61	9	minecraft:soul_sand
+read	8	5	-60	9	minecraft:air
+read	8	5	-59	9	minecraft:air
+draw	8	i	6	5
+draw	8	i	6	5
+draw	8	i	6	0
+draw	8	i	6	4
+chunk	8	0	0	true
+read	8	5	-61	5	minecraft:soul_sand
+read	8	5	-60	5	minecraft:air
+read	8	5	-59	5	minecraft:air
+draw	8	i	6	4
+draw	8	i	6	0
+draw	8	i	6	5
+draw	8	i	6	0
+chunk	8	0	0	true
+read	8	9	-61	10	minecraft:soul_sand
+read	8	9	-60	10	minecraft:air
+read	8	9	-59	10	minecraft:air
+draw	8	u	0.596054
+draw	8	i	6	2
+draw	8	i	6	3
+draw	8	i	6	3
+draw	8	i	6	4
+chunk	8	0	0	true
+biome	8	3	-60	8	minecraft:soul_sand_valley
+draw	8	u	0.942611
+draw	8	i	1	0
+read	8	3	-61	8	minecraft:soul_sand
+read	8	3	-60	8	minecraft:air
+read	8	3	-59	8	minecraft:air
+draw	8	i	6	4
+draw	8	i	6	1
+draw	8	i	6	2
+draw	8	i	6	5
+chunk	8	0	0	true
+read	8	6	-61	5	minecraft:soul_sand
+read	8	6	-60	5	minecraft:air
+read	8	6	-59	5	minecraft:air
+draw	8	i	6	4
+draw	8	i	6	0
+draw	8	i	6	2
+draw	8	i	6	0
+chunk	8	0	0	true
+read	8	10	-61	7	minecraft:soul_sand
+read	8	10	-60	7	minecraft:air
+read	8	10	-59	7	minecraft:air
+draw	8	i	6	1
+draw	8	i	6	0
+draw	8	i	6	5
+draw	8	i	6	2
+chunk	8	0	0	true
+read	8	11	-61	10	minecraft:soul_sand
+read	8	11	-60	10	minecraft:air
+read	8	11	-59	10	minecraft:air
+draw	8	u	0.640470
+draw	8	i	6	5
+draw	8	i	6	3
+draw	8	i	6	2
+draw	8	i	6	4
+chunk	8	0	0	true
+biome	8	6	-60	7	minecraft:soul_sand_valley
+draw	8	u	0.589474
+draw	8	i	1	0
+read	8	6	-61	7	minecraft:soul_sand
+read	8	6	-60	7	minecraft:air
+read	8	6	-59	7	minecraft:air
+draw	8	i	6	1
+draw	8	i	6	2
+draw	8	i	6	3
+draw	8	i	6	2
+chunk	8	0	0	true
+read	8	5	-61	8	minecraft:soul_sand
+read	8	5	-60	8	minecraft:air
+read	8	5	-59	8	minecraft:air
+draw	8	i	6	0
+draw	8	i	6	4
+draw	8	i	6	1
+draw	8	i	6	1
+chunk	8	0	0	true
+read	8	1	-61	8	minecraft:soul_sand
+read	8	1	-60	8	minecraft:air
+read	8	1	-59	8	minecraft:air
+draw	8	i	6	1
+draw	8	i	6	5
+draw	8	i	6	4
+draw	8	i	6	5
+chunk	8	-1	0	true
+read	8	-3	-61	7	minecraft:air
+draw	9	i	16	11
+draw	9	i	16	7
+surface	9	11	7	-61
+draw	9	i	5	0
+draw	10	i	16	14
+draw	10	i	16	5
+surface	10	14	5	-61
+draw	10	i	5	1
+read	10	14	-63	5	minecraft:air
+draw	10	u	0.550876
+draw	10	i	6	0
+draw	10	i	6	4
+draw	10	i	6	0
+draw	10	i	6	0
+chunk	10	0	0	true
+biome	10	10	-63	5	minecraft:soul_sand_valley
+draw	10	u	0.230282
+draw	10	i	1	0
+read	10	10	-64	5	minecraft:air
+draw	10	i	6	2
+draw	10	i	6	1
+draw	10	i	6	0
+draw	10	i	6	5
+chunk	10	0	0	true
+read	10	11	-64	0	minecraft:air
+draw	10	i	6	3
+draw	10	i	6	2
+draw	10	i	6	1
+draw	10	i	6	5
+chunk	10	0	-1	true
+read	10	12	-64	-4	minecraft:air
+draw	10	i	6	0
+draw	10	i	6	0
+draw	10	i	6	3
+draw	10	i	6	2
+chunk	10	0	-1	true
+read	10	12	-64	-3	minecraft:air
+draw	10	i	6	1
+draw	10	i	6	1
+draw	10	i	6	4
+draw	10	i	6	4
+chunk	10	0	-1	true
+read	10	12	-64	-3	minecraft:air
+draw	10	u	0.432296
+draw	10	i	6	5
+draw	10	i	6	5
+draw	10	i	6	2
+draw	10	i	6	2
+chunk	10	0	0	true
+biome	10	14	-63	5	minecraft:soul_sand_valley
+draw	10	u	0.516624
+draw	10	i	1	0
+read	10	14	-64	5	minecraft:air
+draw	10	i	6	3
+draw	10	i	6	5
+draw	10	i	6	0
+draw	10	i	6	0
+chunk	10	0	0	true
+read	10	12	-64	5	minecraft:air
+draw	10	i	6	2
+draw	10	i	6	1
+draw	10	i	6	3
+draw	10	i	6	0
+chunk	10	0	0	true
+read	10	13	-64	8	minecraft:air
+draw	10	i	6	0
+draw	10	i	6	0
+draw	10	i	6	4
+draw	10	i	6	2
+chunk	10	0	0	true
+read	10	13	-64	10	minecraft:air
+draw	10	u	0.267983
+draw	10	i	6	1
+draw	10	i	6	4
+draw	10	i	6	1
+draw	10	i	6	4
+chunk	10	0	0	true
+biome	10	11	-63	2	minecraft:soul_sand_valley
+draw	10	u	0.437641
+draw	10	i	1	0
+read	10	11	-64	2	minecraft:air
+draw	10	i	6	3
+draw	10	i	6	3
+draw	10	i	6	3
+draw	10	i	6	0
+chunk	10	0	0	true
+read	10	11	-64	5	minecraft:air
+draw	10	i	6	3
+draw	10	i	6	3
+draw	10	i	6	2
+draw	10	i	6	3
+chunk	10	0	0	true
+read	10	11	-64	4	minecraft:air
+draw	10	i	6	0
+draw	10	i	6	2
+draw	10	i	6	1
+draw	10	i	6	1
+chunk	10	0	0	true
+read	10	9	-64	4	minecraft:air
+draw	11	i	16	12
+draw	11	i	16	10
+surface	11	12	10	-61
+draw	11	i	5	4
+read	11	12	-60	10	minecraft:air
+draw	11	u	0.813471
+draw	11	i	6	3
+draw	11	i	6	3
+draw	11	i	6	4
+draw	11	i	6	5
+chunk	11	0	0	true
+biome	11	12	-60	9	minecraft:soul_sand_valley
+draw	11	u	0.671333
+draw	11	i	1	0
+read	11	12	-61	9	minecraft:soul_sand
+read	11	12	-60	9	minecraft:air
+read	11	12	-59	9	minecraft:air
+draw	11	i	6	2
+draw	11	i	6	0
+draw	11	i	6	3
+draw	11	i	6	2
+chunk	11	0	0	true
+read	11	14	-61	10	minecraft:soul_sand
+read	11	14	-60	10	minecraft:air
+read	11	14	-59	10	minecraft:air
+draw	11	i	6	0
+draw	11	i	6	0
+draw	11	i	6	1
+draw	11	i	6	0
+chunk	11	0	0	true
+read	11	14	-61	11	minecraft:soul_sand
+read	11	14	-60	11	minecraft:air
+read	11	14	-59	11	minecraft:air
+draw	11	i	6	5
+draw	11	i	6	4
+draw	11	i	6	4
+draw	11	i	6	1
+chunk	11	0	0	true
+read	11	15	-61	14	minecraft:soul_sand
+read	11	15	-60	14	minecraft:air
+read	11	15	-59	14	minecraft:air
+draw	11	u	0.724008
+draw	11	i	6	4
+draw	11	i	6	0
+draw	11	i	6	4
+draw	11	i	6	3
+chunk	11	1	0	true
+biome	11	16	-60	11	minecraft:soul_sand_valley
+draw	11	u	0.537394
+draw	11	i	1	0
+read	11	16	-61	11	minecraft:air
+draw	11	i	6	1
+draw	11	i	6	5
+draw	11	i	6	2
+draw	11	i	6	0
+chunk	11	0	0	true
+read	11	12	-61	13	minecraft:soul_sand
+read	11	12	-60	13	minecraft:air
+read	11	12	-59	13	minecraft:air
+draw	11	i	6	0
+draw	11	i	6	3
+draw	11	i	6	2
+draw	11	i	6	4
+chunk	11	0	0	true
+read	11	9	-61	11	minecraft:soul_sand
+read	11	9	-60	11	minecraft:air
+read	11	9	-59	11	minecraft:air
+draw	11	i	6	5
+draw	11	i	6	1
+draw	11	i	6	4
+draw	11	i	6	4
+chunk	11	0	0	true
+read	11	13	-61	11	minecraft:soul_sand
+read	11	13	-60	11	minecraft:air
+read	11	13	-59	11	minecraft:air
+draw	11	u	0.808329
+draw	11	i	6	5
+draw	11	i	6	1
+draw	11	i	6	1
+draw	11	i	6	0
+chunk	11	1	0	true
+biome	11	16	-60	11	minecraft:soul_sand_valley
+draw	11	u	0.914144
+draw	11	i	1	0
+read	11	16	-61	11	minecraft:air
+draw	11	i	6	4
+draw	11	i	6	5
+draw	11	i	6	3
+draw	11	i	6	3
+chunk	11	0	0	true
+read	11	15	-61	11	minecraft:soul_sand
+read	11	15	-60	11	minecraft:air
+read	11	15	-59	11	minecraft:air
+draw	11	i	6	2
+draw	11	i	6	5
+draw	11	i	6	0
+draw	11	i	6	0
+chunk	11	0	0	true
+read	11	12	-61	11	minecraft:soul_sand
+read	11	12	-60	11	minecraft:air
+read	11	12	-59	11	minecraft:air
+draw	11	i	6	0
+draw	11	i	6	0
+draw	11	i	6	0
+draw	11	i	6	4
+chunk	11	0	0	true
+read	11	12	-61	7	minecraft:soul_sand
+read	11	12	-60	7	minecraft:air
+read	11	12	-59	7	minecraft:air
+draw	12	i	16	2
+draw	12	i	16	5
+surface	12	2	5	-61
+draw	12	i	5	0
+draw	13	i	16	13
+draw	13	i	16	7
+surface	13	13	7	-61
+draw	13	i	5	3
+read	13	13	-61	7	minecraft:soul_sand
+draw	14	i	16	8
+draw	14	i	16	9
+surface	14	8	9	-61
+draw	14	i	5	1
+read	14	8	-63	9	minecraft:air
+draw	14	u	0.932875
+draw	14	i	6	2
+draw	14	i	6	2
+draw	14	i	6	0
+draw	14	i	6	0
+chunk	14	0	0	true
+biome	14	8	-63	9	minecraft:soul_sand_valley
+draw	14	u	0.574516
+draw	14	i	1	0
+read	14	8	-64	9	minecraft:air
+draw	14	i	6	3
+draw	14	i	6	2
+draw	14	i	6	2
+draw	14	i	6	3
+chunk	14	0	0	true
+read	14	9	-64	8	minecraft:air
+draw	14	i	6	4
+draw	14	i	6	2
+draw	14	i	6	2
+draw	14	i	6	2
+chunk	14	0	0	true
+read	14	11	-64	8	minecraft:air
+draw	14	i	6	1
+draw	14	i	6	1
+draw	14	i	6	1
+draw	14	i	6	0
+chunk	14	0	0	true
+read	14	11	-64	9	minecraft:air
+draw	14	u	0.341768
+draw	14	i	6	1
+draw	14	i	6	4
+draw	14	i	6	1
+draw	14	i	6	5
+chunk	14	0	0	true
+biome	14	5	-63	5	minecraft:soul_sand_valley
+draw	14	u	0.561701
+draw	14	i	1	0
+read	14	5	-64	5	minecraft:air
+draw	14	i	6	3
+draw	14	i	6	2
+draw	14	i	6	0
+draw	14	i	6	0
+chunk	14	0	0	true
+read	14	6	-64	5	minecraft:air
+draw	14	i	6	5
+draw	14	i	6	5
+draw	14	i	6	2
+draw	14	i	6	1
+chunk	14	0	0	true
+read	14	6	-64	6	minecraft:air
+draw	14	i	6	2
+draw	14	i	6	0
+draw	14	i	6	5
+draw	14	i	6	4
+chunk	14	0	0	true
+read	14	8	-64	7	minecraft:air
+draw	14	u	0.033709
+draw	14	i	6	2
+draw	14	i	6	0
+draw	14	i	6	5
+draw	14	i	6	2
+chunk	14	0	0	true
+biome	14	10	-63	12	minecraft:soul_sand_valley
+draw	14	u	0.146868
+draw	14	i	1	0
+read	14	10	-64	12	minecraft:air
+draw	14	i	6	1
+draw	14	i	6	4
+draw	14	i	6	1
+draw	14	i	6	1
+chunk	14	0	0	true
+read	14	7	-64	12	minecraft:air
+draw	14	i	6	1
+draw	14	i	6	5
+draw	14	i	6	5
+draw	14	i	6	0
+chunk	14	0	1	true
+read	14	3	-64	17	minecraft:air
+draw	14	i	6	2
+draw	14	i	6	2
+draw	14	i	6	3
+draw	14	i	6	2
+chunk	14	0	1	true
+read	14	3	-64	18	minecraft:air
+draw	14	i	6	3
+draw	14	i	6	4
+draw	14	i	6	1
+draw	14	i	6	3
+chunk	14	0	1	true
+read	14	2	-64	16	minecraft:air
+draw	15	i	16	3
+draw	15	i	16	8
+surface	15	3	8	-61
+draw	15	i	5	0

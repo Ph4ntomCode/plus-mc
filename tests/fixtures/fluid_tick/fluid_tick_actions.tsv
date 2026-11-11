@@ -1,0 +1,26 @@
+# The caller's own work: what a session does between ticks, and the only other
+# thing that touches this queue. `place` is the placement path (`/setblock`, a
+# bucket): the write, then `Level.scheduleTick` when the block is a fluid source,
+# then the fluid half of the neighbour fan-out. `break` is a removal: the read of
+# the block going away, the write to air, then the same fan-out. A tick of 0 is
+# the window before the first tick.
+#
+# run	tick	kind	x	y	z	state
+spread	0	place	0	-60	0	minecraft:water
+fall	0	place	0	-57	0	minecraft:water
+fall_cut	0	place	0	-57	0	minecraft:water
+fall_cut	9	break	0	-57	0	minecraft:air
+two_chunks	0	place	0	-60	2	minecraft:water
+two_chunks	0	place	20	-60	2	minecraft:water
+lava	0	place	0	-60	0	minecraft:lava
+cut	0	place	0	-60	0	minecraft:water
+cut	120	break	0	-60	0	minecraft:air
+waterlog	0	place	0	-60	0	minecraft:water
+resume	0	place	0	-60	0	minecraft:water
+resume	80	break	1	-60	0	minecraft:air
+stale	0	place	0	-60	0	minecraft:water
+stale	2	break	0	-60	0	minecraft:air
+reschedule	0	place	0	-60	0	minecraft:water
+reschedule	2	place	0	-60	0	minecraft:water
+mixed	0	place	0	-60	0	minecraft:water
+mixed	2	place	0	-60	0	minecraft:lava

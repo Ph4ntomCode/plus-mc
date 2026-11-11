@@ -1,0 +1,821 @@
+# Phase 4 milestone D follow-up: the scheduled fluid-tick loop's interaction trace
+# for run 'mixed' (scene 'flat').
+#
+# NOT a vanilla dump (see fluid_tick_meta.tsv): every row is one thing the loop,
+# the rule or the caller did, in order, with the tick it happened in. `action` is
+# the caller's scripted work (see fluid_tick_actions.tsv); `due` is the drain —
+# one row per entry, in the canonical order the region path dispatches them, with
+# the fluid kind the queue stored (the queue's own order is its chunk map's and is
+# deliberately not pinned; see the tool's header); `state` closes each tick with
+# the queue's own clock and pending count; `schedule` is `Level.scheduleTick` with
+# the kind, the delay the rule or the caller asked for and the due tick that
+# follows from it; `read` is a world read the rule makes — the tick asks about
+# its own cell, what is below, what is above and its four sides, and asks each
+# of them once per dispatch, because every later question about that cell is
+# answered from the same read; two `read` rows for one cell in a tick are two
+# entries from the drain asking, not one tick asking twice, and these rows are
+# most of what the trace holds — and `write` a block write (the session's adapter
+# writes nothing when the state is already there, so a settled cell produces no
+# write row);
+# `stale` is an entry that came due and found neither that fluid nor any fluid in
+# the cell.
+#
+# kind	tick	...
+action	0	place	0	-60	0	minecraft:water
+write	0	0	-60	0	minecraft:water
+schedule	0	0	-60	0	water	5	5
+state	1	1	1
+state	2	2	1
+action	2	place	0	-60	0	minecraft:lava
+write	2	0	-60	0	minecraft:lava
+schedule	2	0	-60	0	lava	30	32
+state	3	3	2
+state	4	4	2
+due	5	water	0	-60	0
+stale	5	water	0	-60	0	minecraft:lava
+state	5	5	1
+state	6	6	1
+state	7	7	1
+state	8	8	1
+state	9	9	1
+state	10	10	1
+state	11	11	1
+state	12	12	1
+state	13	13	1
+state	14	14	1
+state	15	15	1
+state	16	16	1
+state	17	17	1
+state	18	18	1
+state	19	19	1
+state	20	20	1
+state	21	21	1
+state	22	22	1
+state	23	23	1
+state	24	24	1
+state	25	25	1
+state	26	26	1
+state	27	27	1
+state	28	28	1
+state	29	29	1
+state	30	30	1
+state	31	31	1
+due	32	lava	0	-60	0
+read	32	0	-60	0	minecraft:lava
+read	32	0	-61	0	minecraft:stone
+read	32	0	-59	0	minecraft:air
+read	32	1	-60	0	minecraft:air
+read	32	-1	-60	0	minecraft:air
+read	32	0	-60	1	minecraft:air
+read	32	0	-60	-1	minecraft:air
+write	32	1	-60	0	minecraft:lava[level=1]
+schedule	32	1	-60	0	lava	30	62
+write	32	-1	-60	0	minecraft:lava[level=1]
+schedule	32	-1	-60	0	lava	30	62
+write	32	0	-60	1	minecraft:lava[level=1]
+schedule	32	0	-60	1	lava	30	62
+write	32	0	-60	-1	minecraft:lava[level=1]
+schedule	32	0	-60	-1	lava	30	62
+schedule	32	0	-60	0	lava	30	62
+state	32	32	5
+state	33	33	5
+state	34	34	5
+state	35	35	5
+state	36	36	5
+state	37	37	5
+state	38	38	5
+state	39	39	5
+state	40	40	5
+state	41	41	5
+state	42	42	5
+state	43	43	5
+state	44	44	5
+state	45	45	5
+state	46	46	5
+state	47	47	5
+state	48	48	5
+state	49	49	5
+state	50	50	5
+state	51	51	5
+state	52	52	5
+state	53	53	5
+state	54	54	5
+state	55	55	5
+state	56	56	5
+state	57	57	5
+state	58	58	5
+state	59	59	5
+state	60	60	5
+state	61	61	5
+due	62	lava	-1	-60	0
+due	62	lava	0	-60	-1
+due	62	lava	0	-60	0
+due	62	lava	0	-60	1
+due	62	lava	1	-60	0
+read	62	-1	-60	0	minecraft:lava[level=1]
+read	62	-1	-61	0	minecraft:stone
+read	62	-1	-59	0	minecraft:air
+read	62	0	-60	0	minecraft:lava
+read	62	-2	-60	0	minecraft:air
+read	62	-1	-60	1	minecraft:air
+read	62	-1	-60	-1	minecraft:air
+write	62	-2	-60	0	minecraft:lava[level=3]
+schedule	62	-2	-60	0	lava	30	92
+write	62	-1	-60	1	minecraft:lava[level=3]
+schedule	62	-1	-60	1	lava	30	92
+write	62	-1	-60	-1	minecraft:lava[level=3]
+schedule	62	-1	-60	-1	lava	30	92
+schedule	62	-1	-60	0	lava	30	92
+read	62	0	-60	-1	minecraft:lava[level=1]
+read	62	0	-61	-1	minecraft:stone
+read	62	0	-59	-1	minecraft:air
+read	62	1	-60	-1	minecraft:air
+read	62	-1	-60	-1	minecraft:lava[level=3]
+read	62	0	-60	0	minecraft:lava
+read	62	0	-60	-2	minecraft:air
+write	62	1	-60	-1	minecraft:lava[level=3]
+schedule	62	1	-60	-1	lava	30	92
+write	62	0	-60	-2	minecraft:lava[level=3]
+schedule	62	0	-60	-2	lava	30	92
+schedule	62	0	-60	-1	lava	30	92
+read	62	0	-60	0	minecraft:lava
+read	62	0	-61	0	minecraft:stone
+read	62	0	-59	0	minecraft:air
+read	62	1	-60	0	minecraft:lava[level=1]
+read	62	-1	-60	0	minecraft:lava[level=1]
+read	62	0	-60	1	minecraft:lava[level=1]
+read	62	0	-60	-1	minecraft:lava[level=1]
+read	62	0	-60	1	minecraft:lava[level=1]
+read	62	0	-61	1	minecraft:stone
+read	62	0	-59	1	minecraft:air
+read	62	1	-60	1	minecraft:air
+read	62	-1	-60	1	minecraft:lava[level=3]
+read	62	0	-60	2	minecraft:air
+read	62	0	-60	0	minecraft:lava
+write	62	1	-60	1	minecraft:lava[level=3]
+schedule	62	1	-60	1	lava	30	92
+write	62	0	-60	2	minecraft:lava[level=3]
+schedule	62	0	-60	2	lava	30	92
+schedule	62	0	-60	1	lava	30	92
+read	62	1	-60	0	minecraft:lava[level=1]
+read	62	1	-61	0	minecraft:stone
+read	62	1	-59	0	minecraft:air
+read	62	2	-60	0	minecraft:air
+read	62	0	-60	0	minecraft:lava
+read	62	1	-60	1	minecraft:lava[level=3]
+read	62	1	-60	-1	minecraft:lava[level=3]
+write	62	2	-60	0	minecraft:lava[level=3]
+schedule	62	2	-60	0	lava	30	92
+schedule	62	1	-60	0	lava	30	92
+state	62	62	12
+state	63	63	12
+state	64	64	12
+state	65	65	12
+state	66	66	12
+state	67	67	12
+state	68	68	12
+state	69	69	12
+state	70	70	12
+state	71	71	12
+state	72	72	12
+state	73	73	12
+state	74	74	12
+state	75	75	12
+state	76	76	12
+state	77	77	12
+state	78	78	12
+state	79	79	12
+state	80	80	12
+state	81	81	12
+state	82	82	12
+state	83	83	12
+state	84	84	12
+state	85	85	12
+state	86	86	12
+state	87	87	12
+state	88	88	12
+state	89	89	12
+state	90	90	12
+state	91	91	12
+due	92	lava	-2	-60	0
+due	92	lava	-1	-60	-1
+due	92	lava	-1	-60	0
+due	92	lava	-1	-60	1
+due	92	lava	0	-60	-2
+due	92	lava	0	-60	-1
+due	92	lava	0	-60	1
+due	92	lava	0	-60	2
+due	92	lava	1	-60	-1
+due	92	lava	1	-60	0
+due	92	lava	1	-60	1
+due	92	lava	2	-60	0
+read	92	-2	-60	0	minecraft:lava[level=3]
+read	92	-2	-61	0	minecraft:stone
+read	92	-2	-59	0	minecraft:air
+read	92	-1	-60	0	minecraft:lava[level=1]
+read	92	-3	-60	0	minecraft:air
+read	92	-2	-60	1	minecraft:air
+read	92	-2	-60	-1	minecraft:air
+write	92	-3	-60	0	minecraft:lava[level=5]
+schedule	92	-3	-60	0	lava	30	122
+write	92	-2	-60	1	minecraft:lava[level=5]
+schedule	92	-2	-60	1	lava	30	122
+write	92	-2	-60	-1	minecraft:lava[level=5]
+schedule	92	-2	-60	-1	lava	30	122
+schedule	92	-2	-60	0	lava	30	122
+read	92	-1	-60	-1	minecraft:lava[level=3]
+read	92	-1	-61	-1	minecraft:stone
+read	92	-1	-59	-1	minecraft:air
+read	92	0	-60	-1	minecraft:lava[level=1]
+read	92	-2	-60	-1	minecraft:lava[level=5]
+read	92	-1	-60	0	minecraft:lava[level=1]
+read	92	-1	-60	-2	minecraft:air
+write	92	-1	-60	-2	minecraft:lava[level=5]
+schedule	92	-1	-60	-2	lava	30	122
+schedule	92	-1	-60	-1	lava	30	122
+read	92	-1	-60	0	minecraft:lava[level=1]
+read	92	-1	-61	0	minecraft:stone
+read	92	-1	-59	0	minecraft:air
+read	92	0	-60	0	minecraft:lava
+read	92	-2	-60	0	minecraft:lava[level=3]
+read	92	-1	-60	1	minecraft:lava[level=3]
+read	92	-1	-60	-1	minecraft:lava[level=3]
+read	92	-1	-60	1	minecraft:lava[level=3]
+read	92	-1	-61	1	minecraft:stone
+read	92	-1	-59	1	minecraft:air
+read	92	0	-60	1	minecraft:lava[level=1]
+read	92	-2	-60	1	minecraft:lava[level=5]
+read	92	-1	-60	2	minecraft:air
+read	92	-1	-60	0	minecraft:lava[level=1]
+write	92	-1	-60	2	minecraft:lava[level=5]
+schedule	92	-1	-60	2	lava	30	122
+schedule	92	-1	-60	1	lava	30	122
+read	92	0	-60	-2	minecraft:lava[level=3]
+read	92	0	-61	-2	minecraft:stone
+read	92	0	-59	-2	minecraft:air
+read	92	1	-60	-2	minecraft:air
+read	92	-1	-60	-2	minecraft:lava[level=5]
+read	92	0	-60	-1	minecraft:lava[level=1]
+read	92	0	-60	-3	minecraft:air
+write	92	1	-60	-2	minecraft:lava[level=5]
+schedule	92	1	-60	-2	lava	30	122
+write	92	0	-60	-3	minecraft:lava[level=5]
+schedule	92	0	-60	-3	lava	30	122
+schedule	92	0	-60	-2	lava	30	122
+read	92	0	-60	-1	minecraft:lava[level=1]
+read	92	0	-61	-1	minecraft:stone
+read	92	0	-59	-1	minecraft:air
+read	92	1	-60	-1	minecraft:lava[level=3]
+read	92	-1	-60	-1	minecraft:lava[level=3]
+read	92	0	-60	0	minecraft:lava
+read	92	0	-60	-2	minecraft:lava[level=3]
+read	92	0	-60	1	minecraft:lava[level=1]
+read	92	0	-61	1	minecraft:stone
+read	92	0	-59	1	minecraft:air
+read	92	1	-60	1	minecraft:lava[level=3]
+read	92	-1	-60	1	minecraft:lava[level=3]
+read	92	0	-60	2	minecraft:lava[level=3]
+read	92	0	-60	0	minecraft:lava
+read	92	0	-60	2	minecraft:lava[level=3]
+read	92	0	-61	2	minecraft:stone
+read	92	0	-59	2	minecraft:air
+read	92	1	-60	2	minecraft:air
+read	92	-1	-60	2	minecraft:lava[level=5]
+read	92	0	-60	3	minecraft:air
+read	92	0	-60	1	minecraft:lava[level=1]
+write	92	1	-60	2	minecraft:lava[level=5]
+schedule	92	1	-60	2	lava	30	122
+write	92	0	-60	3	minecraft:lava[level=5]
+schedule	92	0	-60	3	lava	30	122
+schedule	92	0	-60	2	lava	30	122
+read	92	1	-60	-1	minecraft:lava[level=3]
+read	92	1	-61	-1	minecraft:stone
+read	92	1	-59	-1	minecraft:air
+read	92	2	-60	-1	minecraft:air
+read	92	0	-60	-1	minecraft:lava[level=1]
+read	92	1	-60	0	minecraft:lava[level=1]
+read	92	1	-60	-2	minecraft:lava[level=5]
+write	92	2	-60	-1	minecraft:lava[level=5]
+schedule	92	2	-60	-1	lava	30	122
+schedule	92	1	-60	-1	lava	30	122
+read	92	1	-60	0	minecraft:lava[level=1]
+read	92	1	-61	0	minecraft:stone
+read	92	1	-59	0	minecraft:air
+read	92	2	-60	0	minecraft:lava[level=3]
+read	92	0	-60	0	minecraft:lava
+read	92	1	-60	1	minecraft:lava[level=3]
+read	92	1	-60	-1	minecraft:lava[level=3]
+read	92	1	-60	1	minecraft:lava[level=3]
+read	92	1	-61	1	minecraft:stone
+read	92	1	-59	1	minecraft:air
+read	92	2	-60	1	minecraft:air
+read	92	0	-60	1	minecraft:lava[level=1]
+read	92	1	-60	2	minecraft:lava[level=5]
+read	92	1	-60	0	minecraft:lava[level=1]
+write	92	2	-60	1	minecraft:lava[level=5]
+schedule	92	2	-60	1	lava	30	122
+schedule	92	1	-60	1	lava	30	122
+read	92	2	-60	0	minecraft:lava[level=3]
+read	92	2	-61	0	minecraft:stone
+read	92	2	-59	0	minecraft:air
+read	92	3	-60	0	minecraft:air
+read	92	1	-60	0	minecraft:lava[level=1]
+read	92	2	-60	1	minecraft:lava[level=5]
+read	92	2	-60	-1	minecraft:lava[level=5]
+write	92	3	-60	0	minecraft:lava[level=5]
+schedule	92	3	-60	0	lava	30	122
+schedule	92	2	-60	0	lava	30	122
+state	92	92	20
+state	93	93	20
+state	94	94	20
+state	95	95	20
+state	96	96	20
+state	97	97	20
+state	98	98	20
+state	99	99	20
+state	100	100	20
+state	101	101	20
+state	102	102	20
+state	103	103	20
+state	104	104	20
+state	105	105	20
+state	106	106	20
+state	107	107	20
+state	108	108	20
+state	109	109	20
+state	110	110	20
+state	111	111	20
+state	112	112	20
+state	113	113	20
+state	114	114	20
+state	115	115	20
+state	116	116	20
+state	117	117	20
+state	118	118	20
+state	119	119	20
+state	120	120	20
+state	121	121	20
+due	122	lava	-3	-60	0
+due	122	lava	-2	-60	-1
+due	122	lava	-2	-60	0
+due	122	lava	-2	-60	1
+due	122	lava	-1	-60	-2
+due	122	lava	-1	-60	-1
+due	122	lava	-1	-60	1
+due	122	lava	-1	-60	2
+due	122	lava	0	-60	-3
+due	122	lava	0	-60	-2
+due	122	lava	0	-60	2
+due	122	lava	0	-60	3
+due	122	lava	1	-60	-2
+due	122	lava	1	-60	-1
+due	122	lava	1	-60	1
+due	122	lava	1	-60	2
+due	122	lava	2	-60	-1
+due	122	lava	2	-60	0
+due	122	lava	2	-60	1
+due	122	lava	3	-60	0
+read	122	-3	-60	0	minecraft:lava[level=5]
+read	122	-3	-61	0	minecraft:stone
+read	122	-3	-59	0	minecraft:air
+read	122	-2	-60	0	minecraft:lava[level=3]
+read	122	-4	-60	0	minecraft:air
+read	122	-3	-60	1	minecraft:air
+read	122	-3	-60	-1	minecraft:air
+write	122	-4	-60	0	minecraft:lava[level=7]
+schedule	122	-4	-60	0	lava	30	152
+write	122	-3	-60	1	minecraft:lava[level=7]
+schedule	122	-3	-60	1	lava	30	152
+write	122	-3	-60	-1	minecraft:lava[level=7]
+schedule	122	-3	-60	-1	lava	30	152
+schedule	122	-3	-60	0	lava	30	152
+read	122	-2	-60	-1	minecraft:lava[level=5]
+read	122	-2	-61	-1	minecraft:stone
+read	122	-2	-59	-1	minecraft:air
+read	122	-1	-60	-1	minecraft:lava[level=3]
+read	122	-3	-60	-1	minecraft:lava[level=7]
+read	122	-2	-60	0	minecraft:lava[level=3]
+read	122	-2	-60	-2	minecraft:air
+write	122	-2	-60	-2	minecraft:lava[level=7]
+schedule	122	-2	-60	-2	lava	30	152
+schedule	122	-2	-60	-1	lava	30	152
+read	122	-2	-60	0	minecraft:lava[level=3]
+read	122	-2	-61	0	minecraft:stone
+read	122	-2	-59	0	minecraft:air
+read	122	-1	-60	0	minecraft:lava[level=1]
+read	122	-3	-60	0	minecraft:lava[level=5]
+read	122	-2	-60	1	minecraft:lava[level=5]
+read	122	-2	-60	-1	minecraft:lava[level=5]
+read	122	-2	-60	1	minecraft:lava[level=5]
+read	122	-2	-61	1	minecraft:stone
+read	122	-2	-59	1	minecraft:air
+read	122	-1	-60	1	minecraft:lava[level=3]
+read	122	-3	-60	1	minecraft:lava[level=7]
+read	122	-2	-60	2	minecraft:air
+read	122	-2	-60	0	minecraft:lava[level=3]
+write	122	-2	-60	2	minecraft:lava[level=7]
+schedule	122	-2	-60	2	lava	30	152
+schedule	122	-2	-60	1	lava	30	152
+read	122	-1	-60	-2	minecraft:lava[level=5]
+read	122	-1	-61	-2	minecraft:stone
+read	122	-1	-59	-2	minecraft:air
+read	122	0	-60	-2	minecraft:lava[level=3]
+read	122	-2	-60	-2	minecraft:lava[level=7]
+read	122	-1	-60	-1	minecraft:lava[level=3]
+read	122	-1	-60	-3	minecraft:air
+write	122	-1	-60	-3	minecraft:lava[level=7]
+schedule	122	-1	-60	-3	lava	30	152
+schedule	122	-1	-60	-2	lava	30	152
+read	122	-1	-60	-1	minecraft:lava[level=3]
+read	122	-1	-61	-1	minecraft:stone
+read	122	-1	-59	-1	minecraft:air
+read	122	0	-60	-1	minecraft:lava[level=1]
+read	122	-2	-60	-1	minecraft:lava[level=5]
+read	122	-1	-60	0	minecraft:lava[level=1]
+read	122	-1	-60	-2	minecraft:lava[level=5]
+read	122	-1	-60	1	minecraft:lava[level=3]
+read	122	-1	-61	1	minecraft:stone
+read	122	-1	-59	1	minecraft:air
+read	122	0	-60	1	minecraft:lava[level=1]
+read	122	-2	-60	1	minecraft:lava[level=5]
+read	122	-1	-60	2	minecraft:lava[level=5]
+read	122	-1	-60	0	minecraft:lava[level=1]
+read	122	-1	-60	2	minecraft:lava[level=5]
+read	122	-1	-61	2	minecraft:stone
+read	122	-1	-59	2	minecraft:air
+read	122	0	-60	2	minecraft:lava[level=3]
+read	122	-2	-60	2	minecraft:lava[level=7]
+read	122	-1	-60	3	minecraft:air
+read	122	-1	-60	1	minecraft:lava[level=3]
+write	122	-1	-60	3	minecraft:lava[level=7]
+schedule	122	-1	-60	3	lava	30	152
+schedule	122	-1	-60	2	lava	30	152
+read	122	0	-60	-3	minecraft:lava[level=5]
+read	122	0	-61	-3	minecraft:stone
+read	122	0	-59	-3	minecraft:air
+read	122	1	-60	-3	minecraft:air
+read	122	-1	-60	-3	minecraft:lava[level=7]
+read	122	0	-60	-2	minecraft:lava[level=3]
+read	122	0	-60	-4	minecraft:air
+write	122	1	-60	-3	minecraft:lava[level=7]
+schedule	122	1	-60	-3	lava	30	152
+write	122	0	-60	-4	minecraft:lava[level=7]
+schedule	122	0	-60	-4	lava	30	152
+schedule	122	0	-60	-3	lava	30	152
+read	122	0	-60	-2	minecraft:lava[level=3]
+read	122	0	-61	-2	minecraft:stone
+read	122	0	-59	-2	minecraft:air
+read	122	1	-60	-2	minecraft:lava[level=5]
+read	122	-1	-60	-2	minecraft:lava[level=5]
+read	122	0	-60	-1	minecraft:lava[level=1]
+read	122	0	-60	-3	minecraft:lava[level=5]
+read	122	0	-60	2	minecraft:lava[level=3]
+read	122	0	-61	2	minecraft:stone
+read	122	0	-59	2	minecraft:air
+read	122	1	-60	2	minecraft:lava[level=5]
+read	122	-1	-60	2	minecraft:lava[level=5]
+read	122	0	-60	3	minecraft:lava[level=5]
+read	122	0	-60	1	minecraft:lava[level=1]
+read	122	0	-60	3	minecraft:lava[level=5]
+read	122	0	-61	3	minecraft:stone
+read	122	0	-59	3	minecraft:air
+read	122	1	-60	3	minecraft:air
+read	122	-1	-60	3	minecraft:lava[level=7]
+read	122	0	-60	4	minecraft:air
+read	122	0	-60	2	minecraft:lava[level=3]
+write	122	1	-60	3	minecraft:lava[level=7]
+schedule	122	1	-60	3	lava	30	152
+write	122	0	-60	4	minecraft:lava[level=7]
+schedule	122	0	-60	4	lava	30	152
+schedule	122	0	-60	3	lava	30	152
+read	122	1	-60	-2	minecraft:lava[level=5]
+read	122	1	-61	-2	minecraft:stone
+read	122	1	-59	-2	minecraft:air
+read	122	2	-60	-2	minecraft:air
+read	122	0	-60	-2	minecraft:lava[level=3]
+read	122	1	-60	-1	minecraft:lava[level=3]
+read	122	1	-60	-3	minecraft:lava[level=7]
+write	122	2	-60	-2	minecraft:lava[level=7]
+schedule	122	2	-60	-2	lava	30	152
+schedule	122	1	-60	-2	lava	30	152
+read	122	1	-60	-1	minecraft:lava[level=3]
+read	122	1	-61	-1	minecraft:stone
+read	122	1	-59	-1	minecraft:air
+read	122	2	-60	-1	minecraft:lava[level=5]
+read	122	0	-60	-1	minecraft:lava[level=1]
+read	122	1	-60	0	minecraft:lava[level=1]
+read	122	1	-60	-2	minecraft:lava[level=5]
+read	122	1	-60	1	minecraft:lava[level=3]
+read	122	1	-61	1	minecraft:stone
+read	122	1	-59	1	minecraft:air
+read	122	2	-60	1	minecraft:lava[level=5]
+read	122	0	-60	1	minecraft:lava[level=1]
+read	122	1	-60	2	minecraft:lava[level=5]
+read	122	1	-60	0	minecraft:lava[level=1]
+read	122	1	-60	2	minecraft:lava[level=5]
+read	122	1	-61	2	minecraft:stone
+read	122	1	-59	2	minecraft:air
+read	122	2	-60	2	minecraft:air
+read	122	0	-60	2	minecraft:lava[level=3]
+read	122	1	-60	3	minecraft:lava[level=7]
+read	122	1	-60	1	minecraft:lava[level=3]
+write	122	2	-60	2	minecraft:lava[level=7]
+schedule	122	2	-60	2	lava	30	152
+schedule	122	1	-60	2	lava	30	152
+read	122	2	-60	-1	minecraft:lava[level=5]
+read	122	2	-61	-1	minecraft:stone
+read	122	2	-59	-1	minecraft:air
+read	122	3	-60	-1	minecraft:air
+read	122	1	-60	-1	minecraft:lava[level=3]
+read	122	2	-60	0	minecraft:lava[level=3]
+read	122	2	-60	-2	minecraft:lava[level=7]
+write	122	3	-60	-1	minecraft:lava[level=7]
+schedule	122	3	-60	-1	lava	30	152
+schedule	122	2	-60	-1	lava	30	152
+read	122	2	-60	0	minecraft:lava[level=3]
+read	122	2	-61	0	minecraft:stone
+read	122	2	-59	0	minecraft:air
+read	122	3	-60	0	minecraft:lava[level=5]
+read	122	1	-60	0	minecraft:lava[level=1]
+read	122	2	-60	1	minecraft:lava[level=5]
+read	122	2	-60	-1	minecraft:lava[level=5]
+read	122	2	-60	1	minecraft:lava[level=5]
+read	122	2	-61	1	minecraft:stone
+read	122	2	-59	1	minecraft:air
+read	122	3	-60	1	minecraft:air
+read	122	1	-60	1	minecraft:lava[level=3]
+read	122	2	-60	2	minecraft:lava[level=7]
+read	122	2	-60	0	minecraft:lava[level=3]
+write	122	3	-60	1	minecraft:lava[level=7]
+schedule	122	3	-60	1	lava	30	152
+schedule	122	2	-60	1	lava	30	152
+read	122	3	-60	0	minecraft:lava[level=5]
+read	122	3	-61	0	minecraft:stone
+read	122	3	-59	0	minecraft:air
+read	122	4	-60	0	minecraft:air
+read	122	2	-60	0	minecraft:lava[level=3]
+read	122	3	-60	1	minecraft:lava[level=7]
+read	122	3	-60	-1	minecraft:lava[level=7]
+write	122	4	-60	0	minecraft:lava[level=7]
+schedule	122	4	-60	0	lava	30	152
+schedule	122	3	-60	0	lava	30	152
+state	122	122	28
+state	123	123	28
+state	124	124	28
+state	125	125	28
+state	126	126	28
+state	127	127	28
+state	128	128	28
+state	129	129	28
+state	130	130	28
+state	131	131	28
+state	132	132	28
+state	133	133	28
+state	134	134	28
+state	135	135	28
+state	136	136	28
+state	137	137	28
+state	138	138	28
+state	139	139	28
+state	140	140	28
+state	141	141	28
+state	142	142	28
+state	143	143	28
+state	144	144	28
+state	145	145	28
+state	146	146	28
+state	147	147	28
+state	148	148	28
+state	149	149	28
+state	150	150	28
+state	151	151	28
+due	152	lava	-4	-60	0
+due	152	lava	-3	-60	-1
+due	152	lava	-3	-60	0
+due	152	lava	-3	-60	1
+due	152	lava	-2	-60	-2
+due	152	lava	-2	-60	-1
+due	152	lava	-2	-60	1
+due	152	lava	-2	-60	2
+due	152	lava	-1	-60	-3
+due	152	lava	-1	-60	-2
+due	152	lava	-1	-60	2
+due	152	lava	-1	-60	3
+due	152	lava	0	-60	-4
+due	152	lava	0	-60	-3
+due	152	lava	0	-60	3
+due	152	lava	0	-60	4
+due	152	lava	1	-60	-3
+due	152	lava	1	-60	-2
+due	152	lava	1	-60	2
+due	152	lava	1	-60	3
+due	152	lava	2	-60	-2
+due	152	lava	2	-60	-1
+due	152	lava	2	-60	1
+due	152	lava	2	-60	2
+due	152	lava	3	-60	-1
+due	152	lava	3	-60	0
+due	152	lava	3	-60	1
+due	152	lava	4	-60	0
+read	152	-4	-60	0	minecraft:lava[level=7]
+read	152	-4	-61	0	minecraft:stone
+read	152	-4	-59	0	minecraft:air
+read	152	-3	-60	0	minecraft:lava[level=5]
+read	152	-5	-60	0	minecraft:air
+read	152	-4	-60	1	minecraft:air
+read	152	-4	-60	-1	minecraft:air
+read	152	-3	-60	-1	minecraft:lava[level=7]
+read	152	-3	-61	-1	minecraft:stone
+read	152	-3	-59	-1	minecraft:air
+read	152	-2	-60	-1	minecraft:lava[level=5]
+read	152	-4	-60	-1	minecraft:air
+read	152	-3	-60	0	minecraft:lava[level=5]
+read	152	-3	-60	-2	minecraft:air
+read	152	-3	-60	0	minecraft:lava[level=5]
+read	152	-3	-61	0	minecraft:stone
+read	152	-3	-59	0	minecraft:air
+read	152	-2	-60	0	minecraft:lava[level=3]
+read	152	-4	-60	0	minecraft:lava[level=7]
+read	152	-3	-60	1	minecraft:lava[level=7]
+read	152	-3	-60	-1	minecraft:lava[level=7]
+read	152	-3	-60	1	minecraft:lava[level=7]
+read	152	-3	-61	1	minecraft:stone
+read	152	-3	-59	1	minecraft:air
+read	152	-2	-60	1	minecraft:lava[level=5]
+read	152	-4	-60	1	minecraft:air
+read	152	-3	-60	2	minecraft:air
+read	152	-3	-60	0	minecraft:lava[level=5]
+read	152	-2	-60	-2	minecraft:lava[level=7]
+read	152	-2	-61	-2	minecraft:stone
+read	152	-2	-59	-2	minecraft:air
+read	152	-1	-60	-2	minecraft:lava[level=5]
+read	152	-3	-60	-2	minecraft:air
+read	152	-2	-60	-1	minecraft:lava[level=5]
+read	152	-2	-60	-3	minecraft:air
+read	152	-2	-60	-1	minecraft:lava[level=5]
+read	152	-2	-61	-1	minecraft:stone
+read	152	-2	-59	-1	minecraft:air
+read	152	-1	-60	-1	minecraft:lava[level=3]
+read	152	-3	-60	-1	minecraft:lava[level=7]
+read	152	-2	-60	0	minecraft:lava[level=3]
+read	152	-2	-60	-2	minecraft:lava[level=7]
+read	152	-2	-60	1	minecraft:lava[level=5]
+read	152	-2	-61	1	minecraft:stone
+read	152	-2	-59	1	minecraft:air
+read	152	-1	-60	1	minecraft:lava[level=3]
+read	152	-3	-60	1	minecraft:lava[level=7]
+read	152	-2	-60	2	minecraft:lava[level=7]
+read	152	-2	-60	0	minecraft:lava[level=3]
+read	152	-2	-60	2	minecraft:lava[level=7]
+read	152	-2	-61	2	minecraft:stone
+read	152	-2	-59	2	minecraft:air
+read	152	-1	-60	2	minecraft:lava[level=5]
+read	152	-3	-60	2	minecraft:air
+read	152	-2	-60	3	minecraft:air
+read	152	-2	-60	1	minecraft:lava[level=5]
+read	152	-1	-60	-3	minecraft:lava[level=7]
+read	152	-1	-61	-3	minecraft:stone
+read	152	-1	-59	-3	minecraft:air
+read	152	0	-60	-3	minecraft:lava[level=5]
+read	152	-2	-60	-3	minecraft:air
+read	152	-1	-60	-2	minecraft:lava[level=5]
+read	152	-1	-60	-4	minecraft:air
+read	152	-1	-60	-2	minecraft:lava[level=5]
+read	152	-1	-61	-2	minecraft:stone
+read	152	-1	-59	-2	minecraft:air
+read	152	0	-60	-2	minecraft:lava[level=3]
+read	152	-2	-60	-2	minecraft:lava[level=7]
+read	152	-1	-60	-1	minecraft:lava[level=3]
+read	152	-1	-60	-3	minecraft:lava[level=7]
+read	152	-1	-60	2	minecraft:lava[level=5]
+read	152	-1	-61	2	minecraft:stone
+read	152	-1	-59	2	minecraft:air
+read	152	0	-60	2	minecraft:lava[level=3]
+read	152	-2	-60	2	minecraft:lava[level=7]
+read	152	-1	-60	3	minecraft:lava[level=7]
+read	152	-1	-60	1	minecraft:lava[level=3]
+read	152	-1	-60	3	minecraft:lava[level=7]
+read	152	-1	-61	3	minecraft:stone
+read	152	-1	-59	3	minecraft:air
+read	152	0	-60	3	minecraft:lava[level=5]
+read	152	-2	-60	3	minecraft:air
+read	152	-1	-60	4	minecraft:air
+read	152	-1	-60	2	minecraft:lava[level=5]
+read	152	0	-60	-4	minecraft:lava[level=7]
+read	152	0	-61	-4	minecraft:stone
+read	152	0	-59	-4	minecraft:air
+read	152	1	-60	-4	minecraft:air
+read	152	-1	-60	-4	minecraft:air
+read	152	0	-60	-3	minecraft:lava[level=5]
+read	152	0	-60	-5	minecraft:air
+read	152	0	-60	-3	minecraft:lava[level=5]
+read	152	0	-61	-3	minecraft:stone
+read	152	0	-59	-3	minecraft:air
+read	152	1	-60	-3	minecraft:lava[level=7]
+read	152	-1	-60	-3	minecraft:lava[level=7]
+read	152	0	-60	-2	minecraft:lava[level=3]
+read	152	0	-60	-4	minecraft:lava[level=7]
+read	152	0	-60	3	minecraft:lava[level=5]
+read	152	0	-61	3	minecraft:stone
+read	152	0	-59	3	minecraft:air
+read	152	1	-60	3	minecraft:lava[level=7]
+read	152	-1	-60	3	minecraft:lava[level=7]
+read	152	0	-60	4	minecraft:lava[level=7]
+read	152	0	-60	2	minecraft:lava[level=3]
+read	152	0	-60	4	minecraft:lava[level=7]
+read	152	0	-61	4	minecraft:stone
+read	152	0	-59	4	minecraft:air
+read	152	1	-60	4	minecraft:air
+read	152	-1	-60	4	minecraft:air
+read	152	0	-60	5	minecraft:air
+read	152	0	-60	3	minecraft:lava[level=5]
+read	152	1	-60	-3	minecraft:lava[level=7]
+read	152	1	-61	-3	minecraft:stone
+read	152	1	-59	-3	minecraft:air
+read	152	2	-60	-3	minecraft:air
+read	152	0	-60	-3	minecraft:lava[level=5]
+read	152	1	-60	-2	minecraft:lava[level=5]
+read	152	1	-60	-4	minecraft:air
+read	152	1	-60	-2	minecraft:lava[level=5]
+read	152	1	-61	-2	minecraft:stone
+read	152	1	-59	-2	minecraft:air
+read	152	2	-60	-2	minecraft:lava[level=7]
+read	152	0	-60	-2	minecraft:lava[level=3]
+read	152	1	-60	-1	minecraft:lava[level=3]
+read	152	1	-60	-3	minecraft:lava[level=7]
+read	152	1	-60	2	minecraft:lava[level=5]
+read	152	1	-61	2	minecraft:stone
+read	152	1	-59	2	minecraft:air
+read	152	2	-60	2	minecraft:lava[level=7]
+read	152	0	-60	2	minecraft:lava[level=3]
+read	152	1	-60	3	minecraft:lava[level=7]
+read	152	1	-60	1	minecraft:lava[level=3]
+read	152	1	-60	3	minecraft:lava[level=7]
+read	152	1	-61	3	minecraft:stone
+read	152	1	-59	3	minecraft:air
+read	152	2	-60	3	minecraft:air
+read	152	0	-60	3	minecraft:lava[level=5]
+read	152	1	-60	4	minecraft:air
+read	152	1	-60	2	minecraft:lava[level=5]
+read	152	2	-60	-2	minecraft:lava[level=7]
+read	152	2	-61	-2	minecraft:stone
+read	152	2	-59	-2	minecraft:air
+read	152	3	-60	-2	minecraft:air
+read	152	1	-60	-2	minecraft:lava[level=5]
+read	152	2	-60	-1	minecraft:lava[level=5]
+read	152	2	-60	-3	minecraft:air
+read	152	2	-60	-1	minecraft:lava[level=5]
+read	152	2	-61	-1	minecraft:stone
+read	152	2	-59	-1	minecraft:air
+read	152	3	-60	-1	minecraft:lava[level=7]
+read	152	1	-60	-1	minecraft:lava[level=3]
+read	152	2	-60	0	minecraft:lava[level=3]
+read	152	2	-60	-2	minecraft:lava[level=7]
+read	152	2	-60	1	minecraft:lava[level=5]
+read	152	2	-61	1	minecraft:stone
+read	152	2	-59	1	minecraft:air
+read	152	3	-60	1	minecraft:lava[level=7]
+read	152	1	-60	1	minecraft:lava[level=3]
+read	152	2	-60	2	minecraft:lava[level=7]
+read	152	2	-60	0	minecraft:lava[level=3]
+read	152	2	-60	2	minecraft:lava[level=7]
+read	152	2	-61	2	minecraft:stone
+read	152	2	-59	2	minecraft:air
+read	152	3	-60	2	minecraft:air
+read	152	1	-60	2	minecraft:lava[level=5]
+read	152	2	-60	3	minecraft:air
+read	152	2	-60	1	minecraft:lava[level=5]
+read	152	3	-60	-1	minecraft:lava[level=7]
+read	152	3	-61	-1	minecraft:stone
+read	152	3	-59	-1	minecraft:air
+read	152	4	-60	-1	minecraft:air
+read	152	2	-60	-1	minecraft:lava[level=5]
+read	152	3	-60	0	minecraft:lava[level=5]
+read	152	3	-60	-2	minecraft:air
+read	152	3	-60	0	minecraft:lava[level=5]
+read	152	3	-61	0	minecraft:stone
+read	152	3	-59	0	minecraft:air
+read	152	4	-60	0	minecraft:lava[level=7]
+read	152	2	-60	0	minecraft:lava[level=3]
+read	152	3	-60	1	minecraft:lava[level=7]
+read	152	3	-60	-1	minecraft:lava[level=7]
+read	152	3	-60	1	minecraft:lava[level=7]
+read	152	3	-61	1	minecraft:stone
+read	152	3	-59	1	minecraft:air
+read	152	4	-60	1	minecraft:air
+read	152	2	-60	1	minecraft:lava[level=5]
+read	152	3	-60	2	minecraft:air
+read	152	3	-60	0	minecraft:lava[level=5]
+read	152	4	-60	0	minecraft:lava[level=7]
+read	152	4	-61	0	minecraft:stone
+read	152	4	-59	0	minecraft:air
+read	152	5	-60	0	minecraft:air
+read	152	3	-60	0	minecraft:lava[level=5]
+read	152	4	-60	1	minecraft:air
+read	152	4	-60	-1	minecraft:air
+state	152	152	0
+state	153	153	0
+state	154	154	0
+state	155	155	0
+state	156	156	0
+state	157	157	0

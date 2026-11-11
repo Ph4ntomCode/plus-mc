@@ -1,0 +1,31 @@
+interface server {
+    use player.{player};
+    use %world.{%world};
+    use common.{game-mode};
+
+    enum difficulty {
+        peaceful,
+        easy,
+        normal,
+        hard,
+    }
+
+    resource server {
+        get-difficulty: func() -> difficulty;
+        get-motd: func() -> string;
+        get-player-count: func() -> u32;
+        get-all-players: func() -> list<player>;
+        get-player-count-in-world: func(world-ref: %world) -> u32;
+        get-players-in-world: func(world-ref: %world) -> list<player>;
+        get-max-players: func() -> u32;
+        is-online-mode: func() -> bool;
+        has-whitelist: func() -> bool;
+        get-view-distance: func() -> u8;
+        get-simulation-distance: func() -> u8;
+        get-default-gamemode: func() -> game-mode;
+        get-player-by-name: func(name: string) -> option<player>;
+        get-world-by-name: func(name: string) -> option<%world>;
+        has-world: func(name: string) -> bool;
+        broadcast: async func(message: string);
+    }
+}

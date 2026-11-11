@@ -1,0 +1,106 @@
+# Phase 4 milestone D follow-up: the scheduled fluid-tick loop's interaction trace
+# for run 'fall_cut' (scene 'shaft').
+#
+# NOT a vanilla dump (see fluid_tick_meta.tsv): every row is one thing the loop,
+# the rule or the caller did, in order, with the tick it happened in. `action` is
+# the caller's scripted work (see fluid_tick_actions.tsv); `due` is the drain —
+# one row per entry, in the canonical order the region path dispatches them, with
+# the fluid kind the queue stored (the queue's own order is its chunk map's and is
+# deliberately not pinned; see the tool's header); `state` closes each tick with
+# the queue's own clock and pending count; `schedule` is `Level.scheduleTick` with
+# the kind, the delay the rule or the caller asked for and the due tick that
+# follows from it; `read` is a world read the rule makes — the tick asks about
+# its own cell, what is below, what is above and its four sides, and asks each
+# of them once per dispatch, because every later question about that cell is
+# answered from the same read; two `read` rows for one cell in a tick are two
+# entries from the drain asking, not one tick asking twice, and these rows are
+# most of what the trace holds — and `write` a block write (the session's adapter
+# writes nothing when the state is already there, so a settled cell produces no
+# write row);
+# `stale` is an entry that came due and found neither that fluid nor any fluid in
+# the cell.
+#
+# kind	tick	...
+action	0	place	0	-57	0	minecraft:water
+write	0	0	-57	0	minecraft:water
+schedule	0	0	-57	0	water	5	5
+state	1	1	1
+state	2	2	1
+state	3	3	1
+state	4	4	1
+due	5	water	0	-57	0
+read	5	0	-57	0	minecraft:water
+read	5	0	-58	0	minecraft:air
+read	5	0	-56	0	minecraft:air
+read	5	1	-57	0	minecraft:stone
+read	5	-1	-57	0	minecraft:stone
+read	5	0	-57	1	minecraft:stone
+read	5	0	-57	-1	minecraft:stone
+write	5	0	-58	0	minecraft:water[level=8]
+schedule	5	0	-58	0	water	5	10
+schedule	5	0	-57	0	water	5	10
+state	5	5	2
+state	6	6	2
+state	7	7	2
+state	8	8	2
+state	9	9	2
+action	9	break	0	-57	0	minecraft:air
+read	9	0	-57	0	minecraft:water
+write	9	0	-57	0	minecraft:air
+schedule	9	0	-58	0	water	5	14
+due	10	water	0	-58	0
+due	10	water	0	-57	0
+read	10	0	-58	0	minecraft:water[level=8]
+read	10	0	-59	0	minecraft:air
+read	10	0	-57	0	minecraft:air
+read	10	1	-58	0	minecraft:stone
+read	10	-1	-58	0	minecraft:stone
+read	10	0	-58	1	minecraft:stone
+read	10	0	-58	-1	minecraft:stone
+write	10	0	-59	0	minecraft:water[level=8]
+schedule	10	0	-59	0	water	5	15
+write	10	0	-58	0	minecraft:air
+schedule	10	0	-59	0	water	5	15
+stale	10	water	0	-57	0	minecraft:air
+state	10	10	1
+state	11	11	1
+state	12	12	1
+state	13	13	1
+state	14	14	1
+due	15	water	0	-59	0
+read	15	0	-59	0	minecraft:water[level=8]
+read	15	0	-60	0	minecraft:air
+read	15	0	-58	0	minecraft:air
+read	15	1	-59	0	minecraft:stone
+read	15	-1	-59	0	minecraft:stone
+read	15	0	-59	1	minecraft:stone
+read	15	0	-59	-1	minecraft:stone
+write	15	0	-60	0	minecraft:water[level=8]
+schedule	15	0	-60	0	water	5	20
+write	15	0	-59	0	minecraft:air
+schedule	15	0	-60	0	water	5	20
+state	15	15	1
+state	16	16	1
+state	17	17	1
+state	18	18	1
+state	19	19	1
+due	20	water	0	-60	0
+read	20	0	-60	0	minecraft:water[level=8]
+read	20	0	-61	0	minecraft:stone
+read	20	0	-59	0	minecraft:air
+read	20	1	-60	0	minecraft:air
+read	20	-1	-60	0	minecraft:air
+read	20	0	-60	1	minecraft:air
+read	20	0	-60	-1	minecraft:air
+write	20	0	-60	0	minecraft:air
+state	20	20	0
+state	21	21	0
+state	22	22	0
+state	23	23	0
+state	24	24	0
+state	25	25	0
+state	26	26	0
+state	27	27	0
+state	28	28	0
+state	29	29	0
+state	30	30	0

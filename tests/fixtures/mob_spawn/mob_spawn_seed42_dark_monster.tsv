@@ -1,0 +1,1500 @@
+# Phase 4 milestone C: the natural spawner's interaction trace for run 'dark_monster' (scene 'dark_platform' category 'monster'), seed 42.
+#
+# NOT a vanilla dump (see mob_spawn_meta.tsv): every row is one interaction the pass had
+# with the level or one draw it took, in order, and the column after the kind is the
+# tick it happened in — the run is `ticks` passes over one chunk through one state,
+# so the tick boundary is where one pass's rows end and the next begin. `surface` is the
+# column the attempt started from (`getHeight(WORLD_SURFACE, x, z)`); `chunk` is
+# `canSpawnEntitiesInChunk`; `read`, `light` and `biome` are the placement rule and
+# cost predicates' own queries, so the order the gates consult the world is visible;
+# `draw i` is a `nextInt(bound)` (the columns are the pass's own chain: 16, 16, the
+# surface span, then the group and walk draws) and `draw u` a `nextFloat`. `spawn` rows
+# are the mobs that tick's attempt created, in the order the pass made them — the pass
+# returns them at the end of the tick, so they follow that tick's draws rather than
+# interleaving with them.
+#
+# kind	tick	...
+draw	0	i	16	11
+draw	0	i	16	0
+surface	0	11	0	-61
+draw	0	i	5	3
+read	0	11	-61	0	minecraft:stone
+draw	1	i	16	0
+draw	1	i	16	4
+surface	1	0	4	-61
+draw	1	i	5	0
+draw	2	i	16	4
+draw	2	i	16	11
+surface	2	4	11	-61
+draw	2	i	5	4
+read	2	4	-60	11	minecraft:air
+draw	2	u	0.091325
+draw	2	i	6	2
+draw	2	i	6	2
+draw	2	i	6	0
+draw	2	i	6	0
+chunk	2	0	0	true
+biome	2	4	-60	11	minecraft:plains
+draw	2	u	0.275748
+draw	2	i	1	0
+read	2	4	-61	11	minecraft:stone
+read	2	4	-60	11	minecraft:air
+read	2	4	-59	11	minecraft:air
+light	2	sky	4	-60	11	0
+draw	2	i	32	14
+light	2	block	4	-60	11	0
+light	2	block	4	-60	11	0
+light	2	sky	4	-60	11	0
+draw	2	i	8	6
+read	2	4	-61	11	minecraft:stone
+read	2	4	-60	11	minecraft:air
+read	2	4	-59	11	minecraft:air
+biome	2	4	-60	11	minecraft:plains
+read	2	4	-60	11	minecraft:air
+read	2	4	-59	11	minecraft:air
+draw	2	u	0.782902
+draw	2	i	6	5
+draw	2	i	6	2
+draw	2	i	6	1
+draw	2	i	6	2
+chunk	2	0	0	true
+read	2	7	-61	10	minecraft:stone
+read	2	7	-60	10	minecraft:air
+read	2	7	-59	10	minecraft:air
+light	2	sky	7	-60	10	0
+draw	2	i	32	14
+light	2	block	7	-60	10	0
+light	2	block	7	-60	10	0
+light	2	sky	7	-60	10	0
+draw	2	i	8	5
+read	2	7	-61	10	minecraft:stone
+read	2	7	-60	10	minecraft:air
+read	2	7	-59	10	minecraft:air
+biome	2	7	-60	10	minecraft:plains
+read	2	7	-60	10	minecraft:air
+read	2	7	-59	10	minecraft:air
+draw	2	u	0.930631
+draw	2	i	6	4
+draw	2	i	6	4
+draw	2	i	6	1
+draw	2	i	6	0
+chunk	2	0	0	true
+read	2	7	-61	11	minecraft:stone
+read	2	7	-60	11	minecraft:air
+read	2	7	-59	11	minecraft:air
+light	2	sky	7	-60	11	0
+draw	2	i	32	19
+light	2	block	7	-60	11	0
+light	2	block	7	-60	11	0
+light	2	sky	7	-60	11	0
+draw	2	i	8	2
+read	2	7	-61	11	minecraft:stone
+read	2	7	-60	11	minecraft:air
+read	2	7	-59	11	minecraft:air
+biome	2	7	-60	11	minecraft:plains
+read	2	7	-60	11	minecraft:air
+read	2	7	-59	11	minecraft:air
+draw	2	u	0.209768
+draw	2	i	6	5
+draw	2	i	6	5
+draw	2	i	6	5
+draw	2	i	6	0
+chunk	2	0	1	true
+read	2	7	-61	16	minecraft:air
+draw	2	u	0.158655
+draw	2	i	6	1
+draw	2	i	6	0
+draw	2	i	6	5
+draw	2	i	6	1
+chunk	2	0	0	true
+biome	2	5	-60	15	minecraft:plains
+draw	2	u	0.571040
+draw	2	i	1	0
+read	2	5	-61	15	minecraft:stone
+read	2	5	-60	15	minecraft:air
+read	2	5	-59	15	minecraft:air
+light	2	sky	5	-60	15	0
+draw	2	i	32	18
+light	2	block	5	-60	15	0
+light	2	block	5	-60	15	0
+light	2	sky	5	-60	15	0
+draw	2	i	8	0
+read	2	5	-61	15	minecraft:stone
+read	2	5	-60	15	minecraft:air
+read	2	5	-59	15	minecraft:air
+biome	2	5	-60	15	minecraft:plains
+read	2	5	-60	15	minecraft:air
+read	2	5	-59	15	minecraft:air
+draw	2	u	0.752510
+spawn	2	minecraft:zombie	4.5	-60	11.5	281.8446
+spawn	2	minecraft:zombie	7.5	-60	10.5	335.0272
+spawn	2	minecraft:zombie	7.5	-60	11.5	75.5163
+spawn	2	minecraft:skeleton	5.5	-60	15.5	270.9036
+draw	3	i	16	12
+draw	3	i	16	0
+surface	3	12	0	-61
+draw	3	i	5	3
+read	3	12	-61	0	minecraft:stone
+draw	4	i	16	5
+draw	4	i	16	3
+surface	4	5	3	-61
+draw	4	i	5	3
+read	4	5	-61	3	minecraft:stone
+draw	5	i	16	0
+draw	5	i	16	6
+surface	5	0	6	-61
+draw	5	i	5	0
+draw	6	i	16	15
+draw	6	i	16	1
+surface	6	15	1	-61
+draw	6	i	5	1
+read	6	15	-63	1	minecraft:air
+draw	6	u	0.533008
+draw	6	i	6	1
+draw	6	i	6	5
+draw	6	i	6	2
+draw	6	i	6	1
+chunk	6	0	0	true
+biome	6	11	-63	2	minecraft:plains
+draw	6	u	0.949860
+draw	6	i	1	0
+read	6	11	-64	2	minecraft:air
+draw	6	i	6	2
+draw	6	i	6	1
+draw	6	i	6	3
+draw	6	i	6	3
+chunk	6	0	0	true
+read	6	12	-64	2	minecraft:air
+draw	6	i	6	4
+draw	6	i	6	5
+draw	6	i	6	1
+draw	6	i	6	1
+chunk	6	0	0	true
+read	6	11	-64	2	minecraft:air
+draw	6	i	6	1
+draw	6	i	6	5
+draw	6	i	6	2
+draw	6	i	6	4
+chunk	6	0	0	true
+read	6	7	-64	0	minecraft:air
+draw	6	u	0.472688
+draw	6	i	6	3
+draw	6	i	6	0
+draw	6	i	6	4
+draw	6	i	6	5
+draw	6	i	6	2
+draw	6	i	6	1
+draw	6	i	6	3
+draw	6	i	6	3
+draw	6	u	0.788614
+draw	6	i	6	2
+draw	6	i	6	1
+draw	6	i	6	3
+draw	6	i	6	0
+chunk	6	1	0	true
+biome	6	16	-63	4	minecraft:plains
+draw	6	u	0.195964
+draw	6	i	1	0
+read	6	16	-64	4	minecraft:air
+draw	6	i	6	5
+draw	6	i	6	3
+draw	6	i	6	3
+draw	6	i	6	0
+draw	6	i	6	2
+draw	6	i	6	4
+draw	6	i	6	0
+draw	6	i	6	4
+chunk	6	1	0	true
+read	6	16	-64	3	minecraft:air
+draw	6	i	6	0
+draw	6	i	6	1
+draw	6	i	6	5
+draw	6	i	6	1
+chunk	6	0	0	true
+read	6	15	-64	7	minecraft:air
+draw	7	i	16	5
+draw	7	i	16	1
+surface	7	5	1	-61
+draw	7	i	5	0
+draw	8	i	16	5
+draw	8	i	16	5
+surface	8	5	5	-61
+draw	8	i	5	4
+read	8	5	-60	5	minecraft:air
+draw	8	u	0.871815
+draw	8	i	6	1
+draw	8	i	6	3
+draw	8	i	6	0
+draw	8	i	6	4
+chunk	8	0	0	true
+biome	8	3	-60	1	minecraft:plains
+draw	8	u	0.383965
+draw	8	i	1	0
+read	8	3	-61	1	minecraft:stone
+read	8	3	-60	1	minecraft:air
+read	8	3	-59	1	minecraft:air
+light	8	sky	3	-60	1	0
+draw	8	i	32	3
+light	8	block	3	-60	1	0
+light	8	block	3	-60	1	0
+light	8	sky	3	-60	1	0
+draw	8	i	8	5
+read	8	3	-61	1	minecraft:stone
+read	8	2	-60	0	minecraft:air
+read	8	2	-60	1	minecraft:air
+read	8	2	-60	2	minecraft:air
+read	8	2	-59	0	minecraft:air
+read	8	2	-59	1	minecraft:air
+read	8	2	-59	2	minecraft:air
+read	8	3	-60	0	minecraft:air
+read	8	3	-60	1	minecraft:air
+read	8	3	-60	2	minecraft:air
+read	8	3	-59	0	minecraft:air
+read	8	3	-59	1	minecraft:air
+read	8	3	-59	2	minecraft:air
+read	8	4	-60	0	minecraft:air
+read	8	4	-60	1	minecraft:air
+read	8	4	-60	2	minecraft:air
+read	8	4	-59	0	minecraft:air
+read	8	4	-59	1	minecraft:air
+read	8	4	-59	2	minecraft:air
+biome	8	3	-60	1	minecraft:plains
+read	8	2	-60	0	minecraft:air
+read	8	2	-60	1	minecraft:air
+read	8	2	-60	2	minecraft:air
+read	8	2	-59	0	minecraft:air
+read	8	2	-59	1	minecraft:air
+read	8	2	-59	2	minecraft:air
+read	8	3	-60	0	minecraft:air
+read	8	3	-60	1	minecraft:air
+read	8	3	-60	2	minecraft:air
+read	8	3	-59	0	minecraft:air
+read	8	3	-59	1	minecraft:air
+read	8	3	-59	2	minecraft:air
+read	8	4	-60	0	minecraft:air
+read	8	4	-60	1	minecraft:air
+read	8	4	-60	2	minecraft:air
+read	8	4	-59	0	minecraft:air
+read	8	4	-59	1	minecraft:air
+read	8	4	-59	2	minecraft:air
+draw	8	u	0.146735
+draw	8	u	0.908615
+draw	8	i	6	1
+draw	8	i	6	2
+draw	8	i	6	0
+draw	8	i	6	4
+chunk	8	0	0	true
+biome	8	4	-60	1	minecraft:plains
+draw	8	u	0.284807
+draw	8	i	1	0
+read	8	4	-61	1	minecraft:stone
+read	8	4	-60	1	minecraft:air
+read	8	4	-59	1	minecraft:air
+light	8	sky	4	-60	1	0
+draw	8	i	32	24
+light	8	block	4	-60	1	0
+light	8	block	4	-60	1	0
+light	8	sky	4	-60	1	0
+draw	8	i	8	3
+read	8	4	-61	1	minecraft:stone
+read	8	4	-60	1	minecraft:air
+read	8	4	-59	1	minecraft:air
+biome	8	4	-60	1	minecraft:plains
+read	8	4	-60	1	minecraft:air
+read	8	4	-59	1	minecraft:air
+draw	8	u	0.657140
+draw	8	i	6	4
+draw	8	i	6	4
+draw	8	i	6	0
+draw	8	i	6	2
+chunk	8	0	-1	true
+read	8	4	-61	-1	minecraft:air
+draw	8	i	6	3
+draw	8	i	6	2
+draw	8	i	6	5
+draw	8	i	6	1
+chunk	8	0	0	true
+read	8	5	-61	3	minecraft:stone
+read	8	5	-60	3	minecraft:air
+read	8	5	-59	3	minecraft:air
+light	8	sky	5	-60	3	0
+draw	8	i	32	15
+light	8	block	5	-60	3	0
+light	8	block	5	-60	3	0
+light	8	sky	5	-60	3	0
+draw	8	i	8	6
+read	8	5	-61	3	minecraft:stone
+read	8	5	-60	3	minecraft:air
+read	8	5	-59	3	minecraft:air
+biome	8	5	-60	3	minecraft:plains
+read	8	5	-60	3	minecraft:air
+read	8	5	-59	3	minecraft:air
+draw	8	u	0.027314
+draw	8	i	6	5
+draw	8	i	6	2
+draw	8	i	6	5
+draw	8	i	6	0
+chunk	8	0	0	true
+read	8	8	-61	8	minecraft:stone
+read	8	8	-60	8	minecraft:air
+read	8	8	-59	8	minecraft:air
+light	8	sky	8	-60	8	0
+draw	8	i	32	14
+light	8	block	8	-60	8	0
+light	8	block	8	-60	8	0
+light	8	sky	8	-60	8	0
+draw	8	i	8	5
+read	8	8	-61	8	minecraft:stone
+read	8	8	-60	8	minecraft:air
+read	8	8	-59	8	minecraft:air
+biome	8	8	-60	8	minecraft:plains
+read	8	8	-60	8	minecraft:air
+read	8	8	-59	8	minecraft:air
+draw	8	u	0.265639
+spawn	8	minecraft:zombie_horse	3.5	-60	1.5	52.8246
+spawn	8	minecraft:zombie	4.5	-60	1.5	236.5705
+spawn	8	minecraft:zombie	5.5	-60	3.5	9.8331
+spawn	8	minecraft:zombie	8.5	-60	8.5	95.6301
+draw	9	i	16	6
+draw	9	i	16	7
+surface	9	6	7	-61
+draw	9	i	5	1
+read	9	6	-63	7	minecraft:air
+draw	9	u	0.136225
+draw	9	i	6	1
+draw	9	i	6	1
+draw	9	i	6	2
+draw	9	i	6	5
+chunk	9	0	0	true
+biome	9	6	-63	4	minecraft:plains
+draw	9	u	0.770466
+draw	9	i	1	0
+read	9	6	-64	4	minecraft:air
+draw	9	i	6	4
+draw	9	i	6	0
+draw	9	i	6	2
+draw	9	i	6	2
+chunk	9	0	0	true
+read	9	10	-64	4	minecraft:air
+draw	9	i	6	1
+draw	9	i	6	0
+draw	9	i	6	2
+draw	9	i	6	3
+chunk	9	0	0	true
+read	9	11	-64	3	minecraft:air
+draw	9	i	6	5
+draw	9	i	6	1
+draw	9	i	6	2
+draw	9	i	6	2
+chunk	9	0	0	true
+read	9	15	-64	3	minecraft:air
+draw	9	u	0.899205
+draw	9	i	6	0
+draw	9	i	6	4
+draw	9	i	6	3
+draw	9	i	6	0
+chunk	9	0	0	true
+biome	9	2	-63	10	minecraft:plains
+draw	9	u	0.277486
+draw	9	i	1	0
+read	9	2	-64	10	minecraft:air
+draw	9	i	6	4
+draw	9	i	6	2
+draw	9	i	6	1
+draw	9	i	6	2
+chunk	9	0	0	true
+read	9	4	-64	9	minecraft:air
+draw	9	i	6	1
+draw	9	i	6	0
+draw	9	i	6	5
+draw	9	i	6	0
+chunk	9	0	0	true
+read	9	5	-64	14	minecraft:air
+draw	9	i	6	3
+draw	9	i	6	0
+draw	9	i	6	3
+draw	9	i	6	2
+chunk	9	0	0	true
+read	9	8	-64	15	minecraft:air
+draw	9	u	0.290066
+draw	9	i	6	2
+draw	9	i	6	4
+draw	9	i	6	0
+draw	9	i	6	5
+chunk	9	0	0	true
+biome	9	4	-63	2	minecraft:plains
+draw	9	u	0.027030
+draw	9	i	1	0
+read	9	4	-64	2	minecraft:air
+draw	9	i	6	1
+draw	9	i	6	0
+draw	9	i	6	3
+draw	9	i	6	2
+chunk	9	0	0	true
+read	9	5	-64	3	minecraft:air
+draw	9	i	6	0
+draw	9	i	6	2
+draw	9	i	6	5
+draw	9	i	6	1
+chunk	9	0	0	true
+read	9	3	-64	7	minecraft:air
+draw	9	i	6	0
+draw	9	i	6	1
+draw	9	i	6	4
+draw	9	i	6	2
+chunk	9	0	0	true
+read	9	2	-64	9	minecraft:air
+draw	10	i	16	12
+draw	10	i	16	0
+surface	10	12	0	-61
+draw	10	i	5	3
+read	10	12	-61	0	minecraft:stone
+draw	11	i	16	4
+draw	11	i	16	13
+surface	11	4	13	-61
+draw	11	i	5	0
+draw	12	i	16	9
+draw	12	i	16	6
+surface	12	9	6	-61
+draw	12	i	5	3
+read	12	9	-61	6	minecraft:stone
+draw	13	i	16	13
+draw	13	i	16	8
+surface	13	13	8	-61
+draw	13	i	5	1
+read	13	13	-63	8	minecraft:air
+draw	13	u	0.115750
+draw	13	i	6	5
+draw	13	i	6	3
+draw	13	i	6	5
+draw	13	i	6	4
+chunk	13	0	0	true
+biome	13	15	-63	9	minecraft:plains
+draw	13	u	0.888668
+draw	13	i	1	0
+read	13	15	-64	9	minecraft:air
+draw	13	i	6	1
+draw	13	i	6	3
+draw	13	i	6	1
+draw	13	i	6	4
+chunk	13	0	0	true
+read	13	13	-64	6	minecraft:air
+draw	13	i	6	3
+draw	13	i	6	0
+draw	13	i	6	3
+draw	13	i	6	1
+chunk	13	1	0	true
+read	13	16	-64	8	minecraft:air
+draw	13	i	6	0
+draw	13	i	6	5
+draw	13	i	6	0
+draw	13	i	6	0
+chunk	13	0	0	true
+read	13	11	-64	8	minecraft:air
+draw	13	u	0.829134
+draw	13	i	6	5
+draw	13	i	6	4
+draw	13	i	6	0
+draw	13	i	6	3
+chunk	13	0	0	true
+biome	13	14	-63	5	minecraft:plains
+draw	13	u	0.821746
+draw	13	i	1	0
+read	13	14	-64	5	minecraft:air
+draw	13	i	6	0
+draw	13	i	6	1
+draw	13	i	6	3
+draw	13	i	6	3
+chunk	13	0	0	true
+read	13	13	-64	5	minecraft:air
+draw	13	i	6	5
+draw	13	i	6	3
+draw	13	i	6	3
+draw	13	i	6	3
+chunk	13	0	0	true
+read	13	15	-64	5	minecraft:air
+draw	13	i	6	5
+draw	13	i	6	3
+draw	13	i	6	3
+draw	13	i	6	1
+draw	13	u	0.339747
+draw	13	i	6	3
+draw	13	i	6	0
+draw	13	i	6	4
+draw	13	i	6	4
+chunk	13	1	0	true
+biome	13	16	-63	8	minecraft:plains
+draw	13	u	0.508743
+draw	13	i	1	0
+read	13	16	-64	8	minecraft:air
+draw	13	i	6	5
+draw	13	i	6	3
+draw	13	i	6	0
+draw	13	i	6	2
+draw	13	i	6	0
+draw	13	i	6	0
+draw	13	i	6	1
+draw	13	i	6	2
+draw	13	i	6	3
+draw	13	i	6	0
+draw	13	i	6	4
+draw	13	i	6	3
+draw	14	i	16	8
+draw	14	i	16	11
+surface	14	8	11	-61
+draw	14	i	5	4
+read	14	8	-60	11	minecraft:air
+draw	14	u	0.794875
+draw	14	i	6	3
+draw	14	i	6	4
+draw	14	i	6	0
+draw	14	i	6	1
+chunk	14	0	0	true
+biome	14	7	-60	10	minecraft:plains
+draw	14	u	0.423503
+draw	14	i	1	0
+read	14	7	-61	10	minecraft:stone
+read	14	7	-60	10	minecraft:air
+read	14	7	-59	10	minecraft:air
+light	14	sky	7	-60	10	0
+draw	14	i	32	17
+light	14	block	7	-60	10	0
+light	14	block	7	-60	10	0
+light	14	sky	7	-60	10	0
+draw	14	i	8	1
+read	14	7	-61	10	minecraft:stone
+read	14	7	-60	10	minecraft:air
+read	14	7	-59	10	minecraft:air
+biome	14	7	-60	10	minecraft:plains
+read	14	7	-60	10	minecraft:air
+read	14	7	-59	10	minecraft:air
+draw	14	u	0.243406
+draw	14	i	6	1
+draw	14	i	6	2
+draw	14	i	6	5
+draw	14	i	6	5
+chunk	14	0	0	true
+read	14	6	-61	10	minecraft:stone
+read	14	6	-60	10	minecraft:air
+read	14	6	-59	10	minecraft:air
+light	14	sky	6	-60	10	0
+draw	14	i	32	4
+light	14	block	6	-60	10	0
+light	14	block	6	-60	10	0
+light	14	sky	6	-60	10	0
+draw	14	i	8	4
+read	14	6	-61	10	minecraft:stone
+read	14	6	-60	10	minecraft:air
+read	14	6	-59	10	minecraft:air
+biome	14	6	-60	10	minecraft:plains
+read	14	6	-60	10	minecraft:air
+read	14	6	-59	10	minecraft:air
+draw	14	u	0.534576
+draw	14	i	6	1
+draw	14	i	6	5
+draw	14	i	6	1
+draw	14	i	6	0
+chunk	14	0	0	true
+read	14	2	-61	11	minecraft:stone
+read	14	2	-60	11	minecraft:air
+read	14	2	-59	11	minecraft:air
+light	14	sky	2	-60	11	0
+draw	14	i	32	31
+light	14	block	2	-60	11	0
+light	14	block	2	-60	11	0
+light	14	sky	2	-60	11	0
+draw	14	i	8	5
+read	14	2	-61	11	minecraft:stone
+read	14	2	-60	11	minecraft:air
+read	14	2	-59	11	minecraft:air
+biome	14	2	-60	11	minecraft:plains
+read	14	2	-60	11	minecraft:air
+read	14	2	-59	11	minecraft:air
+draw	14	u	0.904545
+draw	14	i	6	1
+draw	14	i	6	1
+draw	14	i	6	4
+draw	14	i	6	2
+chunk	14	0	0	true
+read	14	2	-61	13	minecraft:stone
+read	14	2	-60	13	minecraft:air
+read	14	2	-59	13	minecraft:air
+light	14	sky	2	-60	13	0
+draw	14	i	32	3
+light	14	block	2	-60	13	0
+light	14	block	2	-60	13	0
+light	14	sky	2	-60	13	0
+draw	14	i	8	4
+read	14	2	-61	13	minecraft:stone
+read	14	2	-60	13	minecraft:air
+read	14	2	-59	13	minecraft:air
+biome	14	2	-60	13	minecraft:plains
+read	14	2	-60	13	minecraft:air
+read	14	2	-59	13	minecraft:air
+draw	14	u	0.103857
+spawn	14	minecraft:skeleton	7.5	-60	10.5	87.6262
+spawn	14	minecraft:skeleton	6.5	-60	10.5	192.4474
+spawn	14	minecraft:skeleton	2.5	-60	11.5	325.6362
+spawn	14	minecraft:skeleton	2.5	-60	13.5	37.3885
+draw	15	i	16	6
+draw	15	i	16	2
+surface	15	6	2	-61
+draw	15	i	5	4
+read	15	6	-60	2	minecraft:air
+draw	15	u	0.897634
+draw	15	i	6	1
+draw	15	i	6	3
+draw	15	i	6	2
+draw	15	i	6	3
+chunk	15	0	0	true
+biome	15	4	-60	1	minecraft:plains
+draw	15	u	0.441701
+draw	15	i	1	0
+read	15	4	-61	1	minecraft:stone
+read	15	4	-60	1	minecraft:air
+read	15	4	-59	1	minecraft:air
+light	15	sky	4	-60	1	0
+draw	15	i	32	14
+light	15	block	4	-60	1	0
+light	15	block	4	-60	1	0
+light	15	sky	4	-60	1	0
+draw	15	i	8	3
+read	15	4	-61	1	minecraft:stone
+read	15	4	-60	1	minecraft:air
+read	15	4	-59	1	minecraft:air
+biome	15	4	-60	1	minecraft:plains
+read	15	4	-60	1	minecraft:air
+read	15	4	-59	1	minecraft:air
+draw	15	u	0.128006
+draw	15	i	6	5
+draw	15	i	6	5
+draw	15	i	6	0
+draw	15	i	6	0
+chunk	15	0	0	true
+read	15	4	-61	1	minecraft:stone
+read	15	4	-60	1	minecraft:air
+read	15	4	-59	1	minecraft:air
+light	15	sky	4	-60	1	0
+draw	15	i	32	5
+light	15	block	4	-60	1	0
+light	15	block	4	-60	1	0
+light	15	sky	4	-60	1	0
+draw	15	i	8	3
+read	15	4	-61	1	minecraft:stone
+read	15	4	-60	1	minecraft:air
+read	15	4	-59	1	minecraft:air
+biome	15	4	-60	1	minecraft:plains
+read	15	4	-60	1	minecraft:air
+read	15	4	-59	1	minecraft:air
+draw	15	u	0.482232
+draw	15	i	6	1
+draw	15	i	6	2
+draw	15	i	6	2
+draw	15	i	6	1
+chunk	15	0	0	true
+read	15	3	-61	2	minecraft:stone
+read	15	3	-60	2	minecraft:air
+read	15	3	-59	2	minecraft:air
+light	15	sky	3	-60	2	0
+draw	15	i	32	17
+light	15	block	3	-60	2	0
+light	15	block	3	-60	2	0
+light	15	sky	3	-60	2	0
+draw	15	i	8	5
+read	15	3	-61	2	minecraft:stone
+read	15	3	-60	2	minecraft:air
+read	15	3	-59	2	minecraft:air
+biome	15	3	-60	2	minecraft:plains
+read	15	3	-60	2	minecraft:air
+read	15	3	-59	2	minecraft:air
+draw	15	u	0.967935
+draw	15	i	6	3
+draw	15	i	6	0
+draw	15	i	6	3
+draw	15	i	6	0
+chunk	15	0	0	true
+read	15	6	-61	5	minecraft:stone
+read	15	6	-60	5	minecraft:air
+read	15	6	-59	5	minecraft:air
+light	15	sky	6	-60	5	0
+draw	15	i	32	25
+light	15	block	6	-60	5	0
+light	15	block	6	-60	5	0
+light	15	sky	6	-60	5	0
+draw	15	i	8	2
+read	15	6	-61	5	minecraft:stone
+read	15	6	-60	5	minecraft:air
+read	15	6	-59	5	minecraft:air
+biome	15	6	-60	5	minecraft:plains
+read	15	6	-60	5	minecraft:air
+read	15	6	-59	5	minecraft:air
+draw	15	u	0.289892
+spawn	15	minecraft:skeleton	4.5	-60	1.5	46.0823
+spawn	15	minecraft:skeleton	4.5	-60	1.5	173.6034
+spawn	15	minecraft:skeleton	3.5	-60	2.5	348.4567
+spawn	15	minecraft:skeleton	6.5	-60	5.5	104.3612
+draw	16	i	16	9
+draw	16	i	16	5
+surface	16	9	5	-61
+draw	16	i	5	3
+read	16	9	-61	5	minecraft:stone
+draw	17	i	16	8
+draw	17	i	16	0
+surface	17	8	0	-61
+draw	17	i	5	1
+read	17	8	-63	0	minecraft:air
+draw	17	u	0.292911
+draw	17	i	6	0
+draw	17	i	6	1
+draw	17	i	6	4
+draw	17	i	6	2
+chunk	17	0	0	true
+biome	17	7	-63	2	minecraft:plains
+draw	17	u	0.122532
+draw	17	i	1	0
+read	17	7	-64	2	minecraft:air
+draw	17	i	6	5
+draw	17	i	6	5
+draw	17	i	6	0
+draw	17	i	6	4
+chunk	17	0	-1	true
+read	17	7	-64	-2	minecraft:air
+draw	17	i	6	4
+draw	17	i	6	0
+draw	17	i	6	5
+draw	17	i	6	0
+chunk	17	0	0	true
+read	17	11	-64	3	minecraft:air
+draw	17	i	6	2
+draw	17	i	6	2
+draw	17	i	6	3
+draw	17	i	6	3
+chunk	17	0	0	true
+read	17	11	-64	3	minecraft:air
+draw	17	u	0.883763
+draw	17	i	6	3
+draw	17	i	6	2
+draw	17	i	6	4
+draw	17	i	6	1
+chunk	17	0	0	true
+biome	17	9	-63	3	minecraft:plains
+draw	17	u	0.542570
+draw	17	i	1	0
+read	17	9	-64	3	minecraft:air
+draw	17	i	6	4
+draw	17	i	6	0
+draw	17	i	6	2
+draw	17	i	6	0
+chunk	17	0	0	true
+read	17	13	-64	5	minecraft:air
+draw	17	i	6	1
+draw	17	i	6	0
+draw	17	i	6	5
+draw	17	i	6	2
+chunk	17	0	0	true
+read	17	14	-64	8	minecraft:air
+draw	17	i	6	1
+draw	17	i	6	5
+draw	17	i	6	3
+draw	17	i	6	2
+chunk	17	0	0	true
+read	17	10	-64	9	minecraft:air
+draw	17	u	0.020823
+draw	17	i	6	2
+draw	17	i	6	5
+draw	17	i	6	1
+draw	17	i	6	2
+chunk	17	0	-1	true
+biome	17	5	-63	-1	minecraft:plains
+draw	17	u	0.517479
+draw	17	i	1	0
+read	17	5	-64	-1	minecraft:air
+draw	17	i	6	0
+draw	17	i	6	4
+draw	17	i	6	1
+draw	17	i	6	1
+chunk	17	0	-1	true
+read	17	1	-64	-1	minecraft:air
+draw	17	i	6	1
+draw	17	i	6	5
+draw	17	i	6	4
+draw	17	i	6	5
+chunk	17	-1	-1	true
+read	17	-3	-64	-2	minecraft:air
+draw	17	i	6	4
+draw	17	i	6	5
+draw	17	i	6	0
+draw	17	i	6	4
+chunk	17	-1	-1	true
+read	17	-4	-64	-6	minecraft:air
+draw	18	i	16	5
+draw	18	i	16	7
+surface	18	5	7	-61
+draw	18	i	5	2
+read	18	5	-62	7	minecraft:air
+draw	18	u	0.969089
+draw	18	i	6	4
+draw	18	i	6	0
+draw	18	i	6	0
+draw	18	i	6	5
+chunk	18	0	0	true
+biome	18	9	-62	2	minecraft:plains
+draw	18	u	0.177013
+draw	18	i	1	0
+read	18	9	-63	2	minecraft:air
+draw	18	i	6	1
+draw	18	i	6	0
+draw	18	i	6	5
+draw	18	i	6	3
+chunk	18	0	0	true
+read	18	10	-63	4	minecraft:air
+draw	18	i	6	2
+draw	18	i	6	1
+draw	18	i	6	5
+draw	18	i	6	0
+chunk	18	0	0	true
+read	18	11	-63	9	minecraft:air
+draw	18	i	6	0
+draw	18	i	6	3
+draw	18	i	6	2
+draw	18	i	6	1
+chunk	18	0	0	true
+read	18	8	-63	10	minecraft:air
+draw	18	u	0.705004
+draw	18	i	6	4
+draw	18	i	6	4
+draw	18	i	6	3
+draw	18	i	6	5
+chunk	18	0	0	true
+biome	18	5	-62	5	minecraft:plains
+draw	18	u	0.459645
+draw	18	i	1	0
+read	18	5	-63	5	minecraft:air
+draw	18	i	6	2
+draw	18	i	6	0
+draw	18	i	6	2
+draw	18	i	6	3
+chunk	18	0	0	true
+read	18	7	-63	4	minecraft:air
+draw	18	i	6	5
+draw	18	i	6	0
+draw	18	i	6	0
+draw	18	i	6	2
+chunk	18	0	0	true
+read	18	12	-63	2	minecraft:air
+draw	18	i	6	1
+draw	18	i	6	3
+draw	18	i	6	0
+draw	18	i	6	0
+chunk	18	0	0	true
+read	18	10	-63	2	minecraft:air
+draw	18	u	0.887156
+draw	18	i	6	4
+draw	18	i	6	2
+draw	18	i	6	5
+draw	18	i	6	1
+chunk	18	0	0	true
+biome	18	7	-62	11	minecraft:plains
+draw	18	u	0.482431
+draw	18	i	1	0
+read	18	7	-63	11	minecraft:air
+draw	18	i	6	4
+draw	18	i	6	1
+draw	18	i	6	3
+draw	18	i	6	3
+chunk	18	0	0	true
+read	18	10	-63	11	minecraft:air
+draw	18	i	6	3
+draw	18	i	6	3
+draw	18	i	6	0
+draw	18	i	6	3
+chunk	18	0	0	true
+read	18	10	-63	8	minecraft:air
+draw	18	i	6	3
+draw	18	i	6	2
+draw	18	i	6	3
+draw	18	i	6	0
+chunk	18	0	0	true
+read	18	11	-63	11	minecraft:air
+draw	19	i	16	10
+draw	19	i	16	1
+surface	19	10	1	-61
+draw	19	i	5	2
+read	19	10	-62	1	minecraft:air
+draw	19	u	0.785722
+draw	19	i	6	2
+draw	19	i	6	0
+draw	19	i	6	0
+draw	19	i	6	3
+chunk	19	0	-1	true
+biome	19	12	-62	-2	minecraft:plains
+draw	19	u	0.985506
+draw	19	i	4	2
+read	19	12	-63	-2	minecraft:air
+draw	19	i	6	5
+draw	19	i	6	2
+draw	19	i	6	3
+draw	19	i	6	2
+chunk	19	0	-1	true
+read	19	15	-63	-1	minecraft:air
+draw	19	i	6	0
+draw	19	i	6	3
+draw	19	i	6	2
+draw	19	i	6	0
+chunk	19	0	0	true
+read	19	12	-63	1	minecraft:air
+draw	19	u	0.944718
+draw	19	i	6	1
+draw	19	i	6	0
+draw	19	i	6	5
+draw	19	i	6	4
+chunk	19	0	0	true
+biome	19	11	-62	2	minecraft:plains
+draw	19	u	0.383612
+draw	19	i	1	0
+read	19	11	-63	2	minecraft:air
+draw	19	u	0.724008
+draw	19	i	6	4
+draw	19	i	6	0
+draw	19	i	6	4
+draw	19	i	6	3
+chunk	19	0	0	true
+biome	19	14	-62	2	minecraft:plains
+draw	19	u	0.537394
+draw	19	i	1	0
+read	19	14	-63	2	minecraft:air
+draw	19	i	6	1
+draw	19	i	6	5
+draw	19	i	6	2
+draw	19	i	6	0
+chunk	19	0	0	true
+read	19	10	-63	4	minecraft:air
+draw	19	i	6	0
+draw	19	i	6	3
+draw	19	i	6	2
+draw	19	i	6	4
+chunk	19	0	0	true
+read	19	7	-63	2	minecraft:air
+draw	19	i	6	5
+draw	19	i	6	1
+draw	19	i	6	4
+draw	19	i	6	4
+chunk	19	0	0	true
+read	19	11	-63	2	minecraft:air
+draw	20	i	16	12
+draw	20	i	16	11
+surface	20	12	11	-61
+draw	20	i	5	0
+draw	21	i	16	15
+draw	21	i	16	4
+surface	21	15	4	-61
+draw	21	i	5	0
+draw	22	i	16	8
+draw	22	i	16	7
+surface	22	8	7	-61
+draw	22	i	5	0
+draw	23	i	16	14
+draw	23	i	16	15
+surface	23	14	15	-61
+draw	23	i	5	0
+draw	24	i	16	15
+draw	24	i	16	8
+surface	24	15	8	-61
+draw	24	i	5	3
+read	24	15	-61	8	minecraft:stone
+draw	25	i	16	10
+draw	25	i	16	13
+surface	25	10	13	-61
+draw	25	i	5	4
+read	25	10	-60	13	minecraft:air
+draw	25	u	0.875489
+draw	25	i	6	4
+draw	25	i	6	4
+draw	25	i	6	5
+draw	25	i	6	0
+chunk	25	0	1	true
+biome	25	10	-60	18	minecraft:plains
+draw	25	u	0.454618
+draw	25	i	1	0
+read	25	10	-61	18	minecraft:air
+draw	25	i	6	3
+draw	25	i	6	4
+draw	25	i	6	1
+draw	25	i	6	1
+chunk	25	0	1	true
+read	25	9	-61	18	minecraft:air
+draw	25	i	6	2
+draw	25	i	6	2
+draw	25	i	6	0
+draw	25	i	6	0
+chunk	25	0	1	true
+read	25	9	-61	18	minecraft:air
+draw	25	i	6	1
+draw	25	i	6	2
+draw	25	i	6	3
+draw	25	i	6	2
+chunk	25	0	1	true
+read	25	8	-61	19	minecraft:air
+draw	25	u	0.886660
+draw	25	i	6	3
+draw	25	i	6	4
+draw	25	i	6	2
+draw	25	i	6	2
+chunk	25	0	0	true
+biome	25	9	-60	13	minecraft:plains
+draw	25	u	0.069986
+draw	25	i	1	0
+read	25	9	-61	13	minecraft:stone
+read	25	9	-60	13	minecraft:air
+read	25	9	-59	13	minecraft:air
+light	25	sky	9	-60	13	0
+draw	25	i	32	3
+light	25	block	9	-60	13	0
+light	25	block	9	-60	13	0
+light	25	sky	9	-60	13	0
+draw	25	i	8	5
+read	25	9	-61	13	minecraft:stone
+read	25	8	-60	12	minecraft:air
+read	25	8	-60	13	minecraft:air
+read	25	8	-60	14	minecraft:air
+read	25	9	-60	12	minecraft:air
+read	25	9	-60	13	minecraft:air
+read	25	9	-60	14	minecraft:air
+read	25	10	-60	12	minecraft:air
+read	25	10	-60	13	minecraft:air
+read	25	10	-60	14	minecraft:air
+biome	25	9	-60	13	minecraft:plains
+read	25	8	-60	12	minecraft:air
+read	25	8	-60	13	minecraft:air
+read	25	8	-60	14	minecraft:air
+read	25	9	-60	12	minecraft:air
+read	25	9	-60	13	minecraft:air
+read	25	9	-60	14	minecraft:air
+read	25	10	-60	12	minecraft:air
+read	25	10	-60	13	minecraft:air
+read	25	10	-60	14	minecraft:air
+draw	25	u	0.916294
+draw	25	i	6	3
+draw	25	i	6	1
+draw	25	i	6	4
+draw	25	i	6	1
+chunk	25	0	1	true
+read	25	11	-61	16	minecraft:air
+draw	25	i	6	5
+draw	25	i	6	0
+draw	25	i	6	3
+draw	25	i	6	3
+chunk	25	1	1	true
+read	25	16	-61	16	minecraft:air
+draw	25	i	6	2
+draw	25	i	6	0
+draw	25	i	6	0
+draw	25	i	6	5
+draw	25	u	0.939707
+draw	25	i	6	2
+draw	25	i	6	1
+draw	25	i	6	2
+draw	25	i	6	0
+chunk	25	0	0	true
+biome	25	11	-60	15	minecraft:plains
+draw	25	u	0.920378
+draw	25	i	1	0
+read	25	11	-61	15	minecraft:stone
+read	25	11	-60	15	minecraft:air
+read	25	11	-59	15	minecraft:air
+draw	25	i	6	0
+draw	25	i	6	2
+draw	25	i	6	0
+draw	25	i	6	5
+chunk	25	0	0	true
+read	25	9	-61	10	minecraft:stone
+read	25	9	-60	10	minecraft:air
+read	25	9	-59	10	minecraft:air
+draw	25	i	6	2
+draw	25	i	6	2
+draw	25	i	6	0
+draw	25	i	6	1
+chunk	25	0	0	true
+read	25	9	-61	9	minecraft:stone
+read	25	9	-60	9	minecraft:air
+read	25	9	-59	9	minecraft:air
+draw	25	i	6	4
+draw	25	i	6	1
+draw	25	i	6	1
+draw	25	i	6	1
+chunk	25	0	0	true
+read	25	12	-61	9	minecraft:stone
+read	25	12	-60	9	minecraft:air
+read	25	12	-59	9	minecraft:air
+spawn	25	minecraft:spider	9.5	-60	13.5	329.8658
+draw	26	i	16	10
+draw	26	i	16	0
+surface	26	10	0	-61
+draw	26	i	5	2
+read	26	10	-62	0	minecraft:air
+draw	26	u	0.816994
+draw	26	i	6	2
+draw	26	i	6	3
+draw	26	i	6	2
+draw	26	i	6	3
+chunk	26	0	-1	true
+biome	26	9	-62	-1	minecraft:plains
+draw	26	u	0.384611
+draw	26	i	1	0
+read	26	9	-63	-1	minecraft:air
+draw	26	u	0.848894
+draw	26	i	6	5
+draw	26	i	6	1
+draw	26	i	6	5
+draw	26	i	6	3
+chunk	26	0	0	true
+biome	26	14	-62	2	minecraft:plains
+draw	26	u	0.185583
+draw	26	i	1	0
+read	26	14	-63	2	minecraft:air
+draw	26	i	6	0
+draw	26	i	6	2
+draw	26	i	6	5
+draw	26	i	6	5
+chunk	26	0	0	true
+read	26	12	-63	2	minecraft:air
+draw	26	i	6	5
+draw	26	i	6	1
+draw	26	i	6	3
+draw	26	i	6	3
+chunk	26	1	0	true
+read	26	16	-63	2	minecraft:air
+draw	26	i	6	4
+draw	26	i	6	1
+draw	26	i	6	5
+draw	26	i	6	1
+draw	26	u	0.294612
+draw	26	i	6	0
+draw	26	i	6	4
+draw	26	i	6	1
+draw	26	i	6	5
+chunk	26	0	-1	true
+biome	26	6	-62	-4	minecraft:plains
+draw	26	u	0.883157
+draw	26	i	1	0
+read	26	6	-63	-4	minecraft:air
+draw	26	i	6	5
+draw	26	i	6	5
+draw	26	i	6	3
+draw	26	i	6	4
+chunk	26	0	-1	true
+read	26	6	-63	-5	minecraft:air
+draw	26	i	6	3
+draw	26	i	6	4
+draw	26	i	6	0
+draw	26	i	6	5
+chunk	26	0	-1	true
+read	26	5	-63	-10	minecraft:air
+draw	26	i	6	4
+draw	26	i	6	1
+draw	26	i	6	5
+draw	26	i	6	0
+chunk	26	0	-1	true
+read	26	8	-63	-5	minecraft:air
+draw	27	i	16	0
+draw	27	i	16	3
+surface	27	0	3	-61
+draw	27	i	5	0
+draw	28	i	16	13
+draw	28	i	16	8
+surface	28	13	8	-61
+draw	28	i	5	2
+read	28	13	-62	8	minecraft:air
+draw	28	u	0.893395
+draw	28	i	6	3
+draw	28	i	6	0
+draw	28	i	6	4
+draw	28	i	6	4
+chunk	28	1	0	true
+biome	28	16	-62	8	minecraft:plains
+draw	28	u	0.871701
+draw	28	i	1	0
+read	28	16	-63	8	minecraft:air
+draw	28	i	6	2
+draw	28	i	6	2
+draw	28	i	6	5
+draw	28	i	6	0
+chunk	28	1	0	true
+read	28	16	-63	13	minecraft:air
+draw	28	i	6	1
+draw	28	i	6	1
+draw	28	i	6	1
+draw	28	i	6	1
+chunk	28	1	0	true
+read	28	16	-63	13	minecraft:air
+draw	28	i	6	4
+draw	28	i	6	4
+draw	28	i	6	5
+draw	28	i	6	2
+chunk	28	1	1	true
+read	28	16	-63	16	minecraft:air
+draw	28	u	0.937708
+draw	28	i	6	0
+draw	28	i	6	1
+draw	28	i	6	1
+draw	28	i	6	4
+chunk	28	0	0	true
+biome	28	12	-62	5	minecraft:plains
+draw	28	u	0.519265
+draw	28	i	1	0
+read	28	12	-63	5	minecraft:air
+draw	28	i	6	2
+draw	28	i	6	5
+draw	28	i	6	1
+draw	28	i	6	4
+chunk	28	0	0	true
+read	28	9	-63	2	minecraft:air
+draw	28	i	6	4
+draw	28	i	6	2
+draw	28	i	6	3
+draw	28	i	6	1
+chunk	28	0	0	true
+read	28	11	-63	4	minecraft:air
+draw	28	i	6	4
+draw	28	i	6	1
+draw	28	i	6	3
+draw	28	i	6	1
+chunk	28	0	0	true
+read	28	14	-63	6	minecraft:air
+draw	28	u	0.545153
+draw	28	i	6	1
+draw	28	i	6	4
+draw	28	i	6	4
+draw	28	i	6	1
+chunk	28	0	0	true
+biome	28	10	-62	11	minecraft:plains
+draw	28	u	0.083470
+draw	28	i	1	0
+read	28	10	-63	11	minecraft:air
+draw	28	i	6	3
+draw	28	i	6	1
+draw	28	i	6	0
+draw	28	i	6	2
+chunk	28	0	0	true
+read	28	12	-63	9	minecraft:air
+draw	28	i	6	4
+draw	28	i	6	0
+draw	28	i	6	2
+draw	28	i	6	5
+chunk	28	1	0	true
+read	28	16	-63	6	minecraft:air
+draw	28	i	6	0
+draw	28	i	6	5
+draw	28	i	6	5
+draw	28	i	6	4
+chunk	28	0	0	true
+read	28	11	-63	7	minecraft:air
+draw	29	i	16	4
+draw	29	i	16	5
+surface	29	4	5	-61
+draw	29	i	5	3
+read	29	4	-61	5	minecraft:stone
+draw	30	i	16	2
+draw	30	i	16	7
+surface	30	2	7	-61
+draw	30	i	5	1
+read	30	2	-63	7	minecraft:air
+draw	30	u	0.810808
+draw	30	i	6	3
+draw	30	i	6	2
+draw	30	i	6	5
+draw	30	i	6	3
+chunk	30	0	0	true
+biome	30	3	-63	9	minecraft:plains
+draw	30	u	0.603632
+draw	30	i	1	0
+read	30	3	-64	9	minecraft:air
+draw	30	i	6	3
+draw	30	i	6	4
+draw	30	i	6	5
+draw	30	i	6	5
+chunk	30	0	0	true
+read	30	2	-64	9	minecraft:air
+draw	30	i	6	5
+draw	30	i	6	1
+draw	30	i	6	0
+draw	30	i	6	1
+chunk	30	0	0	true
+read	30	6	-64	8	minecraft:air
+draw	30	i	6	1
+draw	30	i	6	0
+draw	30	i	6	0
+draw	30	i	6	4
+chunk	30	0	0	true
+read	30	7	-64	4	minecraft:air
+draw	30	u	0.442895
+draw	30	i	6	0
+draw	30	i	6	4
+draw	30	i	6	5
+draw	30	i	6	1
+chunk	30	-1	0	true
+biome	30	-2	-63	11	minecraft:plains
+draw	30	u	0.838427
+draw	30	i	1	0
+read	30	-2	-64	11	minecraft:air
+draw	30	i	6	4
+draw	30	i	6	0
+draw	30	i	6	1
+draw	30	i	6	2
+chunk	30	0	0	true
+read	30	2	-64	10	minecraft:air
+draw	30	i	6	2
+draw	30	i	6	5
+draw	30	i	6	4
+draw	30	i	6	0
+chunk	30	-1	0	true
+read	30	-1	-64	14	minecraft:air
+draw	30	i	6	4
+draw	30	i	6	1
+draw	30	i	6	2
+draw	30	i	6	4
+chunk	30	0	0	true
+read	30	2	-64	12	minecraft:air
+draw	30	u	0.327664
+draw	30	i	6	4
+draw	30	i	6	3
+draw	30	i	6	2
+draw	30	i	6	2
+chunk	30	0	0	true
+biome	30	3	-63	7	minecraft:plains
+draw	30	u	0.477160
+draw	30	i	1	0
+read	30	3	-64	7	minecraft:air
+draw	30	i	6	1
+draw	30	i	6	5
+draw	30	i	6	3
+draw	30	i	6	5
+chunk	30	-1	0	true
+read	30	-1	-64	5	minecraft:air
+draw	30	i	6	1
+draw	30	i	6	3
+draw	30	i	6	4
+draw	30	i	6	5
+chunk	30	-1	0	true
+read	30	-3	-64	4	minecraft:air
+draw	30	i	6	4
+draw	30	i	6	3
+draw	30	i	6	3
+draw	30	i	6	4
+chunk	30	-1	0	true
+read	30	-2	-64	3	minecraft:air
+draw	31	i	16	15
+draw	31	i	16	2
+surface	31	15	2	-61
+draw	31	i	5	4
+read	31	15	-60	2	minecraft:air
+draw	31	u	0.929170
+draw	31	i	6	2
+draw	31	i	6	1
+draw	31	i	6	4
+draw	31	i	6	1
+chunk	31	1	0	true
+biome	31	16	-60	5	minecraft:plains
+draw	31	u	0.592402
+draw	31	i	1	0
+read	31	16	-61	5	minecraft:air
+draw	31	i	6	3
+draw	31	i	6	0
+draw	31	i	6	1
+draw	31	i	6	3
+draw	31	i	6	3
+draw	31	i	6	4
+draw	31	i	6	3
+draw	31	i	6	2
+draw	31	i	6	0
+draw	31	i	6	5
+draw	31	i	6	5
+draw	31	i	6	3
+chunk	31	0	0	true
+read	31	13	-61	6	minecraft:stone
+read	31	13	-60	6	minecraft:air
+read	31	13	-59	6	minecraft:air
+light	31	sky	13	-60	6	0
+draw	31	i	32	16
+light	31	block	13	-60	6	0
+light	31	block	13	-60	6	0
+light	31	sky	13	-60	6	0
+draw	31	i	8	2
+read	31	13	-61	6	minecraft:stone
+read	31	13	-60	6	minecraft:air
+read	31	13	-59	6	minecraft:air
+biome	31	13	-60	6	minecraft:plains
+read	31	13	-60	6	minecraft:air
+read	31	13	-59	6	minecraft:air
+draw	31	u	0.982634
+draw	31	u	0.421442
+draw	31	i	6	0
+draw	31	i	6	4
+draw	31	i	6	1
+draw	31	i	6	2
+chunk	31	0	0	true
+biome	31	11	-60	1	minecraft:plains
+draw	31	u	0.588641
+draw	31	i	1	0
+read	31	11	-61	1	minecraft:stone
+read	31	11	-60	1	minecraft:air
+read	31	11	-59	1	minecraft:air
+light	31	sky	11	-60	1	0
+draw	31	i	32	23
+light	31	block	11	-60	1	0
+light	31	block	11	-60	1	0
+light	31	sky	11	-60	1	0
+draw	31	i	8	2
+read	31	11	-61	1	minecraft:stone
+read	31	11	-60	1	minecraft:air
+read	31	11	-59	1	minecraft:air
+biome	31	11	-60	1	minecraft:plains
+read	31	11	-60	1	minecraft:air
+read	31	11	-59	1	minecraft:air
+draw	31	u	0.567942
+draw	31	i	6	1
+draw	31	i	6	3
+draw	31	i	6	4
+draw	31	i	6	1
+chunk	31	0	0	true
+read	31	9	-61	4	minecraft:stone
+read	31	9	-60	4	minecraft:air
+read	31	9	-59	4	minecraft:air
+light	31	sky	9	-60	4	0
+draw	31	i	32	16
+light	31	block	9	-60	4	0
+light	31	block	9	-60	4	0
+light	31	sky	9	-60	4	0
+draw	31	i	8	6
+read	31	9	-61	4	minecraft:stone
+read	31	9	-60	4	minecraft:air
+read	31	9	-59	4	minecraft:air
+biome	31	9	-60	4	minecraft:plains
+read	31	9	-60	4	minecraft:air
+read	31	9	-59	4	minecraft:air
+draw	31	u	0.848357
+draw	31	i	6	0
+draw	31	i	6	5
+draw	31	i	6	0
+draw	31	i	6	3
+chunk	31	0	0	true
+read	31	4	-61	1	minecraft:stone
+read	31	4	-60	1	minecraft:air
+read	31	4	-59	1	minecraft:air
+light	31	sky	4	-60	1	0
+draw	31	i	32	19
+light	31	block	4	-60	1	0
+light	31	block	4	-60	1	0
+light	31	sky	4	-60	1	0
+draw	31	i	8	1
+read	31	4	-61	1	minecraft:stone
+read	31	4	-60	1	minecraft:air
+read	31	4	-59	1	minecraft:air
+biome	31	4	-60	1	minecraft:plains
+read	31	4	-60	1	minecraft:air
+read	31	4	-59	1	minecraft:air
+draw	31	u	0.867615
+spawn	31	minecraft:creeper	13.5	-60	6.5	353.7484
+spawn	31	minecraft:creeper	11.5	-60	1.5	204.4592
+spawn	31	minecraft:creeper	9.5	-60	4.5	305.4084
+spawn	31	minecraft:creeper	4.5	-60	1.5	312.3413

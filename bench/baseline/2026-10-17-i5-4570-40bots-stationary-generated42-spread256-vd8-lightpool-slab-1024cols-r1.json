@@ -1,0 +1,210 @@
+{
+  "argv": [
+    "/Users/zaid/other projects/plus-mc/build-light/ab/plusmc-light2",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/Users/zaid/other projects/plus-mc/data/vanilla",
+    "--motd",
+    "soak",
+    "--max-players",
+    "100",
+    "--view-distance",
+    "8",
+    "--metrics-interval",
+    "1",
+    "--worldgen",
+    "42",
+    "--no-flat-world"
+  ],
+  "binary": "/Users/zaid/other projects/plus-mc/build-light/ab/plusmc-light2",
+  "binary_sha256": "11c2edb58740acd5a5f5fb18ed57b7efb2507c97c37322cee6fd41d15f1c689d",
+  "bot_failures": [],
+  "bot_stats": {
+    "bots": 40,
+    "chunk_body_bytes": 552558672,
+    "chunk_keys_max": 301,
+    "chunks_distinct": 602,
+    "chunks_received": 11874,
+    "connected": 40,
+    "failures": [],
+    "joined": 40,
+    "keepalives": 40,
+    "packets_received": 21086,
+    "packets_sent": 440,
+    "probes_answered": 0,
+    "probes_orphan": 0,
+    "probes_pending": 0,
+    "probes_sent": 0,
+    "received_bytes": 14216039,
+    "spread": 256.0,
+    "stationary": true
+  },
+  "bots": 40,
+  "busy": true,
+  "chunks": {
+    "body_bytes": 552558672,
+    "distinct": 602,
+    "distinct_rule": null,
+    "distinct_sum_bound": null,
+    "per_bot_max": 301,
+    "received": 11874
+  },
+  "engine": "loop",
+  "generated_seed": 42,
+  "idle": {
+    "busy_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 1
+    },
+    "tick_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "tps": {
+      "avg": 19.98,
+      "max": 19.98,
+      "min": 19.98,
+      "n": 1
+    },
+    "work_avg_ms": {
+      "avg": 0.029,
+      "max": 0.029,
+      "min": 0.029,
+      "n": 1
+    },
+    "work_peak_ms": {
+      "avg": 0.262,
+      "max": 0.262,
+      "min": 0.262,
+      "n": 1
+    }
+  },
+  "idle_windows": 1,
+  "join_s": 0.36,
+  "joined": 40,
+  "latency": null,
+  "load_avg_1m": {
+    "after": 4.95,
+    "before": 5.65
+  },
+  "loaded": {
+    "busy_pct": {
+      "avg": 70.591,
+      "max": 79.1,
+      "min": 61.4,
+      "n": 11
+    },
+    "players": {
+      "avg": 40.0,
+      "max": 40.0,
+      "min": 40.0,
+      "n": 11
+    },
+    "resync": {
+      "avg": 0.273,
+      "max": 1.0,
+      "min": 0.0,
+      "n": 11
+    },
+    "tick_pct": {
+      "avg": 78.091,
+      "max": 99.2,
+      "min": 63.6,
+      "n": 11
+    },
+    "tps": {
+      "avg": 18.28,
+      "max": 20.44,
+      "min": 13.94,
+      "n": 11
+    },
+    "work_avg_ms": {
+      "avg": 39.048,
+      "max": 49.595,
+      "min": 31.779,
+      "n": 11
+    },
+    "work_peak_ms": {
+      "avg": 187.57,
+      "max": 339.475,
+      "min": 96.637,
+      "n": 11
+    }
+  },
+  "loaded_windows": 11,
+  "mobs": false,
+  "phases": [],
+  "prewarm": false,
+  "probe_period": 0.0,
+  "quiet_load": 2.0,
+  "relayout_blocks": null,
+  "rss_after_leave": {
+    "after": 57503744.0,
+    "at_close": 76865536.0,
+    "samples": 38,
+    "seconds": 45.0
+  },
+  "rss_bytes": {
+    "first": 8331264.0,
+    "last": 57503744.0,
+    "peak": 109060096.0
+  },
+  "rss_guard": {
+    "max_mb": 6500.0
+  },
+  "seconds": 45.0,
+  "server_env": {
+    "PLUSMC_CHUNK_BUDGET_COLUMNS": "1024",
+    "PLUSMC_MOB_SPAWNING": "0"
+  },
+  "server_rc": 0,
+  "spread": 256.0,
+  "startup_s": 0.14,
+  "stationary": true,
+  "traffic": {
+    "bytes_in": 10799574,
+    "kib_per_bot_s": 5.9,
+    "packets_in": 12889,
+    "packets_per_bot_s": 7.2,
+    "seconds": 45.0
+  },
+  "traffic_phases": [],
+  "view_distance": 8,
+  "world": {
+    "world_bytes": {
+      "first": 40768,
+      "last": 2321464,
+      "max": 31480820,
+      "n": 54,
+      "windows_at_max": 1
+    },
+    "world_chunks": {
+      "first": 2,
+      "last": 64,
+      "max": 1024,
+      "n": 54,
+      "windows_at_max": 1
+    },
+    "world_written_chunks": {
+      "first": 0,
+      "last": 0,
+      "max": 0,
+      "n": 54,
+      "windows_at_max": 54
+    }
+  }
+}

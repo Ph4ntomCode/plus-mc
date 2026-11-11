@@ -1,0 +1,16 @@
+# Phase 4 milestone C: the natural spawner's interaction trace for run 'unwatched' (scene 'unwatched' category 'monster'), seed 42.
+#
+# NOT a vanilla dump (see mob_spawn_meta.tsv): every row is one interaction the pass had
+# with the level or one draw it took, in order, and the column after the kind is the
+# tick it happened in — the run is `ticks` passes over one chunk through one state,
+# so the tick boundary is where one pass's rows end and the next begin. `surface` is the
+# column the attempt started from (`getHeight(WORLD_SURFACE, x, z)`); `chunk` is
+# `canSpawnEntitiesInChunk`; `read`, `light` and `biome` are the placement rule and
+# cost predicates' own queries, so the order the gates consult the world is visible;
+# `draw i` is a `nextInt(bound)` (the columns are the pass's own chain: 16, 16, the
+# surface span, then the group and walk draws) and `draw u` a `nextFloat`. `spawn` rows
+# are the mobs that tick's attempt created, in the order the pass made them — the pass
+# returns them at the end of the tick, so they follow that tick's draws rather than
+# interleaving with them.
+#
+# kind	tick	...

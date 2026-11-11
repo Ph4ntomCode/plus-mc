@@ -1,0 +1,93 @@
+# Phase 3 milestone G follow-up: the scheduled block-tick loop's interaction trace
+# for run 'stale' (scene 'platform'), seed 42.
+#
+# NOT a vanilla dump (see block_tick_meta.tsv): every row is one thing the loop,
+# a rule or the caller did, in order, with the tick it happened in. `action` is
+# the caller's scripted work (see block_tick_actions.tsv); `due` is the drain —
+# one row per position, in the canonical order the region path dispatches them
+# (the queue's own order is the hash map's and is deliberately not pinned; see the
+# tool's header); `state` closes each tick with the queue's own clock, pending
+# count and non-empty chunk count; `schedule` is `Level.scheduleTick` with the
+# delay the block asked for and the due tick that follows from it; `read`,
+# `sturdy` and `light` are the world questions the rules ask (a fire's spread
+# walks a 3 x 3 x 5 box, which is most of what these rows are); `write` is a
+# block write with vanilla's client flag — the age-only write is the one with
+# `false`, which is also why it notifies no neighbour; `drop` is a due position
+# the dispatch refused (the block that scheduled it is gone); `item`/`prime` are
+# the two hooks the scheduled path can reach; `draw i`/`draw u` are the recorded
+# stream's two halves, in order.
+#
+# kind	tick	...
+action	0	ignite	2	-60	2
+read	0	2	-61	2	minecraft:stone
+read	0	2	-61	2	minecraft:stone
+sturdy	0	2	-61	2	true
+write	0	2	-60	2	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]	true
+read	0	2	-61	2	minecraft:stone
+read	0	2	-59	2	minecraft:air
+read	0	2	-60	1	minecraft:air
+read	0	2	-60	3	minecraft:air
+read	0	1	-60	2	minecraft:air
+read	0	3	-60	2	minecraft:air
+draw i	0	10	0
+schedule	0	2	-60	2	30	30
+state	1	1	1	1
+state	2	2	1	1
+state	3	3	1	1
+state	4	4	1	1
+action	4	break	2	-60	2
+read	4	2	-60	2	minecraft:fire[age=0,east=false,north=false,south=false,up=false,west=false]
+write	4	2	-60	2	minecraft:air	true
+read	4	2	-61	2	minecraft:stone
+read	4	2	-59	2	minecraft:air
+read	4	2	-60	1	minecraft:air
+read	4	2	-60	3	minecraft:air
+read	4	1	-60	2	minecraft:air
+read	4	3	-60	2	minecraft:air
+state	5	5	1	1
+state	6	6	1	1
+state	7	7	1	1
+state	8	8	1	1
+state	9	9	1	1
+state	10	10	1	1
+state	11	11	1	1
+state	12	12	1	1
+state	13	13	1	1
+state	14	14	1	1
+state	15	15	1	1
+state	16	16	1	1
+state	17	17	1	1
+state	18	18	1	1
+state	19	19	1	1
+state	20	20	1	1
+state	21	21	1	1
+state	22	22	1	1
+state	23	23	1	1
+state	24	24	1	1
+state	25	25	1	1
+state	26	26	1	1
+state	27	27	1	1
+state	28	28	1	1
+state	29	29	1	1
+due	30	2	-60	2
+read	30	2	-60	2	minecraft:air
+drop	30	2	-60	2	minecraft:air
+state	30	30	0	0
+state	31	31	0	0
+state	32	32	0	0
+state	33	33	0	0
+state	34	34	0	0
+state	35	35	0	0
+state	36	36	0	0
+state	37	37	0	0
+state	38	38	0	0
+state	39	39	0	0
+state	40	40	0	0
+state	41	41	0	0
+state	42	42	0	0
+state	43	43	0	0
+state	44	44	0	0
+state	45	45	0	0
+state	46	46	0	0
+state	47	47	0	0
+state	48	48	0	0

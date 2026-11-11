@@ -1,0 +1,395 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: build (${{ matrix.name }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: ubuntu-gcc
+            os: ubuntu-latest
+            cc: gcc
+            cxx: g++
+          - name: ubuntu-clang
+            os: ubuntu-latest
+            cc: clang
+            cxx: clang++
+          - name: macos-clang
+            os: macos-latest
+            cc: clang
+            cxx: clang++
+    env:
+      CC: ${{ matrix.cc }}
+      CXX: ${{ matrix.cxx }}
+      # The seam benchmark is pinned to one recorded measurement rather than to
+      # whatever record is newest, so re-recording the baseline is an explicit
+      # edit here as well as a new file under bench/baseline/.
+      SEAM_BASELINE: bench/baseline/2026-11-01-i5-4570-light-seam-3seeds-r2.json
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python test dependencies
+        run: python -m pip install --disable-pip-version-check Pillow
+
+      - name: Install deps (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build cmake zlib1g-dev libssl-dev libcurl4-openssl-dev
+
+      - name: Configure
+        run: |
+          # OpenSSL is a hard dependency (premium/online-mode RSA + AES). macOS
+          # ships no usable dev headers, and Homebrew's openssl is keg-only, so
+          # point CMake at it when present.
+          extra=()
+          if [ "$RUNNER_OS" = "macOS" ]; then
+            prefix="$(brew --prefix openssl@3 2>/dev/null || true)"
+            if [ -n "$prefix" ]; then
+              extra+=("-DOPENSSL_ROOT_DIR=$prefix")
+            fi
+          fi
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release "${extra[@]}"
+
+      - name: Build
+        run: cmake --build build
+
+      # The grid-vs-scan A/B (`mob-grid-ab`) is a *build* question: the scan arm
+      # is `mob.cpp` compiled a second time with `PLUSMC_MOB_GRID_OFF`, and that
+      # target is EXCLUDE_FROM_ALL so an ordinary build pays the extra
+      # compilation only when someone asks for it. Here the equivalence is part
+      # of the gate, so ask: without this step the test exits 77, reads as
+      # skipped, and the aggregate run stays green without ever comparing the
+      # two arms. A broken scan link should fail on its own line, not as a
+      # missing-input skip in the suite.
+      - name: "Build the scan arm (mob-grid-ab's second compilation)"
+        run: cmake --build build --target plusmc-mob-digest-test-scan
+
+      # The suite is I/O-bound, not CPU-bound: a wire test spends most of its
+      # wall time waiting on a socket quiet window, so four tests in flight cost
+      # little more than one. `RUN_SERIAL` still reserves the box for the perf
+      # gates. The soaks are their own job below — they are fixed-duration runs
+      # (a five-minute leave drill and a two-minute breeding scene), and paying
+      # them on every push was the bulk of this step's wall time.
+      - name: "Test (ctest: smoke + fixture + integration where data is present)"
+        run: ctest --test-dir build -j 4 --output-on-failure -LE soak
+
+      # A skip is not a pass. Each name below is a test whose inputs this job
+      # provisions, so a skip means the comparison it exists for was never made
+      # and the suite must not go green. CTest exits 0 for a skipped test (and
+      # also when `-R` matches nothing), so this reads the run's output instead
+      # of trusting the exit code: `--no-tests=error` closes the second vacuous
+      # pass (the test renamed or dropped from the suite), and the log the grep
+      # reads is written by the rerun in the same step. Add a name here only
+      # when the build steps above give it everything it needs.
+      #
+      # Two skip-code tests are deliberately not in this list. `perf-gate-loaded`
+      # and `light-pool-leave` need `data/vanilla` (gitignored; no runner has
+      # it), and the latter is not even registered without a client capture, so
+      # requiring them here would fail every push on a missing input rather than
+      # on a regression. Their skips are guarded where the input exists instead:
+      # `perf-gate-loaded` exits 77 only for an absent data root and now fails
+      # (instead of skipping) on a box too loaded to join, and `light-pool-leave`
+      # has no skip code left at all.
+      - name: "Skippable gates must run, not skip (a skip is a missing comparison)"
+        run: |
+          set -o pipefail
+          for test in mob-grid-ab; do
+            log="ci-${test}.log"
+            ctest --test-dir build -R "^${test}$" --no-tests=error \
+              --output-on-failure | tee "$log"
+            if grep -qF '***Skipped' "$log"; then
+              echo "::error::${test} skipped: the comparison it exists for was not made."
+              exit 1
+            fi
+          done
+
+      # The Tier-A gate (docs/PLAN.md §3.1) is the criterion Phase 3 is judged
+      # against, so it is required by name rather than left to the aggregate
+      # run above. It is one session walking the whole Tier-A list in order —
+      # a regression that only appears when two features meet fails here.
+      - name: "Tier-A gate (phase-3 exit criterion)"
+        run: ctest --test-dir build -L tier-a --output-on-failure
+
+      # The generation-time light seam, pinned to one recorded measurement.
+      # `plusmc-light-seam` regenerates 75 columns (seeds 42, 7 and 2026 x a 5x5
+      # grid each), relights every one over its eight neighbours and exits 1 on
+      # a broken structural claim (no light at generation, no disagreement
+      # anywhere in the run, a disagreement above the surface, a brighter cell
+      # off the border, invented block light). `seam_track.py` then diffs the
+      # tallies field by field against SEAM_BASELINE and exits 1 if any moved,
+      # if a seed's own split moved (a swap can leave the aggregates equal), or
+      # if the run covers different columns — so a generator or light-engine
+      # change that shifts either layer has to re-record the baseline deliberately
+      # (`python3 bench/seam_track.py --save`) instead of drifting silently.
+      # The counts are light levels, not timings, so the record is
+      # machine-independent. Measured, not assumed: once `WgPerlinNoise` owned
+      # its amplitude list instead of borrowing the caller's stack array, the
+      # 22 Oct record re-ran on Linux x86_64 (gcc 13.3) field for field, both
+      # layers (docs/PHASE5.md's platform check).
+      #
+      # `tools/check_light_seam_linux.sh` is the same comparison without a
+      # build of this runner's own: it streams the tree into an ubuntu:24.04 gcc
+      # 13.3 container (native x86_64, or `--arch arm64` cross-compiled and run
+      # under qemu) and hands the measurement to `seam_track.py --measurement`,
+      # the form `tests/light_seam_track_test.py` pins.
+      - name: "Seam pin (light at generation vs the recorded baseline)"
+        run: >-
+          python3 bench/seam_track.py --binary build/plusmc-light-seam
+          --against "$SEAM_BASELINE" --fail-on-change
+
+      # The decorated column as a digest on this runner. The `column-digest` job
+      # below compares the records the runners upload — with each other and
+      # with COLUMN_BASELINE — so a generator that only diverges on one compiler
+      # (the geode's borrowed stack array did), or that moves all of them at once,
+      # fails the push instead of passing every runner's own tests.
+      - name: "Decorated-column digests (75 columns)"
+        run: ./build/plusmc-column-digest --json column-digest.json
+
+      - name: "Upload the column digests"
+        uses: actions/upload-artifact@v4
+        with:
+          name: column-digest-${{ matrix.name }}
+          path: column-digest.json
+          if-no-files-found: error
+
+  # Windows is a supported target (`docs/WINDOWS_PORT.md`), and a target is
+  # supported when its suite runs, not when a cross-compile of one file links.
+  # The toolchain is MinGW-w64/UCRT from MSYS2: the tree's POSIX-shaped build
+  # scripts keep working there, and the net layer's `socket_compat.h` is the
+  # only place that has to know a socket is not an int. The test list is the
+  # same as the Linux/macOS job, minus the `soak` label (fixed-duration runs are
+  # the separate Linux job). `plugin-loader` is the loader's own gate: it starts
+  # a server with the example plugin and no client, so it exercises
+  # LoadLibrary/GetProcAddress even on a runner with no extracted vanilla data.
+  windows:
+    name: build (windows-mingw)
+    runs-on: windows-latest
+    env:
+      SEAM_BASELINE: bench/baseline/2026-11-01-i5-4570-light-seam-3seeds-r2.json
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python test dependencies
+        run: python -m pip install --disable-pip-version-check Pillow
+
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: false
+          install: >-
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-python
+            mingw-w64-ucrt-x86_64-zlib
+            mingw-w64-ucrt-x86_64-openssl
+
+      - name: Configure
+        shell: msys2 {0}
+        run: cmake --preset windows-mingw
+
+      - name: Build
+        shell: msys2 {0}
+        run: cmake --build --preset windows-mingw
+
+      # Same reason as the Linux/macOS job: `mob-grid-ab` compares the shipped
+      # arm with the scan arm, and that target is EXCLUDE_FROM_ALL. Building it
+      # here is what turns the test from a skip into the comparison it exists
+      # for.
+      - name: "Build the scan arm (mob-grid-ab's second compilation)"
+        shell: msys2 {0}
+        run: cmake --build build-windows --target plusmc-mob-digest-test-scan
+
+      - name: "Test (ctest: smoke + fixture + integration where data is present)"
+        shell: msys2 {0}
+        run: ctest --test-dir build-windows -j 4 --output-on-failure -LE soak --no-tests=error
+
+      # A skip is not a pass, for the same reason the Linux/macOS job spells this
+      # out: CTest exits 0 for a skipped test. This one gate has all its inputs
+      # here (both arms are built above), so a skip means the scan arm stopped
+      # being built or the test stopped being registered.
+      - name: "Skippable gates must run, not skip (a skip is a missing comparison)"
+        shell: msys2 {0}
+        run: |
+          set -o pipefail
+          log=ci-mob-grid-ab.log
+          ctest --test-dir build-windows -R "^mob-grid-ab$" --no-tests=error \
+            --output-on-failure | tee "$log"
+          if grep -qF '***Skipped' "$log"; then
+            echo "::error::mob-grid-ab skipped: the comparison it exists for was not made."
+            exit 1
+          fi
+
+      # The integer tallies the generation-time light seam produces, pinned to
+      # the same record the other runners use. Counts, not timings, so a Windows
+      # run is comparable with a Linux/macOS one; a compiler that changed the
+      # generator would move a field here rather than only in the digest.
+      - name: "Seam pin (light at generation vs the recorded baseline)"
+        shell: msys2 {0}
+        run: >-
+          python bench/seam_track.py --binary build-windows/plusmc-light-seam.exe
+          --against "$SEAM_BASELINE" --fail-on-change
+
+      # The same 75 decorated columns the three Unix runners record. This is what
+      # makes Windows part of the cross-platform worldgen check rather than a
+      # platform that only passes its own unit tests; `column-digest` downloads
+      # this record with the others and refuses it if it moved.
+      - name: "Decorated-column digests (75 columns)"
+        shell: msys2 {0}
+        run: ./build-windows/plusmc-column-digest.exe --json column-digest.json
+
+      - name: "Upload the column digests"
+        uses: actions/upload-artifact@v4
+        with:
+          name: column-digest-windows-mingw
+          path: column-digest.json
+          if-no-files-found: error
+
+  # The cross-compiler worldgen check. Each build runner digests the same 75
+  # decorated columns; this job downloads the four records (three Unix runners
+  # plus the MinGW one) and compares them with each other and with the recorded
+  # COLUMN_BASELINE. The two failures it
+  # exists for: a platform-only difference (a value that depends on what the
+  # stack held, which a same-machine golden cannot see), and a change that moved
+  # every compiler at once and so left them agreeing. Both are a failed push
+  # rather than something a manual cross-platform probe finds later.
+  #
+  # The pins' Linux-toolchain legs — both checks in an ubuntu:24.04 gcc 13.3
+  # container, natively and under arm64 emulation — are
+  # `.github/workflows/container-checks.yml`: weekly, on demand, and on a pull
+  # request labelled `container-checks`, rather than on every push (the emulated
+  # seam is ~72 minutes).
+  column-digest:
+    name: decorated columns (gcc, clang, macOS, MinGW)
+    runs-on: ubuntu-latest
+    needs: [build, windows]
+    env:
+      # The decorated columns are pinned the same way the light seam is:
+      # re-recording is a new file under bench/baseline/ and an edit here, so a
+      # reviewer sees the values move rather than discovering they drifted.
+      COLUMN_BASELINE: bench/baseline/2026-11-01-i5-4570-column-digest-3seeds-r2.json
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Download the four records"
+        uses: actions/download-artifact@v4
+        with:
+          pattern: column-digest-*
+          path: digests
+
+      - name: "Compare the columns across runners and against the pin"
+        run: >-
+          python3 tools/compare_column_digests.py
+          --baseline "$COLUMN_BASELINE"
+          digests/*/column-digest.json
+
+  # The soaks measure a fixed span of world clock, not a number of iterations,
+  # so they cannot be shortened without changing what they assert. One runner,
+  # serially, after the fast suite: a failure here is a soak failure, not a
+  # regression in the push.
+  soak:
+    name: soak (leave drill + breeding scene)
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      CC: clang
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build cmake zlib1g-dev libssl-dev libcurl4-openssl-dev
+
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build -j 4
+
+      - name: "Soak (ctest -L soak: fixed-duration runs, serial)"
+        run: ctest --test-dir build -L soak --output-on-failure
+
+  fuzz:
+    name: fuzz (protocol parsing, 120s budget)
+    runs-on: ubuntu-latest
+    env:
+      CC: clang
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build cmake zlib1g-dev libssl-dev libcurl4-openssl-dev
+
+      # ASan/UBSan instrumentation on the whole tree; the libFuzzer runtime is
+      # added to the fuzz targets only (see fuzz/CMakeLists.txt).
+      - name: Configure (fuzz + sanitizers)
+        run: >-
+          cmake -S . -B build-fuzz -G Ninja -DPLUSMC_BUILD_FUZZERS=ON
+          -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g"
+
+      - name: Build fuzz targets
+        run: cmake --build build-fuzz --target fuzz-frame-standalone
+
+      - name: Fuzz (libFuzzer, bounded)
+        if: ${{ always() }}
+        run: |
+          if cmake --build build-fuzz --target help | grep -q 'fuzz-frame-reader'; then
+            cmake --build build-fuzz --target fuzz-frame-reader
+            ./build-fuzz/fuzz/fuzz-frame-reader fuzz/corpus/frame_reader/ -max_total_time=120
+          else
+            echo "compiler lacks -fsanitize=fuzzer; skipping libFuzzer run"
+          fi
+
+      - name: Fuzz (standalone driver, corpus-mutating)
+        if: ${{ always() }}
+        run: ./build-fuzz/fuzz/fuzz-frame-standalone fuzz/corpus/frame_reader/* --iters 40000
+
+  format:
+    name: format check (clang-format 21.1.1)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned clang-format
+        run: pip install clang-format==21.1.1
+      - name: Check formatting
+        run: |
+          # The generated worldgen piece table is 8 MB / 369k lines. clang-format
+          # needs ~16 GB to parse it and the runner OOMs (the job dies with
+          # "runner has received a shutdown signal"). It is machine-written; the
+          # generator owns its layout, so it is the one file the gate skips.
+          files=$(git ls-files '*.cpp' '*.hpp' '*.h' | grep -v '^src/world/worldgen_structure_piece_table.h$')
+          clang-format --dry-run --Werror $files
+
+  plugin-abi:
+    name: plugin ABI policy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the frozen ABI and its negative tests
+        run: |
+          python3 tools/check_plugin_abi.py
+          python3 tests/plugin_abi_test.py

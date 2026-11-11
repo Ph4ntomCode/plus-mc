@@ -1,0 +1,26 @@
+interface player {
+    use common.{position, game-mode};
+    use text.{text-component};
+    use uuid.{uuid};
+
+    resource player {
+        get-id: func() -> uuid;
+        get-name: func() -> string;
+        get-position: func() -> position;
+        get-yaw: func() -> f32;
+        get-pitch: func() -> f32;
+        get-gamemode: func() -> game-mode;
+        get-health: func() -> f32;
+        get-max-health: func() -> f32;
+        get-food-level: func() -> u8;
+        get-saturation: func() -> f32;
+        get-exhaustion: func() -> f32;
+        get-absorption: func() -> f32;
+        get-experience-level: func() -> s32;
+        get-experience-progress: func() -> f32;
+        get-experience-points: func() -> s32;
+        get-camera-entity-id: func() -> u32;
+        chat: async func(message: string);
+        send-system-message: func(text: text-component, overlay: bool);
+    }
+}

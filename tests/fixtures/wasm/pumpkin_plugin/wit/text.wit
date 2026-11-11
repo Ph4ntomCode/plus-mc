@@ -1,0 +1,21 @@
+interface text {
+    use common.{named-color, rgb-color};
+
+    resource text-component {
+        text: static func(plain: string) -> text-component;
+        add-text: func(text: string);
+        add-child: func(child: text-component);
+        color-named: func(color: named-color);
+        color-rgb: func(color: rgb-color);
+        bold: func(value: bool);
+        italic: func(value: bool);
+        underlined: func(value: bool);
+        strikethrough: func(value: bool);
+        obfuscated: func(value: bool);
+        insertion: func(text: string);
+        font: func(font: string);
+        click-run-command: func(command: string);
+        click-change-page: func(page: u32);
+        hover-show-text: func(text: text-component);
+    }
+}

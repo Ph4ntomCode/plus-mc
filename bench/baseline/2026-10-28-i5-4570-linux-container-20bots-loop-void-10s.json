@@ -1,0 +1,305 @@
+{
+  "ambient": {
+    "blockers": [],
+    "idle_pct": 99.5,
+    "load1": 0.35
+  },
+  "argv": [
+    "/src/build-linux/src/plusmc",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--offline-mode",
+    "--data",
+    "/src/data/vanilla",
+    "--motd",
+    "soak",
+    "--max-players",
+    "100",
+    "--view-distance",
+    "8",
+    "--metrics-interval",
+    "1"
+  ],
+  "binary": "/src/build-linux/src/plusmc",
+  "binary_sha256": "0c6106c3de294db74f1550b855913db01a14da9594b1768269143cd6d4a9c9b2",
+  "biome_memo": null,
+  "bot_failures": [],
+  "bot_processes": 1,
+  "bot_stats": {
+    "bots": 20,
+    "chunk_body_bytes": 290895840,
+    "chunk_keys_max": 289,
+    "chunks_distinct": 289,
+    "chunks_received": 5780,
+    "connected": 20,
+    "failures": [],
+    "joined": 20,
+    "keepalives": 20,
+    "packets_received": 289655,
+    "packets_sent": 14925,
+    "probes_answered": 0,
+    "probes_orphan": 0,
+    "probes_pending": 0,
+    "probes_sent": 0,
+    "received_bytes": 4981112,
+    "spread": 0.0,
+    "stationary": false
+  },
+  "bots": 20,
+  "busy": false,
+  "busy_reasons": [],
+  "chunk_sharing": {
+    "bodies_reused": 166,
+    "body_pct": 2.9,
+    "frame_pct": 90.4,
+    "frames_reused": 5225,
+    "sends": 5780
+  },
+  "chunks": {
+    "body_bytes": 290895840,
+    "distinct": 289,
+    "distinct_rule": null,
+    "distinct_sum_bound": null,
+    "per_bot_max": 289,
+    "received": 5780
+  },
+  "engine": "loop",
+  "entity_relays": null,
+  "generated_seed": null,
+  "generation": {
+    "columns": 289,
+    "columns_per_cpu_s": 649.4,
+    "columns_per_s": 91.84,
+    "counter": "world_chunks_stored",
+    "cpu_fill_s": 0.445,
+    "cpu_s": 1.646,
+    "cpu_samples": 33,
+    "fill_seconds": 3.15,
+    "generating_seconds": 3.15,
+    "peak_per_s": 154.5,
+    "per_second": [
+      [
+        1.05,
+        63
+      ],
+      [
+        2.1,
+        162
+      ],
+      [
+        3.15,
+        64
+      ],
+      [
+        4.15,
+        0
+      ],
+      [
+        5.2,
+        0
+      ],
+      [
+        6.2,
+        0
+      ],
+      [
+        7.25,
+        0
+      ],
+      [
+        8.3,
+        0
+      ],
+      [
+        9.31,
+        0
+      ],
+      [
+        10.35,
+        0
+      ],
+      [
+        11.4,
+        0
+      ],
+      [
+        12.4,
+        0
+      ],
+      [
+        13.45,
+        0
+      ],
+      [
+        14.25,
+        0
+      ]
+    ],
+    "since_last_column_s": 11.1,
+    "tps_min": 20.01,
+    "while_generating_per_s": 91.84
+  },
+  "generation_pool": null,
+  "idle": {
+    "busy_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 1
+    },
+    "tick_pct": {
+      "avg": 0.1,
+      "max": 0.1,
+      "min": 0.1,
+      "n": 1
+    },
+    "tps": {
+      "avg": 19.91,
+      "max": 19.91,
+      "min": 19.91,
+      "n": 1
+    },
+    "work_avg_ms": {
+      "avg": 0.048,
+      "max": 0.048,
+      "min": 0.048,
+      "n": 1
+    },
+    "work_peak_ms": {
+      "avg": 0.17,
+      "max": 0.17,
+      "min": 0.17,
+      "n": 1
+    }
+  },
+  "idle_windows": 1,
+  "interrupted": false,
+  "interrupted_after_s": null,
+  "item_tracking": null,
+  "join_s": 0.19,
+  "joined": 20,
+  "latency": null,
+  "load_avg_1m": {
+    "after": 0.35,
+    "before": 0.35
+  },
+  "loaded": {
+    "busy_pct": {
+      "avg": 0.62,
+      "max": 0.8,
+      "min": 0.5,
+      "n": 10
+    },
+    "players": {
+      "avg": 20.0,
+      "max": 20.0,
+      "min": 20.0,
+      "n": 10
+    },
+    "resync": {
+      "avg": 0.0,
+      "max": 0.0,
+      "min": 0.0,
+      "n": 10
+    },
+    "tick_pct": {
+      "avg": 0.62,
+      "max": 0.8,
+      "min": 0.5,
+      "n": 10
+    },
+    "tps": {
+      "avg": 20.004,
+      "max": 20.22,
+      "min": 19.79,
+      "n": 10
+    },
+    "work_avg_ms": {
+      "avg": 0.304,
+      "max": 0.378,
+      "min": 0.249,
+      "n": 10
+    },
+    "work_peak_ms": {
+      "avg": 1.016,
+      "max": 2.675,
+      "min": 0.295,
+      "n": 10
+    }
+  },
+  "loaded_windows": 10,
+  "mob_tracking": null,
+  "mobs": false,
+  "natural_spawn": null,
+  "phases": [],
+  "prewarm": false,
+  "probe_period": 0.0,
+  "proxy": null,
+  "quiet_hold": 3,
+  "quiet_idle": 85.0,
+  "quiet_load": 2.0,
+  "relayout_blocks": null,
+  "rss_after_leave": null,
+  "rss_bytes": {
+    "first": 13131776.0,
+    "last": 34516992.0,
+    "peak": 74731520.0
+  },
+  "rss_guard": null,
+  "seconds": 10.0,
+  "server_cpu_s": 1.646,
+  "server_env": {
+    "PLUSMC_MOB_SPAWNING": "0"
+  },
+  "server_rc": 0,
+  "spread": 0.0,
+  "startup_s": 0.33,
+  "stationary": false,
+  "traffic": {
+    "bytes_in": 2243007,
+    "kib_per_bot_s": 11.0,
+    "packets_in": 216823,
+    "packets_per_bot_s": 1084.1,
+    "seconds": 10.0
+  },
+  "traffic_phases": [],
+  "view_distance": 8,
+  "world": {
+    "world_bytes": {
+      "first": 0,
+      "last": 297152,
+      "max": 1341827,
+      "n": 15,
+      "windows_at_max": 11
+    },
+    "world_chunks": {
+      "first": 0,
+      "last": 64,
+      "max": 289,
+      "n": 15,
+      "windows_at_max": 11
+    },
+    "world_chunks_stored": {
+      "first": 0,
+      "last": 289,
+      "max": 289,
+      "n": 15,
+      "windows_at_max": 12
+    },
+    "world_written_chunks": {
+      "first": 0,
+      "last": 0,
+      "max": 0,
+      "n": 15,
+      "windows_at_max": 15
+    }
+  }
+}

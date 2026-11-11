@@ -1,0 +1,10 @@
+# Phase 3 milestone J: the random-tick pass's interaction trace for chunk (2, 0), seed 42.
+#
+# NOT a vanilla dump (see random_tick_meta.tsv): every row is one interaction the
+# pass had with the level, in the order it happened. `sample` is
+# `Level.getBlockRandomPos`'s draw and the state read at it; `read` is a rule's own
+# neighbour read (`getGrowthSpeed`, `updateDistance`); `write`, `drop` and
+# `schedule` are what a tick did. A shift in the LCG stream, a changed draw count
+# or a changed y-mask moves these rows, which the shape assertions alone cannot.
+#
+# kind	tick	section	x	y	z	state	extra
